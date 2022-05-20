@@ -15,25 +15,28 @@ import okhttp3.WebSocketListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
+		CredResource cr = new CredResource("src/main/java/com/github/RedditDataMiner/credentials.txt");
 		UserAgent userAgent = new UserAgent("bot", "com.github.RedditDataMiner",
 				"v0.1", "minerBot");
 		NetworkAdapter adapter = new OkHttpNetworkAdapter(userAgent);
 
 		UUID uid = new UUID(16,0);
 		RedditClient redditClient = OAuthHelper.automatic(adapter,
-				Credentials.userless("JYWpoERAxeP0_rRtOYi3lA", "GDmQDLmv6TcEmyZRHEQw-JixWmb2Lw", uid));
+				Credentials.userless(cr.getClientId(), cr.getClientSecret(), uid));
 
 		List<SubredditSearchResult> javaref = redditClient.searchSubredditsByName("java");
 		System.out.println(javaref);
 		if (javaref.isEmpty()) {
 			System.out.println("No results found");
 		}
+
 		/*
 		try {
 			DefaultPaginator<Submission> javasr = javaref.posts().build();
@@ -68,8 +71,6 @@ public class Main {
 
 
 		}
-
-
 
 
 	}
