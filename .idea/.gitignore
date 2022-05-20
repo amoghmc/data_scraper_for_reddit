@@ -8,4 +8,4 @@
 /dataSources.local.xml
 
 # Client ID and Secret Key
-*credentials.txt
+src/main/java/com/github/RedditDataMiner/credentials.txt
