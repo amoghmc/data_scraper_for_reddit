@@ -8,5 +8,4 @@
 /dataSources.local.xml
 
 # Client ID and Secret Key
-data
-**/dataFiles
+/credentials.txt
