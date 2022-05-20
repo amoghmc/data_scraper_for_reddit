@@ -22,7 +22,7 @@ import java.util.UUID;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
-		CredResource cr = new CredResource("src/main/java/com/github/RedditDataMiner/credentials.txt");
+		CredResource cr = new CredResource("src/main/java/com/github/RedditDataMiner/data/credentials.txt");
 		UserAgent userAgent = new UserAgent("bot", "com.github.RedditDataMiner",
 				"v0.1", "minerBot");
 		NetworkAdapter adapter = new OkHttpNetworkAdapter(userAgent);
