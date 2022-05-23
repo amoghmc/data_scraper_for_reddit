@@ -39,11 +39,19 @@ public class CredResource {
 		return clientSecret;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUsername() throws Exception {
+		if (!username.equals("null")) {
+			return username;
+		}
+		Exception NullPointerException = null;
+		throw NullPointerException;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPassword() throws Exception {
+		if (!password.equals("null")) {
+			return password;
+		}
+		Exception NullPointerException = null;
+		throw NullPointerException;
 	}
 }
