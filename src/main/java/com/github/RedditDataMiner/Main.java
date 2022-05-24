@@ -17,10 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
@@ -32,6 +29,7 @@ public class Main {
 		UUID uid = UUID.randomUUID();
 		RedditClient redditClient = OAuthHelper.automatic(adapter,
 				Credentials.userless(cr.getClientId(), cr.getClientSecret(), uid));
+		redditClient.setLogger(new NoopHttpLogger());
 
 		List<SubredditSearchResult> javaref = redditClient.searchSubredditsByName("worldnews");
 		System.out.println(javaref);
@@ -67,10 +65,20 @@ public class Main {
         }
         */
 
-		DefaultPaginator<Submission> paginator = redditClient.subreddit(javaref.get(0).getName()).posts().sorting(SubredditSort.TOP).timePeriod(TimePeriod.MONTH).build();
+		//DefaultPaginator<Submission> paginator = redditClient.subreddit(javaref.get(0).getName()).posts().sorting(SubredditSort.TOP).timePeriod(TimePeriod.MONTH).build();
+		//paginator.accumulate(3);
+		//Listing<Submission> nextPage = paginator.next();
+		AllFilters allFilters = new AllFilters();
+
+		DefaultPaginator<Submission> paginator = redditClient
+				.subreddits("worldnews", "politics", "ukraine", "russia", "news")
+				.posts()
+				.sorting(SubredditSort.TOP)
+				.timePeriod(TimePeriod.MONTH)
+				.build();
 
 		Listing<Submission> nextPage = paginator.next();
-		AllFilters allFilters = new AllFilters();
+		Collections.sort(nextPage, new CompareTitle().reversed());
 
 		CommentCountFilter commentCountFilter = new CommentCountFilter(10);
 		NoNsfwFilter noNsfwFilter = new NoNsfwFilter();
@@ -78,7 +86,7 @@ public class Main {
 		ScoreFilter scoreFilter = new ScoreFilter(1000);
 		ArrayList<String> stringArrayList = new ArrayList<String>();
 		stringArrayList.add("russia");
-		stringArrayList.add("ukraine");
+		//stringArrayList.add("ukraine");
 		KeywordFilter keywordFilter = new KeywordFilter(stringArrayList);
 		allFilters.addFilter(noSpamFilter);
 		allFilters.addFilter(noNsfwFilter);
@@ -87,22 +95,26 @@ public class Main {
 		allFilters.addFilter(keywordFilter);
 		for (Submission s : nextPage) {
 			if (allFilters.satisfies(s)) {
-				System.out.println(s.getTitle() + "\nScore: " + s.getScore());
+				System.out.println(s.getTitle()
+						.replace('’', '\'')
+						.replace('—','-')
+						+ "\nScore: "
+						+ s.getScore());
 				System.out.println(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
-			/*
-			System.out.println(s.getPostHint());
-			System.out.println(s.getDistinguished());
-			System.out.println(s.getThumbnail());
-			System.out.println(s.isSpam());
-			System.out.println(s.isSpoiler());
-			System.out.println(s.getReports());
-			System.out.println(s.getGilded());
-			System.out.println(s.getPreview());
-			System.out.println(s.isLocked());
-			System.out.println(s.getCommentCount());
-			System.out.println(s.getCreated());
+				/*
+				System.out.println(s.getPostHint());
+				System.out.println(s.getDistinguished());
+				System.out.println(s.getThumbnail());
+				System.out.println(s.isSpam());
+				System.out.println(s.isSpoiler());
+				System.out.println(s.getReports());
+				System.out.println(s.getGilded());
+				System.out.println(s.getPreview());
+				System.out.println(s.isLocked());
+				System.out.println(s.getCommentCount());
+				System.out.println(s.getCreated());
 
-			 */
+				 */
 			}
 		}
 	}
