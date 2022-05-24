@@ -22,55 +22,18 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
 		CredResource cr = new CredResource(".idea/credentials.txt");
-		UserAgent userAgent = new UserAgent("bot", "com.github.RedditDataMiner",
-				"v0.1", "minerBot");
-		NetworkAdapter adapter = new OkHttpNetworkAdapter(userAgent);
+		MyRedditClient myRedditClient = new MyRedditClient(cr);
 
-		UUID uid = UUID.randomUUID();
-		RedditClient redditClient = OAuthHelper.automatic(adapter,
-				Credentials.userless(cr.getClientId(), cr.getClientSecret(), uid));
-		redditClient.setLogger(new NoopHttpLogger());
-
-		List<SubredditSearchResult> javaref = redditClient.searchSubredditsByName("worldnews");
+		List<SubredditSearchResult> javaref = myRedditClient.getMyclient().searchSubredditsByName("worldnews");
 		System.out.println(javaref);
 		if (javaref.isEmpty()) {
 			System.out.println("No results found");
 		}
 
-		/*
-		try {
-			DefaultPaginator<Submission> javasr = javaref.posts().build();
-		}
-		catch (Exception e) {
-			System.out.println("ERROR");
-		}
-		DefaultPaginator<Submission> java = javaref.posts().build();
-		//BarebonesPaginator<Message> unread = redditClient.me().inbox().iterate("unread")
-		//		.build();
-		//Listing<Message> firstPage = unread.next();
-		DefaultPaginator<Submission> sr = redditClient.subreddit("RocketjjhfLeague").posts().build();
-		for (Submission s : java.next()) {
-			System.out.println(s.getTitle() + "\nScore: " + s.getScore());
-
-
-		}
-
-		for (Submission s : sr.next()) {
-			System.out.println(s.getTitle());
-		}
-
-        /*
-        for (Message m : firstPage) {
-            System.out.println(m);
-        }
-        */
-
-		//DefaultPaginator<Submission> paginator = redditClient.subreddit(javaref.get(0).getName()).posts().sorting(SubredditSort.TOP).timePeriod(TimePeriod.MONTH).build();
-		//paginator.accumulate(3);
-		//Listing<Submission> nextPage = paginator.next();
 		AllFilters allFilters = new AllFilters();
 
-		DefaultPaginator<Submission> paginator = redditClient
+		DefaultPaginator<Submission> paginator = myRedditClient
+				.getMyclient()
 				.subreddits("worldnews", "politics", "ukraine", "russia", "news")
 				.posts()
 				.sorting(SubredditSort.TOP)
