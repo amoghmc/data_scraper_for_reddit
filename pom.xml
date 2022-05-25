@@ -39,6 +39,11 @@
             <artifactId>JRAW</artifactId>
             <version>1.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>5.2</version>
+        </dependency>
     </dependencies>
 
 </project>

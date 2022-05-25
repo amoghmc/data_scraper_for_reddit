@@ -16,13 +16,31 @@ import okhttp3.WebSocketListener;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.List;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
 		CredResource cr = new CredResource(".idea/credentials.txt");
 		MyRedditClient myRedditClient = new MyRedditClient(cr);
+		/*
+		MyFrame jFrame = new MyFrame();
+		HeadingLabel jLabel = new HeadingLabel();
+		jLabel.setText("Welcome to Reddit Data Miner");
+		jFrame.add(jLabel);
+
+		HeadingLabel jLabe2 = new HeadingLabel();
+		jLabe2.setText("Add");
+		jFrame.add(jLabe2);
+
+
+		 */
+		MyJFormFrame mjFormFrame = new MyJFormFrame();
+		mjFormFrame.setVisible(true);
+		mjFormFrame.setSize(100,100);
 
 		List<SubredditSearchResult> javaref = myRedditClient.getMyclient().searchSubredditsByName("worldnews");
 		System.out.println(javaref);
@@ -80,5 +98,6 @@ public class Main {
 				 */
 			}
 		}
+		//System.exit(0);
 	}
 }
