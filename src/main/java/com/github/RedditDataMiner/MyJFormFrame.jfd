@@ -6,13 +6,14 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "insets 0,hidemode 3,gap 7 7"
 			"$columnConstraints": "[grow 1,fill][fill][fill][fill][fill][fill][fill][fill][grow 1,fill][fill][fill][fill][fill][fill][grow 1,fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
-			"$rowConstraints": "[18:0,grow 1,fill][][][][][fill][fill][fill][fill][0,fill][86,grow 1,fill][50,grow 1,fill]"
+			"$rowConstraints": "[18:0,grow 1,fill][][][][][][][fill][fill][][][fill][fill][0,fill][86,grow 1,fill][21,grow 1,fill]"
 		} ) {
 			name: "this"
 			"minimumSize": new java.awt.Dimension( 800, 500 )
 			"$sizePolicy": 1
 			"background": new java.awt.Color( 255, 204, 204, 255 )
 			"foreground": sfield java.awt.Color orange
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Welcome to Reddit Data Miner"
@@ -69,9 +70,8 @@ new FormModel {
 					"value": "cell 5 6"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label3"
+					name: "label2"
 					"text": "Min"
-					"font": new java.awt.Font( "Segoe UI", 0, 16 )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 6 6"
 				} )
@@ -125,11 +125,33 @@ new FormModel {
 					"value": "cell 9 8"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 1 18 9,hmax 250"
+				"value": "cell 1 1 18 11,hmax 250"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+				"text": "Reddit Sort Settings"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 19 2 6 1"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 27 2,wmin 100"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Search"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 19 10 18 2"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField7"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 12 35 3"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 15, 50 )
-			"size": new java.awt.Dimension( 1080, 525 )
+			"size": new java.awt.Dimension( 1080, 500 )
 		} )
 	}
 }

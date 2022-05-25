@@ -62,6 +62,10 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
+	private void thisWindowClosed(WindowEvent e) {
+		// TODO add your code here
+	}
+
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -73,7 +77,7 @@ public class MyJFormFrame extends JFrame {
 		checkBox2 = new JCheckBox();
 		checkBox3 = new JCheckBox();
 		textField1 = new JTextField();
-		label3 = new JLabel();
+		label2 = new JLabel();
 		textField2 = new JTextField();
 		label4 = new JLabel();
 		checkBox4 = new JCheckBox();
@@ -81,11 +85,21 @@ public class MyJFormFrame extends JFrame {
 		label7 = new JLabel();
 		textField4 = new JTextField();
 		label8 = new JLabel();
+		label11 = new JLabel();
+		comboBox1 = new JComboBox();
+		button1 = new JButton();
+		textField7 = new JTextField();
 
 		//======== this ========
 		setMinimumSize(new Dimension(800, 500));
 		setBackground(new Color(255, 204, 204));
 		setForeground(Color.orange);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				thisWindowClosed(e);
+			}
+		});
 		var contentPane = getContentPane();
 		contentPane.setLayout(new MigLayout(
 			"insets 0,hidemode 3,gap 7 7",
@@ -135,13 +149,17 @@ public class MyJFormFrame extends JFrame {
 			"[]" +
 			"[]" +
 			"[]" +
+			"[]" +
+			"[]" +
 			"[fill]" +
 			"[fill]" +
+			"[]" +
+			"[]" +
 			"[fill]" +
 			"[fill]" +
 			"[0,fill]" +
 			"[86,grow 1,fill]" +
-			"[50,grow 1,fill]"));
+			"[21,grow 1,fill]"));
 
 		//---- label1 ----
 		label1.setText("Welcome to Reddit Data Miner");
@@ -212,10 +230,9 @@ public class MyJFormFrame extends JFrame {
 			textField1.setMinimumSize(new Dimension(100, 38));
 			panel1.add(textField1, "cell 5 6");
 
-			//---- label3 ----
-			label3.setText("Min");
-			label3.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-			panel1.add(label3, "cell 6 6");
+			//---- label2 ----
+			label2.setText("Min");
+			panel1.add(label2, "cell 6 6");
 
 			//---- textField2 ----
 			textField2.setText("-1");
@@ -252,8 +269,18 @@ public class MyJFormFrame extends JFrame {
 			label8.setText("Max");
 			panel1.add(label8, "cell 9 8");
 		}
-		contentPane.add(panel1, "cell 1 1 18 9,hmax 250");
-		setSize(1080, 525);
+		contentPane.add(panel1, "cell 1 1 18 11,hmax 250");
+
+		//---- label11 ----
+		label11.setText("Reddit Sort Settings");
+		contentPane.add(label11, "cell 19 2 6 1");
+		contentPane.add(comboBox1, "cell 27 2,wmin 100");
+
+		//---- button1 ----
+		button1.setText("Search");
+		contentPane.add(button1, "cell 19 10 18 2");
+		contentPane.add(textField7, "cell 2 12 35 3");
+		setSize(1080, 500);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
@@ -267,7 +294,7 @@ public class MyJFormFrame extends JFrame {
 	private JCheckBox checkBox2;
 	private JCheckBox checkBox3;
 	private JTextField textField1;
-	private JLabel label3;
+	private JLabel label2;
 	private JTextField textField2;
 	private JLabel label4;
 	private JCheckBox checkBox4;
@@ -275,5 +302,9 @@ public class MyJFormFrame extends JFrame {
 	private JLabel label7;
 	private JTextField textField4;
 	private JLabel label8;
+	private JLabel label11;
+	private JComboBox comboBox1;
+	private JButton button1;
+	private JTextField textField7;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }
