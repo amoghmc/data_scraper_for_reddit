@@ -9,59 +9,71 @@ new FormModel {
 			"$rowConstraints": "[18:0,grow 1,fill][][][][][][][fill][fill][][][fill][fill][0,fill][86,grow 1,fill][21,grow 1,fill]"
 		} ) {
 			name: "this"
-			"minimumSize": new java.awt.Dimension( 800, 500 )
 			"$sizePolicy": 1
 			"background": new java.awt.Color( 255, 204, 204, 255 )
 			"foreground": sfield java.awt.Color orange
-			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
+			"minimumSize": new java.awt.Dimension( 800, 500 )
+			"title": "RedditDataMiner"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", false ) )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
+				name: "headingLabel"
 				"text": "Welcome to Reddit Data Miner"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 0 39 1,align center center,grow 0 0,hmin 0"
+				"value": "cell 1 0 37 1,align center center,grow 0 0,hmin 0"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
 				"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
 				"$rowConstraints": "[][][][][][][][][][][][21][27][]"
 			} ) {
-				name: "panel1"
+				name: "filterPanel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label10"
+					name: "subredditFilterLabel"
 					"text": "Subreddit Filter"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 1"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField6"
+					name: "subredditTextField"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 1 1 9 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "checkBox1"
+					name: "noNsfwCheckBox"
 					"text": "No NSFW Filter"
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBox1ItemStateChanged", true ) )
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBox1ItemStateChanged", true ) )
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "noNsfwFilterCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 3 4 1"
+					"value": "cell 0 3 3 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "checkBox2"
+					name: "keywordCheckBox"
+					"text": "Keyword Filter"
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "keywordCheckBoxItemStateChanged", true ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 5 3"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "noSpamCheckBox"
 					"text": "No Spam Filter"
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBox2ItemStateChanged", true ) )
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "noSpamFilterCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 4 11 1"
+					"value": "cell 0 4 3 1"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "keywordTextField"
+					"enabled": false
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 5 4 5 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "checkBox3"
+					name: "scoreFilterCheckBox"
 					"text": "Score Filter"
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBox3ItemStateChanged", true ) )
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBox3ItemStateChanged", true ) )
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreFilterCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 6 4 1"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField1"
+					name: "scoreMinTextField"
 					"text": "0"
 					"cursor": new java.awt.Cursor( 2 )
 					"enabled": false
@@ -70,13 +82,13 @@ new FormModel {
 					"value": "cell 5 6"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label2"
+					name: "scoreMinLabel"
 					"text": "Min"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 6 6"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField2"
+					name: "scoreMaxTextField"
 					"text": "-1"
 					"enabled": false
 					"minimumSize": new java.awt.Dimension( 100, 38 )
@@ -84,20 +96,20 @@ new FormModel {
 					"value": "cell 7 6 2 1"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label4"
+					name: "scoreMaxLabel"
 					"text": "Max"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 9 6"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "checkBox4"
+					name: "commentCountFilterCheckBox"
 					"text": "Comment Count Filter"
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBox4ItemStateChanged", true ) )
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "commentCountFilterCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 8 4 1"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField3"
+					name: "commentCountMinTextField"
 					"text": "0"
 					"enabled": false
 					"minimumSize": new java.awt.Dimension( 100, 38 )
@@ -105,13 +117,13 @@ new FormModel {
 					"value": "cell 5 8"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label7"
+					name: "commentCountMinLabel"
 					"text": "Min"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 6 8"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField4"
+					name: "commentCountMaxTextField"
 					"text": "-1"
 					"enabled": false
 					"minimumSize": new java.awt.Dimension( 100, 38 )
@@ -119,7 +131,7 @@ new FormModel {
 					"value": "cell 7 8 2 1"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label8"
+					name: "commentCountMaxLabel"
 					"text": "Max"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 9 8"
@@ -128,29 +140,63 @@ new FormModel {
 				"value": "cell 1 1 18 11,hmax 250"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label11"
+				name: "redditSortSettingsCheckBox"
 				"text": "Reddit Sort Settings"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 19 2 6 1"
+				"value": "cell 20 2 6 1"
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "comboBox1"
+				name: "redditSortComboBox"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 27 2,wmin 100"
+				"value": "cell 20 4 16 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "azSort"
+				"text": "A-Z Sort"
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "azSortItemStateChanged", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 20 6 9 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "zaSort"
+				"text": "Z-A Sort"
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "zaSortItemStateChanged", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 30 6 7 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "scoreSortMax"
+				"text": "Score Sort by Max"
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMaxItemStateChanged", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 20 8 9 1"
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "scoreSortMin"
+				"text": "Score Sort by Min"
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMinItemStateChanged", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 30 8 7 1"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
+				name: "searchButton"
 				"text": "Search"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 19 10 18 2"
+				"value": "cell 20 10 17 2"
 			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textField7"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "resultTextArea"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
+				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 12 35 3"
+				"value": "cell 2 13 35 2"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 15, 50 )
+			"location": new java.awt.Point( 10, 45 )
 			"size": new java.awt.Dimension( 1080, 500 )
 		} )
 	}

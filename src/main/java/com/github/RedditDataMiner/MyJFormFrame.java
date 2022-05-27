@@ -6,10 +6,9 @@ package com.github.RedditDataMiner;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.event.*;
+
 import net.miginfocom.swing.*;
 
 /**
@@ -22,82 +21,130 @@ public class MyJFormFrame extends JFrame {
 		filterArrayList = new ArrayList<Filter>();
 	}
 
-	private void checkBox3ItemStateChanged(ItemEvent e) {
+	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			textField1.setEnabled(true);
-			textField2.setEnabled(true);
+			commentCountMinTextField.setEnabled(true);
+			commentCountMaxTextField.setEnabled(true);
 		}
-		if (e.getStateChange() == ItemEvent.DESELECTED) {
-			textField1.setEnabled(false);
-			textField2.setEnabled(false);
+		else {
+			commentCountMinTextField.setEnabled(false);
+			commentCountMaxTextField.setEnabled(false);
 		}
 	}
 
-	private void checkBox4ItemStateChanged(ItemEvent e) {
-		if (e.getStateChange() == ItemEvent.SELECTED) {
-			textField3.setEnabled(true);
-			textField4.setEnabled(true);
-		}
-		if (e.getStateChange() == ItemEvent.DESELECTED) {
-			textField3.setEnabled(false);
-			textField4.setEnabled(false);
-		}
-	}
-
-	private void checkBox1ItemStateChanged(ItemEvent e) {
+	private void noNsfwFilterCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			filterArrayList.add(new NoNsfwFilter());
 		}
-		if (e.getStateChange() == ItemEvent.DESELECTED) {
+		else {
 			filterArrayList.remove(new NoNsfwFilter());
 		}
 	}
 
-	private void checkBox2ItemStateChanged(ItemEvent e) {
+	private void noSpamFilterCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			filterArrayList.add(new NoSpamFilter());
 		}
-		if (e.getStateChange() == ItemEvent.DESELECTED) {
+		else {
 			filterArrayList.remove(new NoSpamFilter());
 		}
 	}
 
-	private void thisWindowClosed(WindowEvent e) {
-		// TODO add your code here
+	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			keywordTextField.setEnabled(true);
+		}
+		else {
+		    keywordTextField.setEnabled(false);
+		}
 	}
 
+	private void scoreFilterCheckBoxItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			scoreMinTextField.setEnabled(true);
+			scoreMaxTextField.setEnabled(true);
+		}
+		else {
+			scoreMinTextField.setEnabled(false);
+			scoreMaxTextField.setEnabled(false);
+		}
+	}
+
+	public JTextArea getResultTextArea() {
+		return resultTextArea;
+	}
+
+	private void azSortItemStateChanged(ItemEvent e) {
+		if(e.getStateChange() == ItemEvent.SELECTED) {
+			zaSort.setSelected(false);
+		}
+	}
+
+	private void zaSortItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+		    azSort.setSelected(false);
+		}
+	}
+
+	private void scoreSortMaxItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+		    scoreSortMin.setSelected(false);
+		}
+	}
+
+	private void scoreSortMinItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+		    scoreSortMax.setSelected(false);
+		}
+	}
+
+	private void createUIComponents() {
+		// TODO: add custom component creation code here
+	}
+
+	private void thisWindowClosing() {
+		System.exit(0);
+	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		label1 = new JLabel();
-		panel1 = new JPanel();
-		label10 = new JLabel();
-		textField6 = new JTextField();
-		checkBox1 = new JCheckBox();
-		checkBox2 = new JCheckBox();
-		checkBox3 = new JCheckBox();
-		textField1 = new JTextField();
-		label2 = new JLabel();
-		textField2 = new JTextField();
-		label4 = new JLabel();
-		checkBox4 = new JCheckBox();
-		textField3 = new JTextField();
-		label7 = new JLabel();
-		textField4 = new JTextField();
-		label8 = new JLabel();
-		label11 = new JLabel();
-		comboBox1 = new JComboBox();
-		button1 = new JButton();
-		textField7 = new JTextField();
+		headingLabel = new JLabel();
+		filterPanel = new JPanel();
+		subredditFilterLabel = new JLabel();
+		subredditTextField = new JTextField();
+		noNsfwCheckBox = new JCheckBox();
+		keywordCheckBox = new JCheckBox();
+		noSpamCheckBox = new JCheckBox();
+		keywordTextField = new JTextField();
+		scoreFilterCheckBox = new JCheckBox();
+		scoreMinTextField = new JTextField();
+		scoreMinLabel = new JLabel();
+		scoreMaxTextField = new JTextField();
+		scoreMaxLabel = new JLabel();
+		commentCountFilterCheckBox = new JCheckBox();
+		commentCountMinTextField = new JTextField();
+		commentCountMinLabel = new JLabel();
+		commentCountMaxTextField = new JTextField();
+		commentCountMaxLabel = new JLabel();
+		redditSortSettingsCheckBox = new JLabel();
+		redditSortComboBox = new JComboBox();
+		azSort = new JCheckBox();
+		zaSort = new JCheckBox();
+		scoreSortMax = new JCheckBox();
+		scoreSortMin = new JCheckBox();
+		searchButton = new JButton();
+		scrollPane1 = new JScrollPane();
+		resultTextArea = new JTextArea();
 
 		//======== this ========
-		setMinimumSize(new Dimension(800, 500));
 		setBackground(new Color(255, 204, 204));
 		setForeground(Color.orange);
+		setMinimumSize(new Dimension(800, 500));
+		setTitle("RedditDataMiner");
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosed(WindowEvent e) {
-				thisWindowClosed(e);
+			public void windowClosing(WindowEvent e) {
+				thisWindowClosing();
 			}
 		});
 		var contentPane = getContentPane();
@@ -161,13 +208,13 @@ public class MyJFormFrame extends JFrame {
 			"[86,grow 1,fill]" +
 			"[21,grow 1,fill]"));
 
-		//---- label1 ----
-		label1.setText("Welcome to Reddit Data Miner");
-		contentPane.add(label1, "cell 0 0 39 1,align center center,grow 0 0,hmin 0");
+		//---- headingLabel ----
+		headingLabel.setText("Welcome to Reddit Data Miner");
+		contentPane.add(headingLabel, "cell 1 0 37 1,align center center,grow 0 0,hmin 0");
 
-		//======== panel1 ========
+		//======== filterPanel ========
 		{
-			panel1.setLayout(new MigLayout(
+			filterPanel.setLayout(new MigLayout(
 				"hidemode 3",
 				// columns
 				"[fill]" +
@@ -197,114 +244,150 @@ public class MyJFormFrame extends JFrame {
 				"[27]" +
 				"[]"));
 
-			//---- label10 ----
-			label10.setText("Subreddit Filter");
-			panel1.add(label10, "cell 0 1");
-			panel1.add(textField6, "cell 1 1 9 1");
+			//---- subredditFilterLabel ----
+			subredditFilterLabel.setText("Subreddit Filter");
+			filterPanel.add(subredditFilterLabel, "cell 0 1");
+			filterPanel.add(subredditTextField, "cell 1 1 9 1");
 
-			//---- checkBox1 ----
-			checkBox1.setText("No NSFW Filter");
-			checkBox1.addItemListener(e -> {
-			checkBox1ItemStateChanged(e);
-			checkBox1ItemStateChanged(e);
-		});
-			panel1.add(checkBox1, "cell 0 3 4 1");
+			//---- noNsfwCheckBox ----
+			noNsfwCheckBox.setText("No NSFW Filter");
+			noNsfwCheckBox.addItemListener(e -> noNsfwFilterCheckBoxItemStateChanged(e));
+			filterPanel.add(noNsfwCheckBox, "cell 0 3 3 1");
 
-			//---- checkBox2 ----
-			checkBox2.setText("No Spam Filter");
-			checkBox2.addItemListener(e -> checkBox2ItemStateChanged(e));
-			panel1.add(checkBox2, "cell 0 4 11 1");
+			//---- keywordCheckBox ----
+			keywordCheckBox.setText("Keyword Filter");
+			keywordCheckBox.addItemListener(e -> keywordCheckBoxItemStateChanged(e));
+			filterPanel.add(keywordCheckBox, "cell 5 3");
 
-			//---- checkBox3 ----
-			checkBox3.setText("Score Filter");
-			checkBox3.addItemListener(e -> {
-			checkBox3ItemStateChanged(e);
-			checkBox3ItemStateChanged(e);
-		});
-			panel1.add(checkBox3, "cell 0 6 4 1");
+			//---- noSpamCheckBox ----
+			noSpamCheckBox.setText("No Spam Filter");
+			noSpamCheckBox.addItemListener(e -> noSpamFilterCheckBoxItemStateChanged(e));
+			filterPanel.add(noSpamCheckBox, "cell 0 4 3 1");
 
-			//---- textField1 ----
-			textField1.setText("0");
-			textField1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-			textField1.setEnabled(false);
-			textField1.setMinimumSize(new Dimension(100, 38));
-			panel1.add(textField1, "cell 5 6");
+			//---- keywordTextField ----
+			keywordTextField.setEnabled(false);
+			filterPanel.add(keywordTextField, "cell 5 4 5 1");
 
-			//---- label2 ----
-			label2.setText("Min");
-			panel1.add(label2, "cell 6 6");
+			//---- scoreFilterCheckBox ----
+			scoreFilterCheckBox.setText("Score Filter");
+			scoreFilterCheckBox.addItemListener(e -> scoreFilterCheckBoxItemStateChanged(e));
+			filterPanel.add(scoreFilterCheckBox, "cell 0 6 4 1");
 
-			//---- textField2 ----
-			textField2.setText("-1");
-			textField2.setEnabled(false);
-			textField2.setMinimumSize(new Dimension(100, 38));
-			panel1.add(textField2, "cell 7 6 2 1");
+			//---- scoreMinTextField ----
+			scoreMinTextField.setText("0");
+			scoreMinTextField.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+			scoreMinTextField.setEnabled(false);
+			scoreMinTextField.setMinimumSize(new Dimension(100, 38));
+			filterPanel.add(scoreMinTextField, "cell 5 6");
 
-			//---- label4 ----
-			label4.setText("Max");
-			panel1.add(label4, "cell 9 6");
+			//---- scoreMinLabel ----
+			scoreMinLabel.setText("Min");
+			filterPanel.add(scoreMinLabel, "cell 6 6");
 
-			//---- checkBox4 ----
-			checkBox4.setText("Comment Count Filter");
-			checkBox4.addItemListener(e -> checkBox4ItemStateChanged(e));
-			panel1.add(checkBox4, "cell 0 8 4 1");
+			//---- scoreMaxTextField ----
+			scoreMaxTextField.setText("-1");
+			scoreMaxTextField.setEnabled(false);
+			scoreMaxTextField.setMinimumSize(new Dimension(100, 38));
+			filterPanel.add(scoreMaxTextField, "cell 7 6 2 1");
 
-			//---- textField3 ----
-			textField3.setText("0");
-			textField3.setEnabled(false);
-			textField3.setMinimumSize(new Dimension(100, 38));
-			panel1.add(textField3, "cell 5 8");
+			//---- scoreMaxLabel ----
+			scoreMaxLabel.setText("Max");
+			filterPanel.add(scoreMaxLabel, "cell 9 6");
 
-			//---- label7 ----
-			label7.setText("Min");
-			panel1.add(label7, "cell 6 8");
+			//---- commentCountFilterCheckBox ----
+			commentCountFilterCheckBox.setText("Comment Count Filter");
+			commentCountFilterCheckBox.addItemListener(e -> commentCountFilterCheckBoxItemStateChanged(e));
+			filterPanel.add(commentCountFilterCheckBox, "cell 0 8 4 1");
 
-			//---- textField4 ----
-			textField4.setText("-1");
-			textField4.setEnabled(false);
-			textField4.setMinimumSize(new Dimension(100, 38));
-			panel1.add(textField4, "cell 7 8 2 1");
+			//---- commentCountMinTextField ----
+			commentCountMinTextField.setText("0");
+			commentCountMinTextField.setEnabled(false);
+			commentCountMinTextField.setMinimumSize(new Dimension(100, 38));
+			filterPanel.add(commentCountMinTextField, "cell 5 8");
 
-			//---- label8 ----
-			label8.setText("Max");
-			panel1.add(label8, "cell 9 8");
+			//---- commentCountMinLabel ----
+			commentCountMinLabel.setText("Min");
+			filterPanel.add(commentCountMinLabel, "cell 6 8");
+
+			//---- commentCountMaxTextField ----
+			commentCountMaxTextField.setText("-1");
+			commentCountMaxTextField.setEnabled(false);
+			commentCountMaxTextField.setMinimumSize(new Dimension(100, 38));
+			filterPanel.add(commentCountMaxTextField, "cell 7 8 2 1");
+
+			//---- commentCountMaxLabel ----
+			commentCountMaxLabel.setText("Max");
+			filterPanel.add(commentCountMaxLabel, "cell 9 8");
 		}
-		contentPane.add(panel1, "cell 1 1 18 11,hmax 250");
+		contentPane.add(filterPanel, "cell 1 1 18 11,hmax 250");
 
-		//---- label11 ----
-		label11.setText("Reddit Sort Settings");
-		contentPane.add(label11, "cell 19 2 6 1");
-		contentPane.add(comboBox1, "cell 27 2,wmin 100");
+		//---- redditSortSettingsCheckBox ----
+		redditSortSettingsCheckBox.setText("Reddit Sort Settings");
+		contentPane.add(redditSortSettingsCheckBox, "cell 20 2 6 1");
+		contentPane.add(redditSortComboBox, "cell 20 4 16 1");
 
-		//---- button1 ----
-		button1.setText("Search");
-		contentPane.add(button1, "cell 19 10 18 2");
-		contentPane.add(textField7, "cell 2 12 35 3");
+		//---- azSort ----
+		azSort.setText("A-Z Sort");
+		azSort.addItemListener(e -> azSortItemStateChanged(e));
+		contentPane.add(azSort, "cell 20 6 9 1");
+
+		//---- zaSort ----
+		zaSort.setText("Z-A Sort");
+		zaSort.addItemListener(e -> zaSortItemStateChanged(e));
+		contentPane.add(zaSort, "cell 30 6 7 1");
+
+		//---- scoreSortMax ----
+		scoreSortMax.setText("Score Sort by Max");
+		scoreSortMax.addItemListener(e -> scoreSortMaxItemStateChanged(e));
+		contentPane.add(scoreSortMax, "cell 20 8 9 1");
+
+		//---- scoreSortMin ----
+		scoreSortMin.setText("Score Sort by Min");
+		scoreSortMin.addItemListener(e -> scoreSortMinItemStateChanged(e));
+		contentPane.add(scoreSortMin, "cell 30 8 7 1");
+
+		//---- searchButton ----
+		searchButton.setText("Search");
+		contentPane.add(searchButton, "cell 20 10 17 2");
+
+		//======== scrollPane1 ========
+		{
+			scrollPane1.setViewportView(resultTextArea);
+		}
+		contentPane.add(scrollPane1, "cell 2 13 35 2");
 		setSize(1080, 500);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	private JLabel label1;
-	private JPanel panel1;
-	private JLabel label10;
-	private JTextField textField6;
-	private JCheckBox checkBox1;
-	private JCheckBox checkBox2;
-	private JCheckBox checkBox3;
-	private JTextField textField1;
-	private JLabel label2;
-	private JTextField textField2;
-	private JLabel label4;
-	private JCheckBox checkBox4;
-	private JTextField textField3;
-	private JLabel label7;
-	private JTextField textField4;
-	private JLabel label8;
-	private JLabel label11;
-	private JComboBox comboBox1;
-	private JButton button1;
-	private JTextField textField7;
+	private JLabel headingLabel;
+	private JPanel filterPanel;
+	private JLabel subredditFilterLabel;
+	private JTextField subredditTextField;
+	private JCheckBox noNsfwCheckBox;
+	private JCheckBox keywordCheckBox;
+	private JCheckBox noSpamCheckBox;
+	private JTextField keywordTextField;
+	private JCheckBox scoreFilterCheckBox;
+	private JTextField scoreMinTextField;
+	private JLabel scoreMinLabel;
+	private JTextField scoreMaxTextField;
+	private JLabel scoreMaxLabel;
+	private JCheckBox commentCountFilterCheckBox;
+	private JTextField commentCountMinTextField;
+	private JLabel commentCountMinLabel;
+	private JTextField commentCountMaxTextField;
+	private JLabel commentCountMaxLabel;
+	private JLabel redditSortSettingsCheckBox;
+	private JComboBox redditSortComboBox;
+	private JCheckBox azSort;
+	private JCheckBox zaSort;
+	private JCheckBox scoreSortMax;
+	private JCheckBox scoreSortMin;
+	private JButton searchButton;
+	private JScrollPane scrollPane1;
+	private JTextArea resultTextArea;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
+
 }

@@ -74,13 +74,22 @@ public class Main {
 		allFilters.addFilter(scoreFilter);
 		allFilters.addFilter(commentCountFilter);
 		allFilters.addFilter(keywordFilter);
+
+		//mjFormFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		for (Submission s : nextPage) {
 			if (allFilters.satisfies(s)) {
+				mjFormFrame.getResultTextArea().append(s.getTitle()
+						.replace('’', '\'')
+						.replace('—','-')
+						+ "\nScore: "
+						+ s.getScore());
 				System.out.println(s.getTitle()
 						.replace('’', '\'')
 						.replace('—','-')
 						+ "\nScore: "
 						+ s.getScore());
+
+				mjFormFrame.getResultTextArea().append(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
 				System.out.println(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
 				/*
 				System.out.println(s.getPostHint());
