@@ -161,14 +161,14 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "azSort"
-				"text": "a-z sort"
+				"text": "Title Sort"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "azSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 7 9 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "zaSort"
-				"text": "a-z sort"
+				"text": "Title Sort Reverse"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "zaSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 30 7 7 1"

@@ -336,12 +336,12 @@ public class MyJFormFrame extends JFrame {
 		contentPane.add(timeComboBox, "cell 30 5 7 1");
 
 		//---- azSort ----
-		azSort.setText("a-z sort");
+		azSort.setText("Title Sort");
 		azSort.addItemListener(e -> azSortItemStateChanged(e));
 		contentPane.add(azSort, "cell 20 7 9 1");
 
 		//---- zaSort ----
-		zaSort.setText("a-z sort");
+		zaSort.setText("Title Sort Reverse");
 		zaSort.addItemListener(e -> zaSortItemStateChanged(e));
 		contentPane.add(zaSort, "cell 30 7 7 1");
 
