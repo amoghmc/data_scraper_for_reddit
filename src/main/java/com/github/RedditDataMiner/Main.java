@@ -11,21 +11,8 @@ public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
 		CredResource cr = new CredResource(".idea/credentials.txt");
 		MyRedditClient myRedditClient = new MyRedditClient(cr);
-		/*
-		MyFrame jFrame = new MyFrame();
-		HeadingLabel jLabel = new HeadingLabel();
-		jLabel.setText("Welcome to Reddit Data Miner");
-		jFrame.add(jLabel);
 
-		HeadingLabel jLabe2 = new HeadingLabel();
-		jLabe2.setText("Add");
-		jFrame.add(jLabe2);
-
-
-		 */
 		MyJFormFrame mjFormFrame = new MyJFormFrame();
-		//mjFormFrame.setVisible(true);
-		//mjFormFrame.setSize(100,100);
 		mjFormFrame.pack();
 
 		List<SubredditSearchResult> javaref = myRedditClient.getMyclient().searchSubredditsByName("worldnews");

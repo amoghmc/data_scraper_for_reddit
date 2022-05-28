@@ -20,7 +20,7 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
 				"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
-				"$rowConstraints": "[][][][][][][][]"
+				"$rowConstraints": "[][][][][][][][][][]"
 			} ) {
 				name: "filterPanel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -72,6 +72,7 @@ new FormModel {
 					name: "scoreMinTextField"
 					"text": "0"
 					"enabled": false
+					"minimumSize": &Dimension0 new java.awt.Dimension( 100, 38 )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 6"
 				} )
@@ -81,11 +82,11 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 6 6"
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 					name: "scoreMaxTextField"
 					"text": "-1"
 					"enabled": false
-					"minimumSize": new java.awt.Dimension( 100, 38 )
+					"minimumSize": #Dimension0
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 7 6 2 1"
 				} )
@@ -102,7 +103,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 8 4 1"
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 					name: "commentCountMinTextField"
 					"text": "0"
 					"enabled": false
@@ -116,7 +117,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 6 8"
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 					name: "commentCountMaxTextField"
 					"text": "-1"
 					"enabled": false
@@ -160,14 +161,14 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "azSort"
-				"text": "A-Z Sort"
+				"text": "a-z sort"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "azSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 7 9 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "zaSort"
-				"text": "Z-A Sort"
+				"text": "a-z sort"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "zaSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 30 7 7 1"

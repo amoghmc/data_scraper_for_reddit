@@ -7,6 +7,7 @@ package com.github.RedditDataMiner;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import javax.naming.directory.SearchResult;
 import javax.swing.*;
 
 import net.miginfocom.swing.*;
@@ -94,7 +95,8 @@ public class MyJFormFrame extends JFrame {
 	}
 
 	private void search() {
-		resultTextArea.append("SEARCH PRESSED");
+		//resultTextArea.append("SEARCH PRESSED");
+		RedditResult redditResult = new RedditResult(this);
 	}
 
 	private void initComponents() {
@@ -109,12 +111,12 @@ public class MyJFormFrame extends JFrame {
 		scoreFilterCheckBox = new JCheckBox();
 		scoreMinTextField = new JFormattedTextField();
 		scoreMinLabel = new JLabel();
-		scoreMaxTextField = new JTextField();
+		scoreMaxTextField = new JFormattedTextField();
 		scoreMaxLabel = new JLabel();
 		commentCountFilterCheckBox = new JCheckBox();
-		commentCountMinTextField = new JTextField();
+		commentCountMinTextField = new JFormattedTextField();
 		commentCountMinLabel = new JLabel();
-		commentCountMaxTextField = new JTextField();
+		commentCountMaxTextField = new JFormattedTextField();
 		commentCountMaxLabel = new JLabel();
 		redditSortSettingsCheckBox = new JLabel();
 		redditSortComboBox = new JComboBox();
@@ -230,6 +232,8 @@ public class MyJFormFrame extends JFrame {
 				"[]" +
 				"[]" +
 				"[]" +
+				"[]" +
+				"[]" +
 				"[]"));
 
 			//---- subredditFilterLabel ----
@@ -264,6 +268,7 @@ public class MyJFormFrame extends JFrame {
 			//---- scoreMinTextField ----
 			scoreMinTextField.setText("0");
 			scoreMinTextField.setEnabled(false);
+			scoreMinTextField.setMinimumSize(new Dimension(100, 38));
 			filterPanel.add(scoreMinTextField, "cell 5 6");
 
 			//---- scoreMinLabel ----
@@ -331,12 +336,12 @@ public class MyJFormFrame extends JFrame {
 		contentPane.add(timeComboBox, "cell 30 5 7 1");
 
 		//---- azSort ----
-		azSort.setText("A-Z Sort");
+		azSort.setText("a-z sort");
 		azSort.addItemListener(e -> azSortItemStateChanged(e));
 		contentPane.add(azSort, "cell 20 7 9 1");
 
 		//---- zaSort ----
-		zaSort.setText("Z-A Sort");
+		zaSort.setText("a-z sort");
 		zaSort.addItemListener(e -> zaSortItemStateChanged(e));
 		contentPane.add(zaSort, "cell 30 7 7 1");
 
@@ -381,12 +386,12 @@ public class MyJFormFrame extends JFrame {
 	private JCheckBox scoreFilterCheckBox;
 	private JFormattedTextField scoreMinTextField;
 	private JLabel scoreMinLabel;
-	private JTextField scoreMaxTextField;
+	private JFormattedTextField scoreMaxTextField;
 	private JLabel scoreMaxLabel;
 	private JCheckBox commentCountFilterCheckBox;
-	private JTextField commentCountMinTextField;
+	private JFormattedTextField commentCountMinTextField;
 	private JLabel commentCountMinLabel;
-	private JTextField commentCountMaxTextField;
+	private JFormattedTextField commentCountMaxTextField;
 	private JLabel commentCountMaxLabel;
 	private JLabel redditSortSettingsCheckBox;
 	private JComboBox redditSortComboBox;
