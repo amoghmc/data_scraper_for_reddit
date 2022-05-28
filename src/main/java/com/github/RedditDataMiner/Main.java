@@ -1,23 +1,8 @@
 package com.github.RedditDataMiner;
 
-import net.dean.jraw.RedditClient;
-import net.dean.jraw.http.*;
 import net.dean.jraw.models.*;
-import net.dean.jraw.oauth.Credentials;
-import net.dean.jraw.oauth.OAuthHelper;
-import net.dean.jraw.oauth.StatefulAuthHelper;
-import net.dean.jraw.pagination.BarebonesPaginator;
 import net.dean.jraw.pagination.DefaultPaginator;
-import net.dean.jraw.pagination.Paginator;
-import net.dean.jraw.references.MultiredditReference;
-import net.dean.jraw.references.SubredditReference;
-import okhttp3.WebSocket;
-import okhttp3.WebSocketListener;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.List;
@@ -39,8 +24,9 @@ public class Main {
 
 		 */
 		MyJFormFrame mjFormFrame = new MyJFormFrame();
-		mjFormFrame.setVisible(true);
-		mjFormFrame.setSize(100,100);
+		//mjFormFrame.setVisible(true);
+		//mjFormFrame.setSize(100,100);
+		mjFormFrame.pack();
 
 		List<SubredditSearchResult> javaref = myRedditClient.getMyclient().searchSubredditsByName("worldnews");
 		System.out.println(javaref);
@@ -54,7 +40,7 @@ public class Main {
 				.getMyclient()
 				.subreddits("worldnews", "politics", "ukraine", "russia", "news")
 				.posts()
-				.sorting(SubredditSort.TOP)
+				.sorting(SubredditSort.BEST)
 				.timePeriod(TimePeriod.MONTH)
 				.build();
 
@@ -63,13 +49,13 @@ public class Main {
 
 		CommentCountFilter commentCountFilter = new CommentCountFilter(10);
 		NoNsfwFilter noNsfwFilter = new NoNsfwFilter();
-		NoSpamFilter noSpamFilter = new NoSpamFilter();
+		NoSpoilerFilter noSpoilerFilter = new NoSpoilerFilter();
 		ScoreFilter scoreFilter = new ScoreFilter(1000);
 		ArrayList<String> stringArrayList = new ArrayList<String>();
 		stringArrayList.add("russia");
 		//stringArrayList.add("ukraine");
 		KeywordFilter keywordFilter = new KeywordFilter(stringArrayList);
-		allFilters.addFilter(noSpamFilter);
+		allFilters.addFilter(noSpoilerFilter);
 		allFilters.addFilter(noNsfwFilter);
 		allFilters.addFilter(scoreFilter);
 		allFilters.addFilter(commentCountFilter);

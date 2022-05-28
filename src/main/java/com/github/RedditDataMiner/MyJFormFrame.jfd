@@ -6,25 +6,21 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "insets 0,hidemode 3,gap 7 7"
 			"$columnConstraints": "[grow 1,fill][fill][fill][fill][fill][fill][fill][fill][grow 1,fill][fill][fill][fill][fill][fill][grow 1,fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
-			"$rowConstraints": "[18:0,grow 1,fill][][][][][][][fill][fill][][][fill][fill][0,fill][86,grow 1,fill][21,grow 1,fill]"
+			"$rowConstraints": "[][][][18:0,grow 1,fill][][][][][][][fill][fill][][][fill][fill][0,fill][86,grow 1,fill][21,grow 1,fill][][86,grow 1,fill][21,grow 1,fill][][][][]"
 		} ) {
 			name: "this"
 			"$sizePolicy": 1
 			"background": new java.awt.Color( 255, 204, 204, 255 )
 			"foreground": sfield java.awt.Color orange
-			"minimumSize": new java.awt.Dimension( 800, 500 )
 			"title": "RedditDataMiner"
-			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", false ) )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "headingLabel"
-				"text": "Welcome to Reddit Data Miner"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 0 37 1,align center center,grow 0 0,hmin 0"
-			} )
+			"defaultCloseOperation": 3
+			"visible": true
+			"resizable": false
+			"font": new java.awt.Font( "Dialog", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 				"$layoutConstraints": "hidemode 3"
 				"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
-				"$rowConstraints": "[][][][][][][][][][][][21][27][]"
+				"$rowConstraints": "[][][][][][][][]"
 			} ) {
 				name: "filterPanel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -41,7 +37,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "noNsfwCheckBox"
 					"text": "No NSFW Filter"
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "noNsfwFilterCheckBoxItemStateChanged", true ) )
+					"selected": true
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 3 3 1"
 				} )
@@ -53,9 +49,9 @@ new FormModel {
 					"value": "cell 5 3"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "noSpamCheckBox"
-					"text": "No Spam Filter"
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "noSpamFilterCheckBoxItemStateChanged", true ) )
+					name: "noSpoilerCheckBox"
+					"text": "No Spoiler Filter"
+					"selected": true
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 4 3 1"
 				} )
@@ -72,12 +68,10 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 6 4 1"
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 					name: "scoreMinTextField"
 					"text": "0"
-					"cursor": new java.awt.Cursor( 2 )
 					"enabled": false
-					"minimumSize": new java.awt.Dimension( 100, 38 )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 6"
 				} )
@@ -137,67 +131,85 @@ new FormModel {
 					"value": "cell 9 8"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 1 18 11,hmax 250"
+				"value": "cell 1 2 18 11,hmax 250"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "redditSortSettingsCheckBox"
 				"text": "Reddit Sort Settings"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 2 6 1"
+				"value": "cell 20 3 6 1"
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "redditSortComboBox"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+					"JavaCodeGenerator.preInitCode": "redditSortComboBox.addItem(\"Best\");\nredditSortComboBox.addItem(\"Hot\");\nredditSortComboBox.addItem(\"New\");\nredditSortComboBox.addItem(\"Top\");\nredditSortComboBox.addItem(\"Rising\");\nredditSortComboBox.addItem(\"Controversial\");"
+				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 4 16 1"
+				"value": "cell 20 5 9 1"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "timeComboBox"
+				"selectedIndex": 1
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+					"JavaCodeGenerator.preInitCode": "timeComboBox.addItem(\"Hour\");\ntimeComboBox.addItem(\"Day\");\ntimeComboBox.addItem(\"Week\");\ntimeComboBox.addItem(\"Month\");\ntimeComboBox.addItem(\"Year\");\ntimeComboBox.addItem(\"All Time\");"
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 30 5 7 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "azSort"
 				"text": "A-Z Sort"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "azSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 6 9 1"
+				"value": "cell 20 7 9 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "zaSort"
 				"text": "Z-A Sort"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "zaSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 30 6 7 1"
+				"value": "cell 30 7 7 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMax"
 				"text": "Score Sort by Max"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMaxItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 8 9 1"
+				"value": "cell 20 9 9 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMin"
 				"text": "Score Sort by Min"
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMinItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 30 8 7 1"
+				"value": "cell 30 9 7 1"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "searchButton"
 				"text": "Search"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "search", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 10 17 2"
+				"value": "cell 20 11 17 2"
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTextArea" ) {
 					name: "resultTextArea"
+					"cursor": new java.awt.Cursor( 2 )
+					"font": new java.awt.Font( "Segoe UI", 0, 16 )
+					"foreground": sfield java.awt.Color black
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 13 35 2"
+				"value": "cell 2 14 35 9"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 45 )
-			"size": new java.awt.Dimension( 1080, 500 )
+			"size": new java.awt.Dimension( 1080, 515 )
 		} )
 	}
 }

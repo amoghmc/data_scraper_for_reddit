@@ -2,11 +2,11 @@ package com.github.RedditDataMiner;
 
 import net.dean.jraw.models.Submission;
 
-public class NoSpamFilter implements Filter{
+public class NoSpoilerFilter implements Filter{
 
 	@Override
 	public boolean satisfies(Submission s) {
-		if (!s.isSpam()) {
+		if (!s.isSpoiler()) {
 			return true;
 		}
 		return false;

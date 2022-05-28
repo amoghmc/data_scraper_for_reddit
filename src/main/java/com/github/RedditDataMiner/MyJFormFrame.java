@@ -18,7 +18,6 @@ public class MyJFormFrame extends JFrame {
 	private ArrayList<Filter> filterArrayList;
 	public MyJFormFrame() {
 		initComponents();
-		filterArrayList = new ArrayList<Filter>();
 	}
 
 	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
@@ -29,24 +28,6 @@ public class MyJFormFrame extends JFrame {
 		else {
 			commentCountMinTextField.setEnabled(false);
 			commentCountMaxTextField.setEnabled(false);
-		}
-	}
-
-	private void noNsfwFilterCheckBoxItemStateChanged(ItemEvent e) {
-		if (e.getStateChange() == ItemEvent.SELECTED) {
-			filterArrayList.add(new NoNsfwFilter());
-		}
-		else {
-			filterArrayList.remove(new NoNsfwFilter());
-		}
-	}
-
-	private void noSpamFilterCheckBoxItemStateChanged(ItemEvent e) {
-		if (e.getStateChange() == ItemEvent.SELECTED) {
-			filterArrayList.add(new NoSpamFilter());
-		}
-		else {
-			filterArrayList.remove(new NoSpamFilter());
 		}
 	}
 
@@ -68,10 +49,6 @@ public class MyJFormFrame extends JFrame {
 			scoreMinTextField.setEnabled(false);
 			scoreMaxTextField.setEnabled(false);
 		}
-	}
-
-	public JTextArea getResultTextArea() {
-		return resultTextArea;
 	}
 
 	private void azSortItemStateChanged(ItemEvent e) {
@@ -100,24 +77,37 @@ public class MyJFormFrame extends JFrame {
 
 	private void createUIComponents() {
 		// TODO: add custom component creation code here
+		redditSortComboBox.addItem("Hot");
+		redditSortComboBox.addItem("New");
 	}
 
-	private void thisWindowClosing() {
-		System.exit(0);
+	public JComboBox getRedditSortComboBox() {
+		return redditSortComboBox;
+	}
+
+	public JTextArea getResultTextArea() {
+		return resultTextArea;
+	}
+
+	public JComboBox getTimeComboBox() {
+		return timeComboBox;
+	}
+
+	private void search() {
+		resultTextArea.append("SEARCH PRESSED");
 	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		headingLabel = new JLabel();
 		filterPanel = new JPanel();
 		subredditFilterLabel = new JLabel();
 		subredditTextField = new JTextField();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
-		noSpamCheckBox = new JCheckBox();
+		noSpoilerCheckBox = new JCheckBox();
 		keywordTextField = new JTextField();
 		scoreFilterCheckBox = new JCheckBox();
-		scoreMinTextField = new JTextField();
+		scoreMinTextField = new JFormattedTextField();
 		scoreMinLabel = new JLabel();
 		scoreMaxTextField = new JTextField();
 		scoreMaxLabel = new JLabel();
@@ -128,6 +118,7 @@ public class MyJFormFrame extends JFrame {
 		commentCountMaxLabel = new JLabel();
 		redditSortSettingsCheckBox = new JLabel();
 		redditSortComboBox = new JComboBox();
+		timeComboBox = new JComboBox();
 		azSort = new JCheckBox();
 		zaSort = new JCheckBox();
 		scoreSortMax = new JCheckBox();
@@ -139,14 +130,11 @@ public class MyJFormFrame extends JFrame {
 		//======== this ========
 		setBackground(new Color(255, 204, 204));
 		setForeground(Color.orange);
-		setMinimumSize(new Dimension(800, 500));
 		setTitle("RedditDataMiner");
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				thisWindowClosing();
-			}
-		});
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setVisible(true);
+		setResizable(false);
+		setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 		var contentPane = getContentPane();
 		contentPane.setLayout(new MigLayout(
 			"insets 0,hidemode 3,gap 7 7",
@@ -191,6 +179,9 @@ public class MyJFormFrame extends JFrame {
 			"[fill]" +
 			"[fill]",
 			// rows
+			"[]" +
+			"[]" +
+			"[]" +
 			"[18:0,grow 1,fill]" +
 			"[]" +
 			"[]" +
@@ -206,11 +197,14 @@ public class MyJFormFrame extends JFrame {
 			"[fill]" +
 			"[0,fill]" +
 			"[86,grow 1,fill]" +
-			"[21,grow 1,fill]"));
-
-		//---- headingLabel ----
-		headingLabel.setText("Welcome to Reddit Data Miner");
-		contentPane.add(headingLabel, "cell 1 0 37 1,align center center,grow 0 0,hmin 0");
+			"[21,grow 1,fill]" +
+			"[]" +
+			"[86,grow 1,fill]" +
+			"[21,grow 1,fill]" +
+			"[]" +
+			"[]" +
+			"[]" +
+			"[]"));
 
 		//======== filterPanel ========
 		{
@@ -236,12 +230,6 @@ public class MyJFormFrame extends JFrame {
 				"[]" +
 				"[]" +
 				"[]" +
-				"[]" +
-				"[]" +
-				"[]" +
-				"[]" +
-				"[21]" +
-				"[27]" +
 				"[]"));
 
 			//---- subredditFilterLabel ----
@@ -251,7 +239,7 @@ public class MyJFormFrame extends JFrame {
 
 			//---- noNsfwCheckBox ----
 			noNsfwCheckBox.setText("No NSFW Filter");
-			noNsfwCheckBox.addItemListener(e -> noNsfwFilterCheckBoxItemStateChanged(e));
+			noNsfwCheckBox.setSelected(true);
 			filterPanel.add(noNsfwCheckBox, "cell 0 3 3 1");
 
 			//---- keywordCheckBox ----
@@ -259,10 +247,10 @@ public class MyJFormFrame extends JFrame {
 			keywordCheckBox.addItemListener(e -> keywordCheckBoxItemStateChanged(e));
 			filterPanel.add(keywordCheckBox, "cell 5 3");
 
-			//---- noSpamCheckBox ----
-			noSpamCheckBox.setText("No Spam Filter");
-			noSpamCheckBox.addItemListener(e -> noSpamFilterCheckBoxItemStateChanged(e));
-			filterPanel.add(noSpamCheckBox, "cell 0 4 3 1");
+			//---- noSpoilerCheckBox ----
+			noSpoilerCheckBox.setText("No Spoiler Filter");
+			noSpoilerCheckBox.setSelected(true);
+			filterPanel.add(noSpoilerCheckBox, "cell 0 4 3 1");
 
 			//---- keywordTextField ----
 			keywordTextField.setEnabled(false);
@@ -275,9 +263,7 @@ public class MyJFormFrame extends JFrame {
 
 			//---- scoreMinTextField ----
 			scoreMinTextField.setText("0");
-			scoreMinTextField.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 			scoreMinTextField.setEnabled(false);
-			scoreMinTextField.setMinimumSize(new Dimension(100, 38));
 			filterPanel.add(scoreMinTextField, "cell 5 6");
 
 			//---- scoreMinLabel ----
@@ -319,58 +305,81 @@ public class MyJFormFrame extends JFrame {
 			commentCountMaxLabel.setText("Max");
 			filterPanel.add(commentCountMaxLabel, "cell 9 8");
 		}
-		contentPane.add(filterPanel, "cell 1 1 18 11,hmax 250");
+		contentPane.add(filterPanel, "cell 1 2 18 11,hmax 250");
 
 		//---- redditSortSettingsCheckBox ----
 		redditSortSettingsCheckBox.setText("Reddit Sort Settings");
-		contentPane.add(redditSortSettingsCheckBox, "cell 20 2 6 1");
-		contentPane.add(redditSortComboBox, "cell 20 4 16 1");
+		contentPane.add(redditSortSettingsCheckBox, "cell 20 3 6 1");
+
+		//---- redditSortComboBox ----
+		redditSortComboBox.addItem("Best");
+		redditSortComboBox.addItem("Hot");
+		redditSortComboBox.addItem("New");
+		redditSortComboBox.addItem("Top");
+		redditSortComboBox.addItem("Rising");
+		redditSortComboBox.addItem("Controversial");
+		contentPane.add(redditSortComboBox, "cell 20 5 9 1");
+
+		//---- timeComboBox ----
+		timeComboBox.addItem("Hour");
+		timeComboBox.addItem("Day");
+		timeComboBox.addItem("Week");
+		timeComboBox.addItem("Month");
+		timeComboBox.addItem("Year");
+		timeComboBox.addItem("All Time");
+		timeComboBox.setSelectedIndex(1);
+		contentPane.add(timeComboBox, "cell 30 5 7 1");
 
 		//---- azSort ----
 		azSort.setText("A-Z Sort");
 		azSort.addItemListener(e -> azSortItemStateChanged(e));
-		contentPane.add(azSort, "cell 20 6 9 1");
+		contentPane.add(azSort, "cell 20 7 9 1");
 
 		//---- zaSort ----
 		zaSort.setText("Z-A Sort");
 		zaSort.addItemListener(e -> zaSortItemStateChanged(e));
-		contentPane.add(zaSort, "cell 30 6 7 1");
+		contentPane.add(zaSort, "cell 30 7 7 1");
 
 		//---- scoreSortMax ----
 		scoreSortMax.setText("Score Sort by Max");
 		scoreSortMax.addItemListener(e -> scoreSortMaxItemStateChanged(e));
-		contentPane.add(scoreSortMax, "cell 20 8 9 1");
+		contentPane.add(scoreSortMax, "cell 20 9 9 1");
 
 		//---- scoreSortMin ----
 		scoreSortMin.setText("Score Sort by Min");
 		scoreSortMin.addItemListener(e -> scoreSortMinItemStateChanged(e));
-		contentPane.add(scoreSortMin, "cell 30 8 7 1");
+		contentPane.add(scoreSortMin, "cell 30 9 7 1");
 
 		//---- searchButton ----
 		searchButton.setText("Search");
-		contentPane.add(searchButton, "cell 20 10 17 2");
+		searchButton.addActionListener(e -> search());
+		contentPane.add(searchButton, "cell 20 11 17 2");
 
 		//======== scrollPane1 ========
 		{
+
+			//---- resultTextArea ----
+			resultTextArea.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+			resultTextArea.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+			resultTextArea.setForeground(Color.black);
 			scrollPane1.setViewportView(resultTextArea);
 		}
-		contentPane.add(scrollPane1, "cell 2 13 35 2");
-		setSize(1080, 500);
+		contentPane.add(scrollPane1, "cell 2 14 35 9");
+		setSize(1080, 515);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	private JLabel headingLabel;
 	private JPanel filterPanel;
 	private JLabel subredditFilterLabel;
 	private JTextField subredditTextField;
 	private JCheckBox noNsfwCheckBox;
 	private JCheckBox keywordCheckBox;
-	private JCheckBox noSpamCheckBox;
+	private JCheckBox noSpoilerCheckBox;
 	private JTextField keywordTextField;
 	private JCheckBox scoreFilterCheckBox;
-	private JTextField scoreMinTextField;
+	private JFormattedTextField scoreMinTextField;
 	private JLabel scoreMinLabel;
 	private JTextField scoreMaxTextField;
 	private JLabel scoreMaxLabel;
@@ -381,6 +390,7 @@ public class MyJFormFrame extends JFrame {
 	private JLabel commentCountMaxLabel;
 	private JLabel redditSortSettingsCheckBox;
 	private JComboBox redditSortComboBox;
+	private JComboBox timeComboBox;
 	private JCheckBox azSort;
 	private JCheckBox zaSort;
 	private JCheckBox scoreSortMax;
