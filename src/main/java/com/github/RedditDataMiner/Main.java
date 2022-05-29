@@ -12,7 +12,7 @@ public class Main {
 		CredResource cr = new CredResource(".idea/credentials.txt");
 		MyRedditClient myRedditClient = new MyRedditClient(cr);
 
-		MyJFormFrame mjFormFrame = new MyJFormFrame();
+		MyJFormFrame mjFormFrame = new MyJFormFrame(myRedditClient);
 		mjFormFrame.pack();
 
 		List<SubredditSearchResult> javaref = myRedditClient.getMyclient().searchSubredditsByName("worldnews");
@@ -23,63 +23,5 @@ public class Main {
 
 		AllFilters allFilters = new AllFilters();
 
-		DefaultPaginator<Submission> paginator = myRedditClient
-				.getMyclient()
-				.subreddits("worldnews", "politics", "ukraine", "russia", "news")
-				.posts()
-				.sorting(SubredditSort.BEST)
-				.timePeriod(TimePeriod.MONTH)
-				.build();
-
-		Listing<Submission> nextPage = paginator.next();
-		Collections.sort(nextPage, new CompareTitle().reversed());
-
-		CommentCountFilter commentCountFilter = new CommentCountFilter(10);
-		NoNsfwFilter noNsfwFilter = new NoNsfwFilter();
-		NoSpoilerFilter noSpoilerFilter = new NoSpoilerFilter();
-		ScoreFilter scoreFilter = new ScoreFilter(1000);
-		ArrayList<String> stringArrayList = new ArrayList<String>();
-		stringArrayList.add("russia");
-		//stringArrayList.add("ukraine");
-		KeywordFilter keywordFilter = new KeywordFilter(stringArrayList);
-		allFilters.addFilter(noSpoilerFilter);
-		allFilters.addFilter(noNsfwFilter);
-		allFilters.addFilter(scoreFilter);
-		allFilters.addFilter(commentCountFilter);
-		allFilters.addFilter(keywordFilter);
-
-		//mjFormFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		for (Submission s : nextPage) {
-			if (allFilters.satisfies(s)) {
-				mjFormFrame.getResultTextArea().append(s.getTitle()
-						.replace('’', '\'')
-						.replace('—','-')
-						+ "\nScore: "
-						+ s.getScore());
-				System.out.println(s.getTitle()
-						.replace('’', '\'')
-						.replace('—','-')
-						+ "\nScore: "
-						+ s.getScore());
-
-				mjFormFrame.getResultTextArea().append(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
-				System.out.println(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
-				/*
-				System.out.println(s.getPostHint());
-				System.out.println(s.getDistinguished());
-				System.out.println(s.getThumbnail());
-				System.out.println(s.isSpam());
-				System.out.println(s.isSpoiler());
-				System.out.println(s.getReports());
-				System.out.println(s.getGilded());
-				System.out.println(s.getPreview());
-				System.out.println(s.isLocked());
-				System.out.println(s.getCommentCount());
-				System.out.println(s.getCreated());
-
-				 */
-			}
-		}
-		//System.exit(0);
 	}
 }

@@ -26,5 +26,9 @@ public class AllFilters implements Filter {
 		return true;
 	}
 
+	public void clear() {
+		filters.clear();
+	}
+
 }
 

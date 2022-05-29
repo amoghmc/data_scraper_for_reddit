@@ -6,10 +6,14 @@ package com.github.RedditDataMiner;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.naming.directory.SearchResult;
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 
+import net.dean.jraw.models.SubredditSort;
+import net.dean.jraw.models.TimePeriod;
 import net.miginfocom.swing.*;
 
 /**
@@ -17,8 +21,10 @@ import net.miginfocom.swing.*;
  */
 public class MyJFormFrame extends JFrame {
 	private ArrayList<Filter> filterArrayList;
-	public MyJFormFrame() {
+	private MyRedditClient myRedditClient;
+	public MyJFormFrame(MyRedditClient myRedditClient) {
 		initComponents();
+		this.myRedditClient = myRedditClient;
 	}
 
 	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
@@ -76,12 +82,6 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void createUIComponents() {
-		// TODO: add custom component creation code here
-		redditSortComboBox.addItem("Hot");
-		redditSortComboBox.addItem("New");
-	}
-
 	public JComboBox getRedditSortComboBox() {
 		return redditSortComboBox;
 	}
@@ -96,7 +96,77 @@ public class MyJFormFrame extends JFrame {
 
 	private void search() {
 		//resultTextArea.append("SEARCH PRESSED");
-		RedditResult redditResult = new RedditResult(this);
+		RedditResult redditResult = new RedditResult(this, myRedditClient);
+		redditResult.addFilters();
+		redditResult.display();
+	}
+
+	public JTextField getSubredditTextField() {
+		return subredditTextField;
+	}
+
+	public JCheckBox getNoNsfwCheckBox() {
+		return noNsfwCheckBox;
+	}
+
+	public JCheckBox getKeywordCheckBox() {
+		return keywordCheckBox;
+	}
+
+	public JCheckBox getNoSpoilerCheckBox() {
+		return noSpoilerCheckBox;
+	}
+
+	public JTextField getKeywordTextField() {
+		return keywordTextField;
+	}
+
+	public JCheckBox getScoreFilterCheckBox() {
+		return scoreFilterCheckBox;
+	}
+
+	public JFormattedTextField getScoreMinTextField() {
+		return scoreMinTextField;
+	}
+
+	public JFormattedTextField getScoreMaxTextField() {
+		return scoreMaxTextField;
+	}
+
+	public JCheckBox getCommentCountFilterCheckBox() {
+		return commentCountFilterCheckBox;
+	}
+
+	public JFormattedTextField getCommentCountMinTextField() {
+		return commentCountMinTextField;
+	}
+
+	public JFormattedTextField getCommentCountMaxTextField() {
+		return commentCountMaxTextField;
+	}
+
+	public JCheckBox getAzSort() {
+		return azSort;
+	}
+
+	public JCheckBox getZaSort() {
+		return zaSort;
+	}
+
+	public JCheckBox getScoreSortMax() {
+		return scoreSortMax;
+	}
+
+	public JCheckBox getScoreSortMin() {
+		return scoreSortMin;
+	}
+
+	public JButton getSearchButton() {
+		return searchButton;
+	}
+
+	private void createUIComponents() {
+		// TODO: add custom component creation code here
 	}
 
 	private void initComponents() {
@@ -109,14 +179,23 @@ public class MyJFormFrame extends JFrame {
 		noSpoilerCheckBox = new JCheckBox();
 		keywordTextField = new JTextField();
 		scoreFilterCheckBox = new JCheckBox();
-		scoreMinTextField = new JFormattedTextField();
+		//Source: https://stackoverflow.com/questions/11093326/restricting-jtextfield-input-to-integers
+		NumberFormat format = NumberFormat.getInstance();
+		NumberFormatter formatter = new NumberFormatter(format);
+
+		formatter.setValueClass(Integer.class);
+		formatter.setMinimum(0);
+		formatter.setMaximum(Integer.MAX_VALUE);
+		formatter.setAllowsInvalid(false);
+		//formatter.setCommitsOnValidEdit(true);
+		scoreMinTextField = new JFormattedTextField(formatter);
+		commentCountMinTextField = new JFormattedTextField(formatter);
 		scoreMinLabel = new JLabel();
-		scoreMaxTextField = new JFormattedTextField();
 		scoreMaxLabel = new JLabel();
 		commentCountFilterCheckBox = new JCheckBox();
-		commentCountMinTextField = new JFormattedTextField();
 		commentCountMinLabel = new JLabel();
-		commentCountMaxTextField = new JFormattedTextField();
+		scoreMaxTextField = new JFormattedTextField(formatter);
+		commentCountMaxTextField = new JFormattedTextField(formatter);
 		commentCountMaxLabel = new JLabel();
 		redditSortSettingsCheckBox = new JLabel();
 		redditSortComboBox = new JComboBox();
@@ -271,15 +350,15 @@ public class MyJFormFrame extends JFrame {
 			scoreMinTextField.setMinimumSize(new Dimension(100, 38));
 			filterPanel.add(scoreMinTextField, "cell 5 6");
 
+			//---- commentCountMinTextField ----
+			commentCountMinTextField.setText("0");
+			commentCountMinTextField.setEnabled(false);
+			commentCountMinTextField.setMinimumSize(new Dimension(100, 38));
+			filterPanel.add(commentCountMinTextField, "cell 5 8");
+
 			//---- scoreMinLabel ----
 			scoreMinLabel.setText("Min");
 			filterPanel.add(scoreMinLabel, "cell 6 6");
-
-			//---- scoreMaxTextField ----
-			scoreMaxTextField.setText("-1");
-			scoreMaxTextField.setEnabled(false);
-			scoreMaxTextField.setMinimumSize(new Dimension(100, 38));
-			filterPanel.add(scoreMaxTextField, "cell 7 6 2 1");
 
 			//---- scoreMaxLabel ----
 			scoreMaxLabel.setText("Max");
@@ -290,18 +369,18 @@ public class MyJFormFrame extends JFrame {
 			commentCountFilterCheckBox.addItemListener(e -> commentCountFilterCheckBoxItemStateChanged(e));
 			filterPanel.add(commentCountFilterCheckBox, "cell 0 8 4 1");
 
-			//---- commentCountMinTextField ----
-			commentCountMinTextField.setText("0");
-			commentCountMinTextField.setEnabled(false);
-			commentCountMinTextField.setMinimumSize(new Dimension(100, 38));
-			filterPanel.add(commentCountMinTextField, "cell 5 8");
-
 			//---- commentCountMinLabel ----
 			commentCountMinLabel.setText("Min");
 			filterPanel.add(commentCountMinLabel, "cell 6 8");
 
+			//---- scoreMaxTextField ----
+			scoreMaxTextField.setText("0");
+			scoreMaxTextField.setEnabled(false);
+			scoreMaxTextField.setMinimumSize(new Dimension(100, 38));
+			filterPanel.add(scoreMaxTextField, "cell 7 6 2 1");
+
 			//---- commentCountMaxTextField ----
-			commentCountMaxTextField.setText("-1");
+			commentCountMaxTextField.setText("0");
 			commentCountMaxTextField.setEnabled(false);
 			commentCountMaxTextField.setMinimumSize(new Dimension(100, 38));
 			filterPanel.add(commentCountMaxTextField, "cell 7 8 2 1");
@@ -317,21 +396,21 @@ public class MyJFormFrame extends JFrame {
 		contentPane.add(redditSortSettingsCheckBox, "cell 20 3 6 1");
 
 		//---- redditSortComboBox ----
-		redditSortComboBox.addItem("Best");
-		redditSortComboBox.addItem("Hot");
-		redditSortComboBox.addItem("New");
-		redditSortComboBox.addItem("Top");
-		redditSortComboBox.addItem("Rising");
-		redditSortComboBox.addItem("Controversial");
+		redditSortComboBox.addItem(SubredditSort.BEST);
+		redditSortComboBox.addItem(SubredditSort.HOT);
+		redditSortComboBox.addItem(SubredditSort.NEW);
+		redditSortComboBox.addItem(SubredditSort.TOP);
+		redditSortComboBox.addItem(SubredditSort.RISING);
+		redditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);
 		contentPane.add(redditSortComboBox, "cell 20 5 9 1");
 
 		//---- timeComboBox ----
-		timeComboBox.addItem("Hour");
-		timeComboBox.addItem("Day");
-		timeComboBox.addItem("Week");
-		timeComboBox.addItem("Month");
-		timeComboBox.addItem("Year");
-		timeComboBox.addItem("All Time");
+		timeComboBox.addItem(TimePeriod.HOUR);
+		timeComboBox.addItem(TimePeriod.DAY);
+		timeComboBox.addItem(TimePeriod.WEEK);
+		timeComboBox.addItem(TimePeriod.MONTH);
+		timeComboBox.addItem(TimePeriod.YEAR);
+		timeComboBox.addItem(TimePeriod.ALL);
 		timeComboBox.setSelectedIndex(1);
 		contentPane.add(timeComboBox, "cell 30 5 7 1");
 
@@ -385,12 +464,12 @@ public class MyJFormFrame extends JFrame {
 	private JTextField keywordTextField;
 	private JCheckBox scoreFilterCheckBox;
 	private JFormattedTextField scoreMinTextField;
+	private JFormattedTextField commentCountMinTextField;
 	private JLabel scoreMinLabel;
-	private JFormattedTextField scoreMaxTextField;
 	private JLabel scoreMaxLabel;
 	private JCheckBox commentCountFilterCheckBox;
-	private JFormattedTextField commentCountMinTextField;
 	private JLabel commentCountMinLabel;
+	private JFormattedTextField scoreMaxTextField;
 	private JFormattedTextField commentCountMaxTextField;
 	private JLabel commentCountMaxLabel;
 	private JLabel redditSortSettingsCheckBox;

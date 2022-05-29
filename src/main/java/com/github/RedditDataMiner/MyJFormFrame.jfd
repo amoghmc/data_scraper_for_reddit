@@ -31,6 +31,9 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "subredditTextField"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 1 1 9 1"
 				} )
@@ -38,12 +41,18 @@ new FormModel {
 					name: "noNsfwCheckBox"
 					"text": "No NSFW Filter"
 					"selected": true
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 3 3 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "keywordCheckBox"
 					"text": "Keyword Filter"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "keywordCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 3"
@@ -52,18 +61,27 @@ new FormModel {
 					name: "noSpoilerCheckBox"
 					"text": "No Spoiler Filter"
 					"selected": true
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 4 3 1"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "keywordTextField"
 					"enabled": false
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 4 5 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "scoreFilterCheckBox"
 					"text": "Score Filter"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreFilterCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 6 4 1"
@@ -73,22 +91,31 @@ new FormModel {
 					"text": "0"
 					"enabled": false
 					"minimumSize": &Dimension0 new java.awt.Dimension( 100, 38 )
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+						"JavaCodeGenerator.preCreateCode": "//Source: https://stackoverflow.com/questions/11093326/restricting-jtextfield-input-to-integers\nNumberFormat format = NumberFormat.getInstance();\nNumberFormatter formatter = new NumberFormatter(format);\n\nformatter.setValueClass(Integer.class);\nformatter.setMinimum(0);\nformatter.setMaximum(Integer.MAX_VALUE);\nformatter.setAllowsInvalid(false);\n//formatter.setCommitsOnValidEdit(true);"
+						"JavaCodeGenerator.customCreateCode": "new JFormattedTextField(formatter);"
+					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 6"
+				} )
+				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+					name: "commentCountMinTextField"
+					"text": "0"
+					"enabled": false
+					"minimumSize": new java.awt.Dimension( 100, 38 )
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+						"JavaCodeGenerator.customCreateCode": "new JFormattedTextField(formatter);"
+					}
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 5 8"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "scoreMinLabel"
 					"text": "Min"
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 6 6"
-				} )
-				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
-					name: "scoreMaxTextField"
-					"text": "-1"
-					"enabled": false
-					"minimumSize": #Dimension0
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 7 6 2 1"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "scoreMaxLabel"
@@ -99,17 +126,12 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "commentCountFilterCheckBox"
 					"text": "Comment Count Filter"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
 					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "commentCountFilterCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 0 8 4 1"
-				} )
-				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
-					name: "commentCountMinTextField"
-					"text": "0"
-					"enabled": false
-					"minimumSize": new java.awt.Dimension( 100, 38 )
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 5 8"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "commentCountMinLabel"
@@ -118,10 +140,26 @@ new FormModel {
 					"value": "cell 6 8"
 				} )
 				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+					name: "scoreMaxTextField"
+					"text": "0"
+					"enabled": false
+					"minimumSize": #Dimension0
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+						"JavaCodeGenerator.customCreateCode": "new JFormattedTextField(formatter);"
+					}
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 7 6 2 1"
+				} )
+				add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 					name: "commentCountMaxTextField"
-					"text": "-1"
+					"text": "0"
 					"enabled": false
 					"minimumSize": new java.awt.Dimension( 100, 38 )
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+						"JavaCodeGenerator.customCreateCode": "new JFormattedTextField(formatter);"
+					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 7 8 2 1"
 				} )
@@ -144,7 +182,7 @@ new FormModel {
 				name: "redditSortComboBox"
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
-					"JavaCodeGenerator.preInitCode": "redditSortComboBox.addItem(\"Best\");\nredditSortComboBox.addItem(\"Hot\");\nredditSortComboBox.addItem(\"New\");\nredditSortComboBox.addItem(\"Top\");\nredditSortComboBox.addItem(\"Rising\");\nredditSortComboBox.addItem(\"Controversial\");"
+					"JavaCodeGenerator.preInitCode": "redditSortComboBox.addItem(SubredditSort.BEST);\nredditSortComboBox.addItem(SubredditSort.HOT);\nredditSortComboBox.addItem(SubredditSort.NEW);\nredditSortComboBox.addItem(SubredditSort.TOP);\nredditSortComboBox.addItem(SubredditSort.RISING);\nredditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);"
 				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 5 9 1"
@@ -154,7 +192,7 @@ new FormModel {
 				"selectedIndex": 1
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
-					"JavaCodeGenerator.preInitCode": "timeComboBox.addItem(\"Hour\");\ntimeComboBox.addItem(\"Day\");\ntimeComboBox.addItem(\"Week\");\ntimeComboBox.addItem(\"Month\");\ntimeComboBox.addItem(\"Year\");\ntimeComboBox.addItem(\"All Time\");"
+					"JavaCodeGenerator.preInitCode": "timeComboBox.addItem(TimePeriod.HOUR);\ntimeComboBox.addItem(TimePeriod.DAY);\ntimeComboBox.addItem(TimePeriod.WEEK);\ntimeComboBox.addItem(TimePeriod.MONTH);\ntimeComboBox.addItem(TimePeriod.YEAR);\ntimeComboBox.addItem(TimePeriod.ALL);"
 				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 30 5 7 1"
@@ -162,6 +200,9 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "azSort"
 				"text": "Title Sort"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "azSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 7 9 1"
@@ -169,6 +210,9 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "zaSort"
 				"text": "Title Sort Reverse"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "zaSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 30 7 7 1"
@@ -176,6 +220,9 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMax"
 				"text": "Score Sort by Max"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMaxItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 9 9 1"
@@ -183,6 +230,9 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMin"
 				"text": "Score Sort by Min"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMinItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 30 9 7 1"
@@ -190,6 +240,9 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "searchButton"
 				"text": "Search"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "search", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 11 17 2"
