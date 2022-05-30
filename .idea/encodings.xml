@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/main/java/com/github/RedditDataMiner/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/RedditDataScraper/Main.java" charset="UTF-8" />
     <file url="jar://$USER_HOME$/.jdks/openjdk-18.0.1.1/lib/src.zip!/java.base/java/net/SocketTimeoutException.java" charset="ISO-8859-1" />
   </component>
 </project>
