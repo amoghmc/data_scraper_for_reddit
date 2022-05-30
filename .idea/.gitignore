@@ -9,3 +9,4 @@
 
 # Client ID and Secret Key
 credentials.txt
+/credentials.txt
