@@ -1,4 +1,4 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import javax.swing.*;
 

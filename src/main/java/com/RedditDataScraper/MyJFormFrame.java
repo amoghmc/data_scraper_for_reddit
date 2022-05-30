@@ -2,13 +2,12 @@
  * Created by JFormDesigner on Tue May 24 14:52:28 IST 2022
  */
 
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import javax.naming.directory.SearchResult;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 

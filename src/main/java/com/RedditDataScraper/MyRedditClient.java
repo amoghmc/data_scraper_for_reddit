@@ -1,4 +1,4 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.NetworkAdapter;
@@ -9,7 +9,6 @@ import net.dean.jraw.oauth.OAuthHelper;
 import net.dean.jraw.http.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.FileNotFoundException;
 import java.util.UUID;
 
 public class MyRedditClient {

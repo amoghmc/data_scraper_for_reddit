@@ -1,8 +1,7 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import net.dean.jraw.models.Submission;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

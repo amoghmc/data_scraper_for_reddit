@@ -1,8 +1,6 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import net.dean.jraw.models.Submission;
-
-import java.util.Arrays;
 
 public class SubredditFilter implements Filter{
 	private String[] subreddits;

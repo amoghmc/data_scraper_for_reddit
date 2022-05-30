@@ -1,4 +1,4 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import java.io.File;
 import java.io.FileNotFoundException;

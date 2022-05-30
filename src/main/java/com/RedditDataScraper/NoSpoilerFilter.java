@@ -1,12 +1,12 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import net.dean.jraw.models.Submission;
 
-public class NoNsfwFilter implements Filter{
+public class NoSpoilerFilter implements Filter{
 
 	@Override
 	public boolean satisfies(Submission s) {
-		if (!s.isNsfw()) {
+		if (!s.isSpoiler()) {
 			return true;
 		}
 		return false;

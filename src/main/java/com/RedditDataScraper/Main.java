@@ -1,10 +1,8 @@
-package com.github.RedditDataMiner;
+package com.RedditDataScraper;
 
 import net.dean.jraw.models.*;
-import net.dean.jraw.pagination.DefaultPaginator;
 
 import java.io.FileNotFoundException;
-import java.util.*;
 import java.util.List;
 
 public class Main {
