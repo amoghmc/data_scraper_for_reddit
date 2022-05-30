@@ -94,11 +94,29 @@ public class MyJFormFrame extends JFrame {
 		return timeComboBox;
 	}
 
-	private void search() {
-		//resultTextArea.append("SEARCH PRESSED");
-		RedditResult redditResult = new RedditResult(this, myRedditClient);
-		redditResult.addFilters();
-		redditResult.display();
+	private void reset() {
+		noNsfwCheckBox.setSelected(true);
+		noSpoilerCheckBox.setSelected(true);
+		scoreFilterCheckBox.setSelected(false);
+		commentCountFilterCheckBox.setSelected(false);
+		keywordCheckBox.setSelected(false);
+		regexCheckBox.setSelected(false);
+
+		subredditTextField.setText("");
+		keywordTextField.setText("");
+		scoreMinTextField.setText("0");
+		scoreMaxTextField.setText("0");
+		commentCountMinTextField.setText("0");
+		commentCountMaxTextField.setText("0");
+
+		redditSortComboBox.setSelectedIndex(0);
+		timeComboBox.setSelectedIndex(1);
+		azSort.setSelected(false);
+		zaSort.setSelected(false);
+		scoreSortMin.setSelected(false);
+		scoreSortMax.setSelected(false);
+		resultTextArea.setText("");
+
 	}
 
 	public JTextField getSubredditTextField() {
@@ -165,8 +183,27 @@ public class MyJFormFrame extends JFrame {
 		return searchButton;
 	}
 
-	private void createUIComponents() {
-		// TODO: add custom component creation code here
+	public JCheckBox getRegexCheckBox() {
+		return regexCheckBox;
+	}
+
+	public JButton getSearchButton2() {
+		return searchButton2;
+	}
+
+	public JButton getSearchButton3() {
+		return searchButton3;
+	}
+
+	private void save() {
+
+	}
+
+	private void search() {
+		//resultTextArea.append("SEARCH PRESSED");
+		RedditResult redditResult = new RedditResult(this, myRedditClient);
+		redditResult.addFilters();
+		redditResult.display();
 	}
 
 	private void initComponents() {
@@ -176,6 +213,7 @@ public class MyJFormFrame extends JFrame {
 		subredditTextField = new JTextField();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
+		regexCheckBox = new JCheckBox();
 		noSpoilerCheckBox = new JCheckBox();
 		keywordTextField = new JTextField();
 		scoreFilterCheckBox = new JCheckBox();
@@ -187,7 +225,8 @@ public class MyJFormFrame extends JFrame {
 		formatter.setMinimum(0);
 		formatter.setMaximum(Integer.MAX_VALUE);
 		formatter.setAllowsInvalid(false);
-		//formatter.setCommitsOnValidEdit(true);
+		formatter.setCommitsOnValidEdit(true);
+		// End of Source
 		scoreMinTextField = new JFormattedTextField(formatter);
 		commentCountMinTextField = new JFormattedTextField(formatter);
 		scoreMinLabel = new JLabel();
@@ -198,6 +237,7 @@ public class MyJFormFrame extends JFrame {
 		commentCountMaxTextField = new JFormattedTextField(formatter);
 		commentCountMaxLabel = new JLabel();
 		redditSortSettingsCheckBox = new JLabel();
+		searchButton3 = new JButton();
 		redditSortComboBox = new JComboBox();
 		timeComboBox = new JComboBox();
 		azSort = new JCheckBox();
@@ -205,6 +245,7 @@ public class MyJFormFrame extends JFrame {
 		scoreSortMax = new JCheckBox();
 		scoreSortMin = new JCheckBox();
 		searchButton = new JButton();
+		searchButton2 = new JButton();
 		scrollPane1 = new JScrollPane();
 		resultTextArea = new JTextArea();
 
@@ -330,6 +371,10 @@ public class MyJFormFrame extends JFrame {
 			keywordCheckBox.addItemListener(e -> keywordCheckBoxItemStateChanged(e));
 			filterPanel.add(keywordCheckBox, "cell 5 3");
 
+			//---- regexCheckBox ----
+			regexCheckBox.setText("Regex");
+			filterPanel.add(regexCheckBox, "cell 7 3 3 1");
+
 			//---- noSpoilerCheckBox ----
 			noSpoilerCheckBox.setText("No Spoiler Filter");
 			noSpoilerCheckBox.setSelected(true);
@@ -395,6 +440,11 @@ public class MyJFormFrame extends JFrame {
 		redditSortSettingsCheckBox.setText("Reddit Sort Settings");
 		contentPane.add(redditSortSettingsCheckBox, "cell 20 3 6 1");
 
+		//---- searchButton3 ----
+		searchButton3.setText("Reset");
+		searchButton3.addActionListener(e -> reset());
+		contentPane.add(searchButton3, "cell 30 3 7 2");
+
 		//---- redditSortComboBox ----
 		redditSortComboBox.addItem(SubredditSort.BEST);
 		redditSortComboBox.addItem(SubredditSort.HOT);
@@ -437,7 +487,12 @@ public class MyJFormFrame extends JFrame {
 		//---- searchButton ----
 		searchButton.setText("Search");
 		searchButton.addActionListener(e -> search());
-		contentPane.add(searchButton, "cell 20 11 17 2");
+		contentPane.add(searchButton, "cell 20 11 9 2");
+
+		//---- searchButton2 ----
+		searchButton2.setText("Save Result");
+		searchButton2.addActionListener(e -> save());
+		contentPane.add(searchButton2, "cell 30 11 7 2");
 
 		//======== scrollPane1 ========
 		{
@@ -460,6 +515,7 @@ public class MyJFormFrame extends JFrame {
 	private JTextField subredditTextField;
 	private JCheckBox noNsfwCheckBox;
 	private JCheckBox keywordCheckBox;
+	private JCheckBox regexCheckBox;
 	private JCheckBox noSpoilerCheckBox;
 	private JTextField keywordTextField;
 	private JCheckBox scoreFilterCheckBox;
@@ -473,6 +529,7 @@ public class MyJFormFrame extends JFrame {
 	private JFormattedTextField commentCountMaxTextField;
 	private JLabel commentCountMaxLabel;
 	private JLabel redditSortSettingsCheckBox;
+	private JButton searchButton3;
 	private JComboBox redditSortComboBox;
 	private JComboBox timeComboBox;
 	private JCheckBox azSort;
@@ -480,6 +537,7 @@ public class MyJFormFrame extends JFrame {
 	private JCheckBox scoreSortMax;
 	private JCheckBox scoreSortMin;
 	private JButton searchButton;
+	private JButton searchButton2;
 	private JScrollPane scrollPane1;
 	private JTextArea resultTextArea;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables

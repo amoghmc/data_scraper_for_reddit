@@ -3,26 +3,44 @@ package com.github.RedditDataMiner;
 import net.dean.jraw.models.Submission;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class KeywordFilter implements Filter{
-	private ArrayList<String> keys = new ArrayList<String>();
+	private String[] keys;
+	private String regex;
 
-	public KeywordFilter(String key) {
-		this.keys.add(key);
-	}
-
-	public KeywordFilter(ArrayList<String> keys) {
+	public KeywordFilter(String[] keys) {
 		this.keys = keys;
 	}
 
+	public KeywordFilter(String regex) {
+		this.regex = regex;
+	}
+
 	@Override
-	public boolean satisfies(Submission s) {
-		String title = s.getTitle().toLowerCase();
-		for (String key : keys) {
-			if (title.indexOf(key) == -1) {
+	public boolean satisfies(Submission submission) {
+		if (keys.length == 0) {
+			// Source: https://www.w3schools.com/java/java_regex.asp
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(submission.getTitle());
+			boolean matchFound = matcher.find();
+			if (matchFound) {
+				return true;
+			}
+			else {
 				return false;
 			}
+			// End of source
 		}
-		return true;
+		else {
+			String title = submission.getTitle().toLowerCase();
+			for (String key : keys) {
+				if (title.indexOf(key.toLowerCase()) == -1) {
+					return false;
+				}
+			}
+			return true;
+		}
 	}
 }

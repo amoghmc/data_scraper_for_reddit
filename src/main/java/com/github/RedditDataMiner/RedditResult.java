@@ -6,19 +6,20 @@ import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.dean.jraw.pagination.DefaultPaginator;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class RedditResult {
 	private MyJFormFrame myJFormFrame;
 	private MyRedditClient myRedditClient;
 	private AllFilters filterArrayList;
-	private String[] subreddits;
+	private String subredditTextField;
+	private String keywordTextField;
 
 	public RedditResult(MyJFormFrame myJFormFrame, MyRedditClient myRedditClient) {
 		this.myJFormFrame = myJFormFrame;
 		this.myRedditClient = myRedditClient;
+		subredditTextField = myJFormFrame.getSubredditTextField().getText().replaceAll(" ","");
+		keywordTextField = myJFormFrame.getKeywordTextField().getText();
 		filterArrayList = new AllFilters();
 	}
 
@@ -50,14 +51,25 @@ public class RedditResult {
 				filterArrayList.addFilter(new CommentCountFilter(commentMin, commentMax));
 			}
 		}
-		//subreddits = myJFormFrame.getSubredditTextField().getText().replaceAll(" ","").split(",");
+
+		if (subredditTextField.equals("")) {
+			//filterArrayList.addFilter(new SubredditFilter(subredditTextField.split(",")));
+			subredditTextField = "all";
+		}
+		if (myJFormFrame.getRegexCheckBox().isSelected()) {
+			filterArrayList.addFilter(new KeywordFilter(keywordTextField));
+		}
+		else {
+			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ","").split(",")));
+			System.out.println(keywordTextField.replaceAll(" ","").split(","));
+		}
 	}
 
 	public void display() {
 		DefaultPaginator<Submission> paginator = myRedditClient
 				.getMyclient()
-				//.subreddit("all")
-				.subreddits("worldnews", "politics", "ukraine", "russia", "news")
+				.subreddit(subredditTextField)
+				//.subreddits("world","politics", subreddits[0])
 				.posts()
 				.sorting((SubredditSort) myJFormFrame.getRedditSortComboBox().getSelectedItem())
 				.timePeriod((TimePeriod) myJFormFrame.getTimeComboBox().getSelectedItem())
@@ -79,7 +91,7 @@ public class RedditResult {
 						+ "\nScore: "
 						+ s.getScore());
 
-				myJFormFrame.getResultTextArea().append(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
+				myJFormFrame.getResultTextArea().append(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink() + "\n");
 				System.out.println(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
 				/*
 				System.out.println(s.getPostHint());

@@ -58,6 +58,15 @@ new FormModel {
 					"value": "cell 5 3"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "regexCheckBox"
+					"text": "Regex"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 7 3 3 1"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "noSpoilerCheckBox"
 					"text": "No Spoiler Filter"
 					"selected": true
@@ -93,7 +102,7 @@ new FormModel {
 					"minimumSize": &Dimension0 new java.awt.Dimension( 100, 38 )
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
-						"JavaCodeGenerator.preCreateCode": "//Source: https://stackoverflow.com/questions/11093326/restricting-jtextfield-input-to-integers\nNumberFormat format = NumberFormat.getInstance();\nNumberFormatter formatter = new NumberFormatter(format);\n\nformatter.setValueClass(Integer.class);\nformatter.setMinimum(0);\nformatter.setMaximum(Integer.MAX_VALUE);\nformatter.setAllowsInvalid(false);\n//formatter.setCommitsOnValidEdit(true);"
+						"JavaCodeGenerator.preCreateCode": "//Source: https://stackoverflow.com/questions/11093326/restricting-jtextfield-input-to-integers\nNumberFormat format = NumberFormat.getInstance();\nNumberFormatter formatter = new NumberFormatter(format);\n\nformatter.setValueClass(Integer.class);\nformatter.setMinimum(0);\nformatter.setMaximum(Integer.MAX_VALUE);\nformatter.setAllowsInvalid(false);\nformatter.setCommitsOnValidEdit(true);\n// End of Source"
 						"JavaCodeGenerator.customCreateCode": "new JFormattedTextField(formatter);"
 					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
@@ -178,6 +187,16 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 3 6 1"
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "searchButton3"
+				"text": "Reset"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reset", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 30 3 7 2"
+			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "redditSortComboBox"
 				auxiliary() {
@@ -245,7 +264,17 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "search", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 11 17 2"
+				"value": "cell 20 11 9 2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "searchButton2"
+				"text": "Save Result"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", false ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 30 11 7 2"
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"

@@ -2,17 +2,21 @@ package com.github.RedditDataMiner;
 
 import net.dean.jraw.models.Submission;
 
-public class SubredditFilter implements Filter{
-	private String sub;
+import java.util.Arrays;
 
-	public SubredditFilter(String sub) {
-		this.sub = sub;
+public class SubredditFilter implements Filter{
+	private String[] subreddits;
+
+	public SubredditFilter(String[] subreddits) {
+		this.subreddits = subreddits;
 	}
 
 	@Override
-	public boolean satisfies(Submission s) {
-		if (s.getSubreddit().equals(sub)) {
-			return true;
+	public boolean satisfies(Submission submission) {
+		for (String subreddit : subreddits) {
+			if (submission.getSubreddit().equals(subreddit.toLowerCase())) {
+				return true;
+			}
 		}
 		return false;
 	}
