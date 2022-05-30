@@ -21,9 +21,11 @@ import net.miginfocom.swing.*;
 public class MyJFormFrame extends JFrame {
 	private ArrayList<Filter> filterArrayList;
 	private MyRedditClient myRedditClient;
+	private RedditResult redditResult;
 	public MyJFormFrame(MyRedditClient myRedditClient) {
 		initComponents();
 		this.myRedditClient = myRedditClient;
+		this.redditResult = new RedditResult(this, myRedditClient);
 	}
 
 	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
@@ -40,9 +42,12 @@ public class MyJFormFrame extends JFrame {
 	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
+			regexCheckBox.setEnabled(true);
 		}
 		else {
 		    keywordTextField.setEnabled(false);
+			regexCheckBox.setEnabled(false);
+			regexCheckBox.setSelected(false);
 		}
 	}
 
@@ -200,7 +205,6 @@ public class MyJFormFrame extends JFrame {
 
 	private void search() {
 		//resultTextArea.append("SEARCH PRESSED");
-		RedditResult redditResult = new RedditResult(this, myRedditClient);
 		redditResult.addFilters();
 		redditResult.display();
 	}
@@ -372,6 +376,7 @@ public class MyJFormFrame extends JFrame {
 
 			//---- regexCheckBox ----
 			regexCheckBox.setText("Regex");
+			regexCheckBox.setEnabled(false);
 			filterPanel.add(regexCheckBox, "cell 7 3 3 1");
 
 			//---- noSpoilerCheckBox ----

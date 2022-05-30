@@ -19,7 +19,7 @@ public class KeywordFilter implements Filter{
 
 	@Override
 	public boolean satisfies(Submission submission) {
-		if (keys.length == 0) {
+		if (keys == null) {
 			// Source: https://www.w3schools.com/java/java_regex.asp
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(submission.getTitle());

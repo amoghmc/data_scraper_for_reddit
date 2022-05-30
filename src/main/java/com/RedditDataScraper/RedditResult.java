@@ -111,4 +111,8 @@ public class RedditResult {
 		}
 		filterArrayList.clear();
 	}
+
+	public void save() {
+
+	}
 }
