@@ -7,20 +7,18 @@ package com.RedditDataScraper;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.miginfocom.swing.MigLayout;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
 /**
  * @author unknown
  */
 public class MyJFormFrame extends JFrame {
-	private ArrayList<Filter> filterArrayList;
-	private final MyRedditClient myRedditClient;
 	private final RedditResult redditResult;
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	private JPanel filterPanel;
@@ -56,11 +54,10 @@ public class MyJFormFrame extends JFrame {
 
 	public MyJFormFrame(MyRedditClient myRedditClient) {
 		initComponents();
-		this.myRedditClient = myRedditClient;
 		redditResult = new RedditResult(this, myRedditClient);
 	}
 
-	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
+	private void commentCountFilterCheckBoxItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			commentCountMinTextField.setEnabled(true);
 			commentCountMaxTextField.setEnabled(true);
@@ -70,7 +67,7 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
+	private void keywordCheckBoxItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
 			regexCheckBox.setEnabled(true);
@@ -81,7 +78,7 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void scoreFilterCheckBoxItemStateChanged(ItemEvent e) {
+	private void scoreFilterCheckBoxItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			scoreMinTextField.setEnabled(true);
 			scoreMaxTextField.setEnabled(true);
@@ -91,7 +88,7 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void azSortItemStateChanged(ItemEvent e) {
+	private void azSortItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			zaSort.setSelected(false);
 			scoreSortMax.setSelected(false);
@@ -99,7 +96,7 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void zaSortItemStateChanged(ItemEvent e) {
+	private void zaSortItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			azSort.setSelected(false);
 			scoreSortMax.setSelected(false);
@@ -107,7 +104,7 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void scoreSortMaxItemStateChanged(ItemEvent e) {
+	private void scoreSortMaxItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			scoreSortMin.setSelected(false);
 			azSort.setSelected(false);
@@ -115,7 +112,7 @@ public class MyJFormFrame extends JFrame {
 		}
 	}
 
-	private void scoreSortMinItemStateChanged(ItemEvent e) {
+	private void scoreSortMinItemStateChanged(@NotNull ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			scoreSortMax.setSelected(false);
 			azSort.setSelected(false);
