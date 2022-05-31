@@ -15,15 +15,15 @@ public class ScoreFilter implements Filter{
 	}
 
 	@Override
-	public boolean satisfies(Submission s) {
+	public boolean satisfies(Submission submission) {
 		if (max == -1) {
-			if (s.getScore() >= min) {
+			if (submission.getScore() >= min) {
 				return true;
 			}
 			return false;
 		}
 		else {
-			if (s.getScore() >= min && s.getScore() <= max) {
+			if (submission.getScore() >= min && submission.getScore() <= max) {
 				return true;
 			}
 			return false;

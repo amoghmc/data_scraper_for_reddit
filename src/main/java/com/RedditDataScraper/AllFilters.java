@@ -12,14 +12,14 @@ public class AllFilters implements Filter {
 		filters = new ArrayList<Filter>();
 	}
 
-	public void addFilter(Filter f) {
-		filters.add(f);
+	public void addFilter(Filter filter) {
+		filters.add(filter);
 	}
 
 	@Override
-	public boolean satisfies(Submission s) {
-		for(Filter f : filters) {
-			if (!f.satisfies(s)) {
+	public boolean satisfies(Submission submission) {
+		for(Filter filter : filters) {
+			if (!filter.satisfies(submission)) {
 				return false;
 			}
 		}

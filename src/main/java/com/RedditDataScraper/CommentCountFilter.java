@@ -15,15 +15,15 @@ public class CommentCountFilter implements Filter{
 	}
 
 	@Override
-	public boolean satisfies(Submission s) {
+	public boolean satisfies(Submission submission) {
 		if (max == -1) {
-			if (s.getCommentCount() >= min) {
+			if (submission.getCommentCount() >= min) {
 				return true;
 			}
 			return false;
 		}
 		else {
-			if (s.getCommentCount() >= min && s.getCommentCount() <= max) {
+			if (submission.getCommentCount() >= min && submission.getCommentCount() <= max) {
 				return true;
 			}
 			return false;

@@ -12,23 +12,23 @@ public class CredResource {
 
 	public CredResource(String filename) throws FileNotFoundException {
 		File file = new File(filename);
-		Scanner sc = new Scanner(file);
-		Dictionary dict = new Hashtable();
+		Scanner scanner = new Scanner(file);
+		Dictionary dictionary = new Hashtable();
 		String[] list = new String[2];
 
-		while (sc.hasNextLine()) {
+		while (scanner.hasNextLine()) {
 			int i = 0;
-			for (String word : sc.nextLine().split(" ")) {
+			for (String word : scanner.nextLine().split(" ")) {
 				list[i] = word;
 				i++;
 			}
-			dict.put(list[0].toLowerCase(), list[1]);
+			dictionary.put(list[0].toLowerCase(), list[1]);
 		}
 
-		this.username = dict.get("username:").toString();
-		this.password = dict.get("password:").toString();
-		this.clientId = dict.get("clientid:").toString();
-		this.clientSecret = dict.get("clientsecret:").toString();
+		this.username = dictionary.get("username:").toString();
+		this.password = dictionary.get("password:").toString();
+		this.clientId = dictionary.get("clientid:").toString();
+		this.clientSecret = dictionary.get("clientsecret:").toString();
 	}
 
 	public String getClientId() {

@@ -19,7 +19,7 @@ public class MyRedditClient {
 
 	public MyRedditClient(@NotNull CredResource cr) {
 		userAgent = new UserAgent("bot", "com.github.RedditDataMiner",
-				"v0.1", "minerBot");
+				"v1.2", "minerBot");
 		adapter = new OkHttpNetworkAdapter(userAgent);
 		userId = UUID.randomUUID();
 		myclient = OAuthHelper.automatic(adapter,
