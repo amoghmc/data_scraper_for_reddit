@@ -10,9 +10,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class RedditResult {
-	private MyJFormFrame myJFormFrame;
-	private MyRedditClient myRedditClient;
-	private AllFilters filterArrayList;
+	private final MyJFormFrame myJFormFrame;
+	private final MyRedditClient myRedditClient;
+	private final AllFilters filterArrayList;
 	private String subredditTextField;
 	private String keywordTextField;
 
@@ -23,7 +23,7 @@ public class RedditResult {
 	}
 
 	public void addFilters() {
-		subredditTextField = myJFormFrame.getSubredditTextField().getText().replaceAll(" ","");
+		subredditTextField = myJFormFrame.getSubredditTextField().getText().replaceAll(" ", "");
 		keywordTextField = myJFormFrame.getKeywordTextField().getText();
 		if (myJFormFrame.getNoNsfwCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoNsfwFilter());
@@ -33,22 +33,20 @@ public class RedditResult {
 		}
 		if (myJFormFrame.getScoreFilterCheckBox().isSelected()) {
 			System.out.println(myJFormFrame.getScoreMinTextField().getText());
-			int scoreMin = Integer.parseInt(myJFormFrame.getScoreMinTextField().getText().replaceAll(",",""));
-			int scoreMax = Integer.parseInt(myJFormFrame.getScoreMaxTextField().getText().replaceAll(",",""));
+			int scoreMin = Integer.parseInt(myJFormFrame.getScoreMinTextField().getText().replaceAll(",", ""));
+			int scoreMax = Integer.parseInt(myJFormFrame.getScoreMaxTextField().getText().replaceAll(",", ""));
 			if (scoreMax == 0) {
 				filterArrayList.addFilter(new ScoreFilter(scoreMin));
-			}
-			else {
+			} else {
 				filterArrayList.addFilter(new ScoreFilter(scoreMin, scoreMax));
 			}
 		}
 		if (myJFormFrame.getCommentCountFilterCheckBox().isSelected()) {
-			int commentMin = Integer.parseInt(myJFormFrame.getCommentCountMinTextField().getText().replaceAll(",",""));
-			int commentMax = Integer.parseInt(myJFormFrame.getCommentCountMaxTextField().getText().replaceAll(",",""));
+			int commentMin = Integer.parseInt(myJFormFrame.getCommentCountMinTextField().getText().replaceAll(",", ""));
+			int commentMax = Integer.parseInt(myJFormFrame.getCommentCountMaxTextField().getText().replaceAll(",", ""));
 			if (commentMax == 0) {
 				filterArrayList.addFilter(new CommentCountFilter(commentMin));
-			}
-			else {
+			} else {
 				filterArrayList.addFilter(new CommentCountFilter(commentMin, commentMax));
 			}
 		}
@@ -59,10 +57,9 @@ public class RedditResult {
 		}
 		if (myJFormFrame.getRegexCheckBox().isSelected()) {
 			filterArrayList.addFilter(new KeywordFilter(keywordTextField));
-		}
-		else {
-			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ","").split(",")));
-			System.out.println(keywordTextField.replaceAll(" ","").split(","));
+		} else {
+			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ", "").split(",")));
+			System.out.println(keywordTextField.replaceAll(" ", "").split(","));
 		}
 	}
 
@@ -70,14 +67,11 @@ public class RedditResult {
 		Comparator<Submission> comparator;
 		if (myJFormFrame.getAzSort().isSelected()) {
 			comparator = new CompareTitle();
-		}
-		else if (myJFormFrame.getZaSort().isSelected()) {
+		} else if (myJFormFrame.getZaSort().isSelected()) {
 			comparator = new CompareTitle().reversed();
-		}
-		else if (myJFormFrame.getScoreSortMin().isSelected()) {
+		} else if (myJFormFrame.getScoreSortMin().isSelected()) {
 			comparator = new CompareScore();
-		}
-		else {
+		} else {
 			myJFormFrame.getScoreSortMax().setSelected(true);
 			comparator = new CompareScore().reversed();
 		}
@@ -101,7 +95,7 @@ public class RedditResult {
 		for (Submission s : nextPage) {
 			if (filterArrayList.satisfies(s)) {
 				myJFormFrame.getResultTextArea().append("Title: "
-						+ s.getTitle().replace('’', '\'').replace('—','-')
+						+ s.getTitle().replace('’', '\'').replace('—', '-')
 						+ "\nScore: "
 						+ s.getScore()
 						+ "\nComment Count: "
@@ -118,7 +112,7 @@ public class RedditResult {
 
 				System.out.println(s.getTitle()
 						.replace('’', '\'')
-						.replace('—','-')
+						.replace('—', '-')
 						+ "\nScore: "
 						+ s.getScore()
 						+ "\n"

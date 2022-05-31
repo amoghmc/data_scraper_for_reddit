@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyCsvWriter{
+public class MyCsvWriter {
 	private static int id = 0;
-	private MyJFormFrame myJFormFrame;
-	private JTextArea resultTextField;
-	private String[] header = {
+	private final MyJFormFrame myJFormFrame;
+	private final JTextArea resultTextField;
+	private final String[] header = {
 			"ID",
 			"Subreddit",
 			"Score",
@@ -36,14 +36,14 @@ public class MyCsvWriter{
 
 		try (CSVWriter writer = new CSVWriter(new FileWriter("Results\\result" + id))) {
 			//writer.writeAll(csvData);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("ERROR");
 		}
 	}
 
 	private void createCsvData() {
-		String result = myJFormFrame.getResultTextArea().getText();
+		String resultFile = myJFormFrame.getResultTextArea().getText();
+		String[] lines = resultFile.split("/\r?\n/");
 		String[] record1 = {"1", "first name", "address 1", "11111"};
 		String[] record2 = {"2", "second name", "address 2", "22222"};
 

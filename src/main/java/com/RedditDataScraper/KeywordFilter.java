@@ -5,7 +5,7 @@ import net.dean.jraw.models.Submission;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class KeywordFilter implements Filter{
+public class KeywordFilter implements Filter {
 	private String[] keys;
 	private String regex;
 
@@ -24,15 +24,9 @@ public class KeywordFilter implements Filter{
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(submission.getTitle());
 			boolean matchFound = matcher.find();
-			if (matchFound) {
-				return true;
-			}
-			else {
-				return false;
-			}
+			return matchFound;
 			// End of source
-		}
-		else {
+		} else {
 			String title = submission.getTitle().toLowerCase();
 			for (String key : keys) {
 				if (title.indexOf(key.toLowerCase()) == -1) {

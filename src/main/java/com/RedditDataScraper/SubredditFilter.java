@@ -2,8 +2,8 @@ package com.RedditDataScraper;
 
 import net.dean.jraw.models.Submission;
 
-public class SubredditFilter implements Filter{
-	private String[] subreddits;
+public class SubredditFilter implements Filter {
+	private final String[] subreddits;
 
 	public SubredditFilter(String[] subreddits) {
 		this.subreddits = subreddits;

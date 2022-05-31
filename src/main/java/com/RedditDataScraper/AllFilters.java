@@ -18,7 +18,7 @@ public class AllFilters implements Filter {
 
 	@Override
 	public boolean satisfies(Submission submission) {
-		for(Filter filter : filters) {
+		for (Filter filter : filters) {
 			if (!filter.satisfies(submission)) {
 				return false;
 			}

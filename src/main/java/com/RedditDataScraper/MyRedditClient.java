@@ -2,20 +2,20 @@ package com.RedditDataScraper;
 
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.NetworkAdapter;
+import net.dean.jraw.http.NoopHttpLogger;
 import net.dean.jraw.http.OkHttpNetworkAdapter;
 import net.dean.jraw.http.UserAgent;
 import net.dean.jraw.oauth.Credentials;
 import net.dean.jraw.oauth.OAuthHelper;
-import net.dean.jraw.http.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
 public class MyRedditClient {
-	private UserAgent userAgent;
-	private NetworkAdapter adapter;
-	private UUID userId;
-	private RedditClient myclient;
+	private final UserAgent userAgent;
+	private final NetworkAdapter adapter;
+	private final UUID userId;
+	private final RedditClient myclient;
 
 	public MyRedditClient(@NotNull CredResource cr) {
 		userAgent = new UserAgent("bot", "com.github.RedditDataMiner",

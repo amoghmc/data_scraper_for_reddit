@@ -3,12 +3,14 @@ package com.RedditDataScraper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
 
 public class CredResource {
-	private String username, password, clientId, clientSecret;
+	private final String username;
+	private final String password;
+	private final String clientId;
+	private final String clientSecret;
 
 	public CredResource(String filename) throws FileNotFoundException {
 		File file = new File(filename);
