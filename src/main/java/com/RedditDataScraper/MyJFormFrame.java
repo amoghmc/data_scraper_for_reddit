@@ -263,7 +263,7 @@ public class MyJFormFrame extends JFrame {
 		//======== this ========
 		setBackground(new Color(255, 204, 204));
 		setForeground(Color.orange);
-		setTitle("RedditDataMiner");
+		setTitle("RedditDataScraper");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
@@ -488,6 +488,7 @@ public class MyJFormFrame extends JFrame {
 
 		//---- scoreSortMax ----
 		scoreSortMax.setText("Score Sort by Max");
+		scoreSortMax.setSelected(true);
 		scoreSortMax.addItemListener(e -> scoreSortMaxItemStateChanged(e));
 		contentPane.add(scoreSortMax, "cell 20 9 9 1");
 

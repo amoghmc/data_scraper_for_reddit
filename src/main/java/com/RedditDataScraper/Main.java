@@ -19,7 +19,5 @@ public class Main {
 			System.out.println("No results found");
 		}
 
-		AllFilters allFilters = new AllFilters();
-
 	}
 }

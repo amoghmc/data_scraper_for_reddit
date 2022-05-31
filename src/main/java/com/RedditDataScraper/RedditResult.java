@@ -7,6 +7,7 @@ import net.dean.jraw.models.TimePeriod;
 import net.dean.jraw.pagination.DefaultPaginator;
 
 import java.util.Collections;
+import java.util.Comparator;
 
 public class RedditResult {
 	private MyJFormFrame myJFormFrame;
@@ -65,6 +66,24 @@ public class RedditResult {
 		}
 	}
 
+	public Comparator<Submission> getSortSettings() {
+		Comparator<Submission> comparator;
+		if (myJFormFrame.getAzSort().isSelected()) {
+			comparator = new CompareTitle();
+		}
+		else if (myJFormFrame.getZaSort().isSelected()) {
+			comparator = new CompareTitle().reversed();
+		}
+		else if (myJFormFrame.getScoreSortMin().isSelected()) {
+			comparator = new CompareScore();
+		}
+		else {
+			myJFormFrame.getScoreSortMax().setSelected(true);
+			comparator = new CompareScore().reversed();
+		}
+		return comparator;
+	}
+
 	public void display() {
 		DefaultPaginator<Submission> paginator = myRedditClient
 				.getMyclient()
@@ -76,7 +95,8 @@ public class RedditResult {
 				.build();
 
 		Listing<Submission> nextPage = paginator.next();
-		Collections.sort(nextPage, new CompareTitle().reversed());
+		Comparator<Submission> comparator = getSortSettings();
+		Collections.sort(nextPage, comparator);
 
 		for (Submission s : nextPage) {
 			if (filterArrayList.satisfies(s)) {
@@ -92,6 +112,7 @@ public class RedditResult {
 						+ s.getUrl()
 						+ "\nPermalink: "
 						+ "https://www.reddit.com" + s.getPermalink()
+						+ "\n"
 						+ "\n");
 
 

@@ -12,7 +12,7 @@ new FormModel {
 			"$sizePolicy": 1
 			"background": new java.awt.Color( 255, 204, 204, 255 )
 			"foreground": sfield java.awt.Color orange
-			"title": "RedditDataMiner"
+			"title": "RedditDataScraper"
 			"defaultCloseOperation": 3
 			"visible": true
 			"resizable": false
@@ -240,6 +240,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMax"
 				"text": "Score Sort by Max"
+				"selected": true
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
 				}
