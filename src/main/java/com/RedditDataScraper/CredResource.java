@@ -25,10 +25,10 @@ public class CredResource {
 			dict.put(list[0].toLowerCase(), list[1]);
 		}
 
-		this.username = dict.get("username").toString();
-		this.password = dict.get("password").toString();
-		this.clientId = dict.get("clientid").toString();
-		this.clientSecret = dict.get("clientsecret").toString();
+		this.username = dict.get("username:").toString();
+		this.password = dict.get("password:").toString();
+		this.clientId = dict.get("clientid:").toString();
+		this.clientSecret = dict.get("clientsecret:").toString();
 	}
 
 	public String getClientId() {

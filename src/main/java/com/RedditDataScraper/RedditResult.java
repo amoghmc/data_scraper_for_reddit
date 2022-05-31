@@ -18,12 +18,12 @@ public class RedditResult {
 	public RedditResult(MyJFormFrame myJFormFrame, MyRedditClient myRedditClient) {
 		this.myJFormFrame = myJFormFrame;
 		this.myRedditClient = myRedditClient;
-		subredditTextField = myJFormFrame.getSubredditTextField().getText().replaceAll(" ","");
-		keywordTextField = myJFormFrame.getKeywordTextField().getText();
 		filterArrayList = new AllFilters();
 	}
 
 	public void addFilters() {
+		subredditTextField = myJFormFrame.getSubredditTextField().getText().replaceAll(" ","");
+		keywordTextField = myJFormFrame.getKeywordTextField().getText();
 		if (myJFormFrame.getNoNsfwCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoNsfwFilter());
 		}
@@ -80,19 +80,32 @@ public class RedditResult {
 
 		for (Submission s : nextPage) {
 			if (filterArrayList.satisfies(s)) {
-				myJFormFrame.getResultTextArea().append(s.getTitle()
-						.replace('’', '\'')
-						.replace('—','-')
+				myJFormFrame.getResultTextArea().append("Title: "
+						+ s.getTitle().replace('’', '\'').replace('—','-')
 						+ "\nScore: "
-						+ s.getScore());
+						+ s.getScore()
+						+ "\nComment Count: "
+						+ s.getCommentCount()
+						+ "\nSubreddit: "
+						+ s.getSubreddit()
+						+ "\nURL: "
+						+ s.getUrl()
+						+ "\nPermalink: "
+						+ "https://www.reddit.com" + s.getPermalink()
+						+ "\n");
+
+
 				System.out.println(s.getTitle()
 						.replace('’', '\'')
 						.replace('—','-')
 						+ "\nScore: "
-						+ s.getScore());
-
-				myJFormFrame.getResultTextArea().append(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink() + "\n");
-				System.out.println(s.getSubreddit() + "\n" + s.getUrl() + "\n" + "https://www.reddit.com" + s.getPermalink());
+						+ s.getScore()
+						+ "\n"
+						+ s.getUrl()
+						+ "\n"
+						+ "https://www.reddit.com"
+						+ s.getPermalink()
+						+ "\n");
 				/*
 				System.out.println(s.getPostHint());
 				System.out.println(s.getDistinguished());
@@ -112,7 +125,4 @@ public class RedditResult {
 		filterArrayList.clear();
 	}
 
-	public void save() {
-
-	}
 }

@@ -25,7 +25,7 @@ public class MyJFormFrame extends JFrame {
 	public MyJFormFrame(MyRedditClient myRedditClient) {
 		initComponents();
 		this.myRedditClient = myRedditClient;
-		this.redditResult = new RedditResult(this, myRedditClient);
+		redditResult = new RedditResult(this, myRedditClient);
 	}
 
 	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
@@ -65,24 +65,32 @@ public class MyJFormFrame extends JFrame {
 	private void azSortItemStateChanged(ItemEvent e) {
 		if(e.getStateChange() == ItemEvent.SELECTED) {
 			zaSort.setSelected(false);
+			scoreSortMax.setSelected(false);
+			scoreSortMin.setSelected(false);
 		}
 	}
 
 	private void zaSortItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 		    azSort.setSelected(false);
+			scoreSortMax.setSelected(false);
+			scoreSortMin.setSelected(false);
 		}
 	}
 
 	private void scoreSortMaxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 		    scoreSortMin.setSelected(false);
+			azSort.setSelected(false);
+			zaSort.setSelected(false);
 		}
 	}
 
 	private void scoreSortMinItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 		    scoreSortMax.setSelected(false);
+			azSort.setSelected(false);
+			zaSort.setSelected(false);
 		}
 	}
 
