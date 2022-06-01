@@ -14,17 +14,12 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.text.NumberFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author unknown
  */
 public class MyJFormFrame extends JFrame {
 	private final RedditResult redditResult;
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	private JPanel filterPanel;
-	private JLabel subredditFilterLabel;
 	private JTextField subredditTextField;
 	private JCheckBox noNsfwCheckBox;
 	private JCheckBox keywordCheckBox;
@@ -34,7 +29,6 @@ public class MyJFormFrame extends JFrame {
 	private JCheckBox scoreFilterCheckBox;
 	private JFormattedTextField scoreMinTextField;
 	private JFormattedTextField commentCountMinTextField;
-	private JLabel scoreMinLabel;
 	private JLabel scoreMaxLabel;
 	private JCheckBox commentCountFilterCheckBox;
 	private JLabel commentCountMinLabel;
@@ -248,8 +242,9 @@ public class MyJFormFrame extends JFrame {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		filterPanel = new JPanel();
-		subredditFilterLabel = new JLabel();
+		// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+		JPanel filterPanel = new JPanel();
+		JLabel subredditFilterLabel = new JLabel();
 		subredditTextField = new JTextField();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
@@ -269,7 +264,7 @@ public class MyJFormFrame extends JFrame {
 		// End of Source
 		scoreMinTextField = new JFormattedTextField(formatter);
 		commentCountMinTextField = new JFormattedTextField(formatter);
-		scoreMinLabel = new JLabel();
+		JLabel scoreMinLabel = new JLabel();
 		scoreMaxLabel = new JLabel();
 		commentCountFilterCheckBox = new JCheckBox();
 		commentCountMinLabel = new JLabel();

@@ -23,13 +23,12 @@ public class KeywordFilter implements Filter {
 			// Source: https://www.w3schools.com/java/java_regex.asp
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(submission.getTitle());
-			boolean matchFound = matcher.find();
-			return matchFound;
+			return matcher.find();
 			// End of source
 		} else {
 			String title = submission.getTitle().toLowerCase();
 			for (String key : keys) {
-				if (title.indexOf(key.toLowerCase()) == -1) {
+				if (!title.contains(key.toLowerCase())) {
 					return false;
 				}
 			}

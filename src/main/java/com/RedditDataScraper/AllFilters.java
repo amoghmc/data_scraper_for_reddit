@@ -9,7 +9,7 @@ public class AllFilters implements Filter {
 	ArrayList<Filter> filters;
 
 	public AllFilters() {
-		filters = new ArrayList<Filter>();
+		filters = new ArrayList<>();
 	}
 
 	public void addFilter(Filter filter) {

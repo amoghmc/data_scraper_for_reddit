@@ -7,8 +7,6 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 public class CredResource {
-	private final String username;
-	private final String password;
 	private final String clientId;
 	private final String clientSecret;
 
@@ -27,8 +25,6 @@ public class CredResource {
 			dictionary.put(list[0].toLowerCase(), list[1]);
 		}
 
-		this.username = dictionary.get("username:").toString();
-		this.password = dictionary.get("password:").toString();
 		this.clientId = dictionary.get("clientid:").toString();
 		this.clientSecret = dictionary.get("clientsecret:").toString();
 	}
@@ -39,21 +35,5 @@ public class CredResource {
 
 	public String getClientSecret() {
 		return clientSecret;
-	}
-
-	public String getUsername() throws Exception {
-		if (!username.equals("null")) {
-			return username;
-		}
-		Exception NullPointerException = null;
-		throw NullPointerException;
-	}
-
-	public String getPassword() throws Exception {
-		if (!password.equals("null")) {
-			return password;
-		}
-		Exception NullPointerException = null;
-		throw NullPointerException;
 	}
 }
