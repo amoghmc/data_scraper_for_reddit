@@ -6,6 +6,8 @@ import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.dean.jraw.pagination.DefaultPaginator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -15,11 +17,22 @@ public class RedditResult {
 	private final AllFilters filterArrayList;
 	private String subredditTextField;
 	private String keywordTextField;
+	private String nsfw;
+	private String spoiler;
+	private DateTimeFormatter dateFormatter;
+	private LocalDateTime now;
+	private int index;
 
 	public RedditResult(MyJFormFrame myJFormFrame, MyRedditClient myRedditClient) {
 		this.myJFormFrame = myJFormFrame;
 		this.myRedditClient = myRedditClient;
 		filterArrayList = new AllFilters();
+		dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		now = LocalDateTime.now();
+		index = 0;
+
+		nsfw = "No";
+		spoiler = "No";
 	}
 
 	public void addFilters() {
@@ -94,7 +107,17 @@ public class RedditResult {
 
 		for (Submission s : nextPage) {
 			if (filterArrayList.satisfies(s)) {
-				myJFormFrame.getResultTextArea().append("Title: "
+				if (s.isNsfw()) {
+					nsfw = "Yes";
+				}
+				if (s.isSpoiler()) {
+					spoiler = "Yes";
+				}
+				myJFormFrame.getResultTextArea().append("Index: "
+						+ index
+						+ "\nSearch at: "
+						+ dateFormatter.format(now)
+						+ "\nTitle: "
 						+ s.getTitle().replace('’', '\'').replace('—', '-')
 						+ "\nScore: "
 						+ s.getScore()
@@ -106,35 +129,13 @@ public class RedditResult {
 						+ s.getUrl()
 						+ "\nPermalink: "
 						+ "https://www.reddit.com" + s.getPermalink()
+						+ "\nNSFW: "
+						+ nsfw
+						+ "\nSpoiler: "
+						+ spoiler
 						+ "\n"
 						+ "\n");
-
-
-				System.out.println(s.getTitle()
-						.replace('’', '\'')
-						.replace('—', '-')
-						+ "\nScore: "
-						+ s.getScore()
-						+ "\n"
-						+ s.getUrl()
-						+ "\n"
-						+ "https://www.reddit.com"
-						+ s.getPermalink()
-						+ "\n");
-				/*
-				System.out.println(s.getPostHint());
-				System.out.println(s.getDistinguished());
-				System.out.println(s.getThumbnail());
-				System.out.println(s.isSpam());
-				System.out.println(s.isSpoiler());
-				System.out.println(s.getReports());
-				System.out.println(s.getGilded());
-				System.out.println(s.getPreview());
-				System.out.println(s.isLocked());
-				System.out.println(s.getCommentCount());
-				System.out.println(s.getCreated());
-
-				 */
+				index++;
 			}
 		}
 		filterArrayList.clear();

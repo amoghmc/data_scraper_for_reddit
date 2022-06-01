@@ -14,6 +14,8 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author unknown
@@ -234,11 +236,12 @@ public class MyJFormFrame extends JFrame {
 	}
 
 	private void save() {
-
+		MyCsvWriter myCsvWriter = new MyCsvWriter(this);
+		myCsvWriter.createCsvData();
+		myCsvWriter.writeCsvData("result1");
 	}
 
 	private void search() {
-		//resultTextArea.append("SEARCH PRESSED");
 		redditResult.addFilters();
 		redditResult.display();
 	}
