@@ -7,12 +7,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
 
 public class MyCsvWriter {
-	private final MyJFormFrame myJFormFrame;
+	private final MainJFormFrame mainJFormFrame;
 	private final JTextArea resultTextField;
 	private final String[] header = {
 			"ID",
@@ -43,9 +40,9 @@ public class MyCsvWriter {
 	private ArrayList<String[]> list;
 
 
-	public MyCsvWriter(MyJFormFrame myJFormFrame) {
-		this.myJFormFrame = myJFormFrame;
-		resultTextField = myJFormFrame.getResultTextArea();
+	public MyCsvWriter(MainJFormFrame mainJFormFrame) {
+		this.mainJFormFrame = mainJFormFrame;
+		resultTextField = mainJFormFrame.getResultTextArea();
 		list = new ArrayList<>();
 		list.add(header);
 		dateAndTime = new String[2];
@@ -64,7 +61,7 @@ public class MyCsvWriter {
 	}
 
 	public void createCsvData() {
-		String resultFile = myJFormFrame.getResultTextArea().getText();
+		String resultFile = mainJFormFrame.getResultTextArea().getText();
 		// Source: https://stackoverflow.com/questions/454908/split-java-string-by-new-line
 		String[] lines = resultFile.split("\\r?\\n");
 		// End of source

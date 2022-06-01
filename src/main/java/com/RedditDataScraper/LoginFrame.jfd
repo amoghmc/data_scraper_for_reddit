@@ -1,0 +1,52 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.14.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "hidemode 3"
+			"$columnConstraints": "[fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill][fill]"
+			"$rowConstraints": "[][][][][][][][]"
+		} ) {
+			name: "this"
+			"title": "Login"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Username"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1 4 1"
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "formattedTextField1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 1 10 1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Password"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 3 4 1"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 6 3 10 1"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Login"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 5 6 2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Register"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 10 5 6 2"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 195, 180 )
+			"size": new java.awt.Dimension( 440, 300 )
+		} )
+	}
+}

@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class RedditResult {
-	private final MyJFormFrame myJFormFrame;
+	private final MainJFormFrame mainJFormFrame;
 	private final MyRedditClient myRedditClient;
 	private final AllFilters filterArrayList;
 	private String subredditTextField;
@@ -23,8 +23,8 @@ public class RedditResult {
 	private LocalDateTime now;
 	private int index;
 
-	public RedditResult(MyJFormFrame myJFormFrame, MyRedditClient myRedditClient) {
-		this.myJFormFrame = myJFormFrame;
+	public RedditResult(MainJFormFrame mainJFormFrame, MyRedditClient myRedditClient) {
+		this.mainJFormFrame = mainJFormFrame;
 		this.myRedditClient = myRedditClient;
 		filterArrayList = new AllFilters();
 		dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -36,27 +36,27 @@ public class RedditResult {
 	}
 
 	public void addFilters() {
-		subredditTextField = myJFormFrame.getSubredditTextField().getText().replaceAll(" ", "");
-		keywordTextField = myJFormFrame.getKeywordTextField().getText();
-		if (myJFormFrame.getNoNsfwCheckBox().isSelected()) {
+		subredditTextField = mainJFormFrame.getSubredditTextField().getText().replaceAll(" ", "");
+		keywordTextField = mainJFormFrame.getKeywordTextField().getText();
+		if (mainJFormFrame.getNoNsfwCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoNsfwFilter());
 		}
-		if (myJFormFrame.getNoSpoilerCheckBox().isSelected()) {
+		if (mainJFormFrame.getNoSpoilerCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoSpoilerFilter());
 		}
-		if (myJFormFrame.getScoreFilterCheckBox().isSelected()) {
-			System.out.println(myJFormFrame.getScoreMinTextField().getText());
-			int scoreMin = Integer.parseInt(myJFormFrame.getScoreMinTextField().getText().replaceAll(",", ""));
-			int scoreMax = Integer.parseInt(myJFormFrame.getScoreMaxTextField().getText().replaceAll(",", ""));
+		if (mainJFormFrame.getScoreFilterCheckBox().isSelected()) {
+			System.out.println(mainJFormFrame.getScoreMinTextField().getText());
+			int scoreMin = Integer.parseInt(mainJFormFrame.getScoreMinTextField().getText().replaceAll(",", ""));
+			int scoreMax = Integer.parseInt(mainJFormFrame.getScoreMaxTextField().getText().replaceAll(",", ""));
 			if (scoreMax == 0) {
 				filterArrayList.addFilter(new ScoreFilter(scoreMin));
 			} else {
 				filterArrayList.addFilter(new ScoreFilter(scoreMin, scoreMax));
 			}
 		}
-		if (myJFormFrame.getCommentCountFilterCheckBox().isSelected()) {
-			int commentMin = Integer.parseInt(myJFormFrame.getCommentCountMinTextField().getText().replaceAll(",", ""));
-			int commentMax = Integer.parseInt(myJFormFrame.getCommentCountMaxTextField().getText().replaceAll(",", ""));
+		if (mainJFormFrame.getCommentCountFilterCheckBox().isSelected()) {
+			int commentMin = Integer.parseInt(mainJFormFrame.getCommentCountMinTextField().getText().replaceAll(",", ""));
+			int commentMax = Integer.parseInt(mainJFormFrame.getCommentCountMaxTextField().getText().replaceAll(",", ""));
 			if (commentMax == 0) {
 				filterArrayList.addFilter(new CommentCountFilter(commentMin));
 			} else {
@@ -68,7 +68,7 @@ public class RedditResult {
 			//filterArrayList.addFilter(new SubredditFilter(subredditTextField.split(",")));
 			subredditTextField = "all";
 		}
-		if (myJFormFrame.getRegexCheckBox().isSelected()) {
+		if (mainJFormFrame.getRegexCheckBox().isSelected()) {
 			filterArrayList.addFilter(new KeywordFilter(keywordTextField));
 		} else {
 			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ", "").split(",")));
@@ -78,14 +78,14 @@ public class RedditResult {
 
 	public Comparator<Submission> getSortSettings() {
 		Comparator<Submission> comparator;
-		if (myJFormFrame.getAzSort().isSelected()) {
+		if (mainJFormFrame.getAzSort().isSelected()) {
 			comparator = new CompareTitle();
-		} else if (myJFormFrame.getZaSort().isSelected()) {
+		} else if (mainJFormFrame.getZaSort().isSelected()) {
 			comparator = new CompareTitle().reversed();
-		} else if (myJFormFrame.getScoreSortMin().isSelected()) {
+		} else if (mainJFormFrame.getScoreSortMin().isSelected()) {
 			comparator = new CompareScore();
 		} else {
-			myJFormFrame.getScoreSortMax().setSelected(true);
+			mainJFormFrame.getScoreSortMax().setSelected(true);
 			comparator = new CompareScore().reversed();
 		}
 		return comparator;
@@ -97,8 +97,8 @@ public class RedditResult {
 				.subreddit(subredditTextField)
 				//.subreddits("world","politics", subreddits[0])
 				.posts()
-				.sorting((SubredditSort) myJFormFrame.getRedditSortComboBox().getSelectedItem())
-				.timePeriod((TimePeriod) myJFormFrame.getTimeComboBox().getSelectedItem())
+				.sorting((SubredditSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
+				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
 				.build();
 
 		Listing<Submission> nextPage = paginator.next();
@@ -113,7 +113,7 @@ public class RedditResult {
 				if (s.isSpoiler()) {
 					spoiler = "Yes";
 				}
-				myJFormFrame.getResultTextArea().append("Index: "
+				mainJFormFrame.getResultTextArea().append("Index: "
 						+ index
 						+ "\nSearch at: "
 						+ dateFormatter.format(now)

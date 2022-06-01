@@ -18,7 +18,7 @@ import java.text.NumberFormat;
 /**
  * @author unknown
  */
-public class MyJFormFrame extends JFrame {
+public class MainJFormFrame extends JFrame {
 	private final RedditResult redditResult;
 	private JTextField subredditTextField;
 	private JCheckBox noNsfwCheckBox;
@@ -48,7 +48,7 @@ public class MyJFormFrame extends JFrame {
 	private JScrollPane scrollPane1;
 	private JTextArea resultTextArea;
 
-	public MyJFormFrame(MyRedditClient myRedditClient) {
+	public MainJFormFrame(MyRedditClient myRedditClient) {
 		initComponents();
 		redditResult = new RedditResult(this, myRedditClient);
 	}
