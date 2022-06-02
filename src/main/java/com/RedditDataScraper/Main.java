@@ -8,6 +8,9 @@ public class Main {
 		CredResource cr = new CredResource("Credentials/credentials.txt");
 		MyRedditClient myRedditClient = new MyRedditClient(cr);
 
+		LoginJFormFrame loginJFormFrame = new LoginJFormFrame();
+		loginJFormFrame.pack();
+
 		MainJFormFrame mjFormFrame = new MainJFormFrame(myRedditClient);
 		mjFormFrame.pack();
 
