@@ -1,65 +1,26 @@
 /*
- * Created by JFormDesigner on Wed Jun 01 20:43:27 IST 2022
+ * Created by JFormDesigner on Fri Jun 03 16:23:32 IST 2022
  */
 
 package com.RedditDataScraper;
 
-import java.sql.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
 /**
  * @author unknown
  */
-public class LoginJFormFrame extends JFrame {
-	private Connection connection;
-	private JFrameHandler jFrameHandler;
-
-	public LoginJFormFrame(Connection connection, JFrameHandler jFrameHandler) {
-		this.connection = connection;
-		this.jFrameHandler = jFrameHandler;
+public class RegisterJFormFrame extends JFrame {
+	public RegisterJFormFrame() {
 		initComponents();
 	}
 
 	private void login() {
-		if (usernameField.getText().strip().equals("") || String.valueOf(passwordField.getPassword()).equals("")) {
-			errorLabel.setText("Username or password is empty");
-		}
-		else {
-			String usernameQuery = "SELECT * from users where username = ? and password = ?";
-
-			try (PreparedStatement selectUsername = connection.prepareStatement(usernameQuery)) {
-				selectUsername.setString(1, usernameField.getText().strip());
-				selectUsername.setString(2, String.valueOf(passwordField.getPassword()));
-
-				ResultSet resultSet = selectUsername.executeQuery();
-				System.out.println("ID: " + resultSet.getInt("id"));
-
-				// Close this and open Main frame
-				jFrameHandler.openMainFrame(resultSet.getString("clientid"),
-						resultSet.getString("clientsecret"),
-						resultSet.getString("username"));
-				this.setVisible(false);
-				this.dispose();
-			}
-			catch (SQLException e) {
-				errorLabel.setText("Username or password invalid");
-				System.out.println("SQL State: " + e.getSQLState());
-				System.out.println("Error Code: " + e.getErrorCode());
-				System.out.println("Message: " + e.getMessage() + "\n");
-			}
-		}
+		// TODO add your code here
 	}
 
 	public JButton getLoginButton() {
 		return loginButton;
-	}
-
-	private void register() {
-		// Close this and open Register frame
-		jFrameHandler.openRegisterFrame();
-		this.setVisible(false);
-		this.dispose();
 	}
 
 	private void initComponents() {
@@ -68,12 +29,18 @@ public class LoginJFormFrame extends JFrame {
 		usernameField = new JFormattedTextField();
 		passwordLabel = new JLabel();
 		passwordField = new JPasswordField();
+		confirmPasswordLabel = new JLabel();
+		confirmPasswordField = new JPasswordField();
+		clientIdLabel = new JLabel();
+		clientIdField = new JFormattedTextField();
+		clientSecretLabel = new JLabel();
+		clientSecretField = new JPasswordField();
 		errorLabel = new JLabel();
 		loginButton = new JButton();
 		registerButton = new JButton();
 
 		//======== this ========
-		setTitle("Login");
+		setTitle("Register");
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -81,6 +48,9 @@ public class LoginJFormFrame extends JFrame {
 		contentPane.setLayout(new MigLayout(
 			"fill,hidemode 3,gap 5 8",
 			// columns
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
 			"[fill]" +
 			"[fill]" +
 			"[fill]" +
@@ -122,29 +92,53 @@ public class LoginJFormFrame extends JFrame {
 			"[fill]" +
 			"[fill]" +
 			"[fill]" +
+			"[]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
 			"[fill]" +
 			"[fill]"));
 
 		//---- usernameLabel ----
 		usernameLabel.setText("Username");
-		contentPane.add(usernameLabel, "cell 2 2 5 2,alignx center,growx 0");
-		contentPane.add(usernameField, "cell 8 2 17 2");
+		contentPane.add(usernameLabel, "cell 2 2 7 2,alignx center,growx 0");
+		contentPane.add(usernameField, "cell 10 2 18 2");
 
 		//---- passwordLabel ----
 		passwordLabel.setText("Password");
-		contentPane.add(passwordLabel, "cell 2 5 5 2,alignx center,growx 0");
-		contentPane.add(passwordField, "cell 8 5 17 2");
-		contentPane.add(errorLabel, "cell 2 8 23 2,alignx center,growx 0");
+		contentPane.add(passwordLabel, "cell 2 5 7 2,alignx center,growx 0");
+		contentPane.add(passwordField, "cell 10 5 18 2");
+
+		//---- confirmPasswordLabel ----
+		confirmPasswordLabel.setText("Confirm \nPassword");
+		contentPane.add(confirmPasswordLabel, "cell 2 8 7 2,alignx center,growx 0");
+		contentPane.add(confirmPasswordField, "cell 10 8 18 2");
+
+		//---- clientIdLabel ----
+		clientIdLabel.setText("Client ID");
+		contentPane.add(clientIdLabel, "cell 2 11 7 2,alignx center,growx 0");
+		contentPane.add(clientIdField, "cell 10 11 18 2");
+
+		//---- clientSecretLabel ----
+		clientSecretLabel.setText("Client Secret");
+		contentPane.add(clientSecretLabel, "cell 2 14 7 2,alignx center,growx 0");
+		contentPane.add(clientSecretField, "cell 10 14 18 2");
+		contentPane.add(errorLabel, "cell 2 17 26 2,alignx center,growx 0");
 
 		//---- loginButton ----
 		loginButton.setText("Login");
 		loginButton.addActionListener(e -> login());
-		contentPane.add(loginButton, "cell 2 11 9 2,alignx left,growx 0,width 200:200:200");
+		contentPane.add(loginButton, "cell 2 20 10 3,alignx left,growx 0,width 200:200:200");
 
 		//---- registerButton ----
 		registerButton.setText("Register");
-		registerButton.addActionListener(e -> register());
-		contentPane.add(registerButton, "cell 16 11 9 2,alignx right,growx 0,width 200:200:200");
+		contentPane.add(registerButton, "cell 18 20 10 3,alignx right,growx 0,width 200:200:200");
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -155,6 +149,12 @@ public class LoginJFormFrame extends JFrame {
 	private JFormattedTextField usernameField;
 	private JLabel passwordLabel;
 	private JPasswordField passwordField;
+	private JLabel confirmPasswordLabel;
+	private JPasswordField confirmPasswordField;
+	private JLabel clientIdLabel;
+	private JFormattedTextField clientIdField;
+	private JLabel clientSecretLabel;
+	private JPasswordField clientSecretField;
 	private JLabel errorLabel;
 	private JButton loginButton;
 	private JButton registerButton;

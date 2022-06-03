@@ -292,9 +292,14 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 14 35 9"
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "loginLabel"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 24 35 1"
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 75, 90 )
-			"size": new java.awt.Dimension( 1080, 515 )
+			"location": new java.awt.Point( 65, 0 )
+			"size": new java.awt.Dimension( 1080, 750 )
 		} )
 	}
 }

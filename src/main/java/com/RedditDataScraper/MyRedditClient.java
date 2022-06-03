@@ -17,13 +17,13 @@ public class MyRedditClient {
 	private final UUID userId;
 	private final RedditClient myclient;
 
-	public MyRedditClient(@NotNull CredResource cr) {
+	public MyRedditClient(@NotNull String clientId, String clientSecret) {
 		userAgent = new UserAgent("bot", "com.github.RedditDataMiner",
 				"v1.2", "minerBot");
 		adapter = new OkHttpNetworkAdapter(userAgent);
 		userId = UUID.randomUUID();
 		myclient = OAuthHelper.automatic(adapter,
-				Credentials.userless(cr.getClientId(), cr.getClientSecret(), userId));
+				Credentials.userless(clientId, clientSecret, userId));
 		myclient.setLogger(new NoopHttpLogger());
 	}
 

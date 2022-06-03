@@ -20,40 +20,14 @@ import java.text.NumberFormat;
  */
 public class MainJFormFrame extends JFrame {
 	private final RedditResult redditResult;
-	private JTextField subredditTextField;
-	private JCheckBox noNsfwCheckBox;
-	private JCheckBox keywordCheckBox;
-	private JCheckBox regexCheckBox;
-	private JCheckBox noSpoilerCheckBox;
-	private JTextField keywordTextField;
-	private JCheckBox scoreFilterCheckBox;
-	private JFormattedTextField scoreMinTextField;
-	private JFormattedTextField commentCountMinTextField;
-	private JLabel scoreMaxLabel;
-	private JCheckBox commentCountFilterCheckBox;
-	private JLabel commentCountMinLabel;
-	private JFormattedTextField scoreMaxTextField;
-	private JFormattedTextField commentCountMaxTextField;
-	private JLabel commentCountMaxLabel;
-	private JLabel redditSortSettingsCheckBox;
-	private JButton searchButton3;
-	private JComboBox redditSortComboBox;
-	private JComboBox timeComboBox;
-	private JCheckBox azSort;
-	private JCheckBox zaSort;
-	private JCheckBox scoreSortMax;
-	private JCheckBox scoreSortMin;
-	private JButton searchButton;
-	private JButton searchButton2;
-	private JScrollPane scrollPane1;
-	private JTextArea resultTextArea;
 
-	public MainJFormFrame(MyRedditClient myRedditClient) {
+	public MainJFormFrame(MyRedditClient myRedditClient, String user) {
 		initComponents();
+		loginLabel.setText("User: " + user);
 		redditResult = new RedditResult(this, myRedditClient);
 	}
 
-	private void commentCountFilterCheckBoxItemStateChanged(@NotNull ItemEvent e) {
+	private void commentCountFilterCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			commentCountMinTextField.setEnabled(true);
 			commentCountMaxTextField.setEnabled(true);
@@ -63,7 +37,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	private void keywordCheckBoxItemStateChanged(@NotNull ItemEvent e) {
+	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
 			regexCheckBox.setEnabled(true);
@@ -74,7 +48,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	private void scoreFilterCheckBoxItemStateChanged(@NotNull ItemEvent e) {
+	private void scoreFilterCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			scoreMinTextField.setEnabled(true);
 			scoreMaxTextField.setEnabled(true);
@@ -84,7 +58,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	private void azSortItemStateChanged(@NotNull ItemEvent e) {
+	private void azSortItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			zaSort.setSelected(false);
 			scoreSortMax.setSelected(false);
@@ -92,7 +66,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	private void zaSortItemStateChanged(@NotNull ItemEvent e) {
+	private void zaSortItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			azSort.setSelected(false);
 			scoreSortMax.setSelected(false);
@@ -100,7 +74,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	private void scoreSortMaxItemStateChanged(@NotNull ItemEvent e) {
+	private void scoreSortMaxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			scoreSortMin.setSelected(false);
 			azSort.setSelected(false);
@@ -108,7 +82,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	private void scoreSortMinItemStateChanged(@NotNull ItemEvent e) {
+	private void scoreSortMinItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			scoreSortMax.setSelected(false);
 			azSort.setSelected(false);
@@ -242,9 +216,8 @@ public class MainJFormFrame extends JFrame {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-		JPanel filterPanel = new JPanel();
-		JLabel subredditFilterLabel = new JLabel();
+		filterPanel = new JPanel();
+		subredditFilterLabel = new JLabel();
 		subredditTextField = new JTextField();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
@@ -264,7 +237,7 @@ public class MainJFormFrame extends JFrame {
 		// End of Source
 		scoreMinTextField = new JFormattedTextField(formatter);
 		commentCountMinTextField = new JFormattedTextField(formatter);
-		JLabel scoreMinLabel = new JLabel();
+		scoreMinLabel = new JLabel();
 		scoreMaxLabel = new JLabel();
 		commentCountFilterCheckBox = new JCheckBox();
 		commentCountMinLabel = new JLabel();
@@ -283,6 +256,7 @@ public class MainJFormFrame extends JFrame {
 		searchButton2 = new JButton();
 		scrollPane1 = new JScrollPane();
 		resultTextArea = new JTextArea();
+		loginLabel = new JLabel();
 
 		//======== this ========
 		setBackground(new Color(255, 204, 204));
@@ -294,102 +268,102 @@ public class MainJFormFrame extends JFrame {
 		setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 		var contentPane = getContentPane();
 		contentPane.setLayout(new MigLayout(
-				"insets 0,hidemode 3,gap 7 7",
-				// columns
-				"[grow 1,fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[grow 1,fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[grow 1,fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]" +
-						"[fill]",
-				// rows
-				"[]" +
-						"[]" +
-						"[]" +
-						"[18:0,grow 1,fill]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[fill]" +
-						"[fill]" +
-						"[]" +
-						"[]" +
-						"[fill]" +
-						"[fill]" +
-						"[0,fill]" +
-						"[86,grow 1,fill]" +
-						"[21,grow 1,fill]" +
-						"[]" +
-						"[86,grow 1,fill]" +
-						"[21,grow 1,fill]" +
-						"[]" +
-						"[]" +
-						"[]" +
-						"[]"));
+			"insets 0,hidemode 3,gap 7 7",
+			// columns
+			"[grow 1,fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[grow 1,fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[grow 1,fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]" +
+			"[fill]",
+			// rows
+			"[]" +
+			"[]" +
+			"[]" +
+			"[18:0,grow 1,fill]" +
+			"[]" +
+			"[]" +
+			"[]" +
+			"[]" +
+			"[]" +
+			"[]" +
+			"[fill]" +
+			"[fill]" +
+			"[]" +
+			"[]" +
+			"[fill]" +
+			"[fill]" +
+			"[0,fill]" +
+			"[86,grow 1,fill]" +
+			"[21,grow 1,fill]" +
+			"[]" +
+			"[86,grow 1,fill]" +
+			"[21,grow 1,fill]" +
+			"[]" +
+			"[]" +
+			"[]" +
+			"[]"));
 
 		//======== filterPanel ========
 		{
 			filterPanel.setLayout(new MigLayout(
-					"hidemode 3",
-					// columns
-					"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]" +
-							"[fill]",
-					// rows
-					"[]" +
-							"[]" +
-							"[]" +
-							"[]" +
-							"[]" +
-							"[]" +
-							"[]" +
-							"[]" +
-							"[]" +
-							"[]"));
+				"hidemode 3",
+				// columns
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]" +
+				"[fill]",
+				// rows
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]" +
+				"[]"));
 
 			//---- subredditFilterLabel ----
 			subredditFilterLabel.setText("Subreddit Filter");
@@ -541,10 +515,43 @@ public class MainJFormFrame extends JFrame {
 			scrollPane1.setViewportView(resultTextArea);
 		}
 		contentPane.add(scrollPane1, "cell 2 14 35 9");
-		setSize(1080, 515);
+		contentPane.add(loginLabel, "cell 2 24 35 1");
+		setSize(1080, 750);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
+	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	private JPanel filterPanel;
+	private JLabel subredditFilterLabel;
+	private JTextField subredditTextField;
+	private JCheckBox noNsfwCheckBox;
+	private JCheckBox keywordCheckBox;
+	private JCheckBox regexCheckBox;
+	private JCheckBox noSpoilerCheckBox;
+	private JTextField keywordTextField;
+	private JCheckBox scoreFilterCheckBox;
+	private JFormattedTextField scoreMinTextField;
+	private JFormattedTextField commentCountMinTextField;
+	private JLabel scoreMinLabel;
+	private JLabel scoreMaxLabel;
+	private JCheckBox commentCountFilterCheckBox;
+	private JLabel commentCountMinLabel;
+	private JFormattedTextField scoreMaxTextField;
+	private JFormattedTextField commentCountMaxTextField;
+	private JLabel commentCountMaxLabel;
+	private JLabel redditSortSettingsCheckBox;
+	private JButton searchButton3;
+	private JComboBox redditSortComboBox;
+	private JComboBox timeComboBox;
+	private JCheckBox azSort;
+	private JCheckBox zaSort;
+	private JCheckBox scoreSortMax;
+	private JCheckBox scoreSortMin;
+	private JButton searchButton;
+	private JButton searchButton2;
+	private JScrollPane scrollPane1;
+	private JTextArea resultTextArea;
+	private JLabel loginLabel;
+	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }
