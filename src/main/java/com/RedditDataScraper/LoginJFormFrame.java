@@ -5,24 +5,69 @@
 package com.RedditDataScraper;
 
 import java.awt.*;
+import java.sql.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
+import org.apache.commons.lang3.StringUtils;
+import org.sqlite.JDBC;
 
 /**
  * @author unknown
  */
 public class LoginJFormFrame extends JFrame {
-	public LoginJFormFrame() {
+	private Connection connection;
+	public LoginJFormFrame(Connection connection) {
+		this.connection = connection;
 		initComponents();
 	}
 
 	private void login() {
-		if (usernameField.getText().equals("") || passwordField.getText().equals("")) {
-			//errorLabel.setText("Username and/or Password is empty");
+		//String QUERY = "SELECT id, username, password FROM users";
+		//ResultSet rs = statement.executeQuery(QUERY);
+		//System.out.println("USER: " + rs.getInt("id"));
+		if (usernameField.getText().strip().equals("") || String.valueOf(passwordField.getPassword()).equals("")) {
+			errorLabel.setText("Username or password is empty");
 		}
 		else {
-			//errorLabel.setText("WELCOME");
+			String usernameQuery = "SELECT * from users where username = ? and password = ?";
+
+			try (PreparedStatement selectUsername = connection.prepareStatement(usernameQuery)) {
+				selectUsername.setString(1, usernameField.getText().strip());
+				selectUsername.setString(2, String.valueOf(passwordField.getPassword()));
+				//System.out.println(selectUsername);
+
+				ResultSet resultSet = selectUsername.executeQuery();
+				System.out.println("ID: " + resultSet.getInt("id"));
+				this.dispose();
+			}
+			catch (SQLException e) {
+				System.out.println("SQL State: " + e.getSQLState());
+				System.out.println("Error Code: " + e.getErrorCode());
+				System.out.println("Message: " + e.getMessage());
+			}
+			/*
+			ResultSet resultSet;
+			try {
+				resultSet = statement.executeQuery(passwordQuery);
+				System.out.println(resultSet.getInt("id") + "asdasd");
+				resultSet.getString("username");
+				if (!resultSet.next()) {
+					errorLabel.setText("Invalid username or password");
+					System.out.println("INVALID");
+					//return;
+				}
+			} catch (SQLException e) {
+				e.getMessage();
+			}
+			errorLabel.setText("WELCOME");
+			//System.out.println("Invalid username or password");
+
+			 */
 		}
+	}
+
+	public JButton getLoginButton() {
+		return loginButton;
 	}
 
 	private void initComponents() {
@@ -30,10 +75,9 @@ public class LoginJFormFrame extends JFrame {
 		welcomeLabel = new JLabel();
 		usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();
-		label1 = new JLabel();
 		passwordLabel = new JLabel();
 		passwordField = new JPasswordField();
-		label2 = new JLabel();
+		errorLabel = new JLabel();
 		loginButton = new JButton();
 		registerButton = new JButton();
 
@@ -91,23 +135,20 @@ public class LoginJFormFrame extends JFrame {
 		//---- usernameLabel ----
 		usernameLabel.setText("Username");
 		contentPane.add(usernameLabel, "cell 2 1 5 2,alignx center,growx 0");
-		contentPane.add(usernameField, "cell 7 1 18 2");
-
-		//---- label1 ----
-		label1.setText("Username cannot be empty!");
-		contentPane.add(label1, "cell 3 3 22 1,alignx center,growx 0");
+		contentPane.add(usernameField, "cell 8 1 17 2");
 
 		//---- passwordLabel ----
 		passwordLabel.setText("Password");
 		contentPane.add(passwordLabel, "cell 2 4 5 2,alignx center,growx 0");
-		contentPane.add(passwordField, "cell 7 4 18 2");
+		contentPane.add(passwordField, "cell 8 4 17 2");
 
-		//---- label2 ----
-		label2.setText("Password cannot be empty!");
-		contentPane.add(label2, "cell 3 6 22 1,alignx center,growx 0");
+		//---- errorLabel ----
+		errorLabel.setText("Username and/or password cannot be empty!");
+		contentPane.add(errorLabel, "cell 3 6 22 1,alignx center,growx 0");
 
 		//---- loginButton ----
 		loginButton.setText("Login");
+		loginButton.addActionListener(e -> login());
 		contentPane.add(loginButton, "cell 2 7 9 2,alignx center,growx 0,width 200:200:200");
 
 		//---- registerButton ----
@@ -122,10 +163,9 @@ public class LoginJFormFrame extends JFrame {
 	private JLabel welcomeLabel;
 	private JLabel usernameLabel;
 	private JFormattedTextField usernameField;
-	private JLabel label1;
 	private JLabel passwordLabel;
 	private JPasswordField passwordField;
-	private JLabel label2;
+	private JLabel errorLabel;
 	private JButton loginButton;
 	private JButton registerButton;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables

@@ -27,13 +27,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 				name: "usernameField"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 7 1 18 2"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "Username cannot be empty!"
-			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 3 3 22 1,alignx center,growx 0"
+				"value": "cell 8 1 17 2"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "passwordLabel"
@@ -44,17 +38,21 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "passwordField"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 7 4 18 2"
+				"value": "cell 8 4 17 2"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "Password cannot be empty!"
+				name: "errorLabel"
+				"text": "Username and/or password cannot be empty!"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 3 6 22 1,alignx center,growx 0"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "loginButton"
 				"text": "Login"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 7 9 2,alignx center,growx 0,width 200:200:200"
 			} )

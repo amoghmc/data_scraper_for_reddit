@@ -7,9 +7,7 @@ public class Login {
 		String jdbc = "jdbc:sqlite:C:/Users/amogh/OneDrive/Documents/Java Projects/Sem_4/RedditDataScraper/Database/dataScraper";
 		Connection connection = DriverManager.getConnection(jdbc);
 
-		String QUERY = "SELECT id, username, passwordhash FROM users";
+
 		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery(QUERY);
-		System.out.println("USER: " + rs.getInt("id"));
 	}
 }
