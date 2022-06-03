@@ -17,9 +17,5 @@ public class Main {
 
 		MainJFormFrame mjFormFrame = new MainJFormFrame(myRedditClient);
 		mjFormFrame.pack();
-
-		//Login login = new Login();
-		//login.loginasd();
-
 	}
 }

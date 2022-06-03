@@ -22,9 +22,6 @@ public class LoginJFormFrame extends JFrame {
 	}
 
 	private void login() {
-		//String QUERY = "SELECT id, username, password FROM users";
-		//ResultSet rs = statement.executeQuery(QUERY);
-		//System.out.println("USER: " + rs.getInt("id"));
 		if (usernameField.getText().strip().equals("") || String.valueOf(passwordField.getPassword()).equals("")) {
 			errorLabel.setText("Username or password is empty");
 		}
@@ -34,7 +31,6 @@ public class LoginJFormFrame extends JFrame {
 			try (PreparedStatement selectUsername = connection.prepareStatement(usernameQuery)) {
 				selectUsername.setString(1, usernameField.getText().strip());
 				selectUsername.setString(2, String.valueOf(passwordField.getPassword()));
-				//System.out.println(selectUsername);
 
 				ResultSet resultSet = selectUsername.executeQuery();
 				System.out.println("ID: " + resultSet.getInt("id"));
@@ -45,24 +41,6 @@ public class LoginJFormFrame extends JFrame {
 				System.out.println("Error Code: " + e.getErrorCode());
 				System.out.println("Message: " + e.getMessage());
 			}
-			/*
-			ResultSet resultSet;
-			try {
-				resultSet = statement.executeQuery(passwordQuery);
-				System.out.println(resultSet.getInt("id") + "asdasd");
-				resultSet.getString("username");
-				if (!resultSet.next()) {
-					errorLabel.setText("Invalid username or password");
-					System.out.println("INVALID");
-					//return;
-				}
-			} catch (SQLException e) {
-				e.getMessage();
-			}
-			errorLabel.setText("WELCOME");
-			//System.out.println("Invalid username or password");
-
-			 */
 		}
 	}
 
