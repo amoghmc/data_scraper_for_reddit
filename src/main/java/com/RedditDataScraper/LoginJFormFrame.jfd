@@ -52,7 +52,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "registerButton"
-				"text": "Register"
+				"text": "Register a new account"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "register", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 16 11 9 2,alignx right,growx 0,width 200:200:200"

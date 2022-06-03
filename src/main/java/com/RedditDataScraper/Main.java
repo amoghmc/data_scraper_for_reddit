@@ -7,8 +7,6 @@ public class Main {
 	public static void main(String[] args) {
 		String filename = "Database/databaseLocation.txt";
 
-		String jdbc = "jdbc:sqlite:C:/Users/amogh/OneDrive/Documents/Java Projects/Sem_4/RedditDataScraper/Database/dataScraper";
-
 		try {
 			JFrameHandler jFrameHandler = new JFrameHandler(filename);
 		}
@@ -18,15 +16,6 @@ public class Main {
 		catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-
-		/*
-		LoginJFormFrame loginJFormFrame = new LoginJFormFrame(connection);
-		loginJFormFrame.pack();
-
-		MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient);
-		mainJFormFrame.pack();
-
-		 */
 
 	}
 }

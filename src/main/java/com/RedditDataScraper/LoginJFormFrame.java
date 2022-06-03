@@ -4,6 +4,7 @@
 
 package com.RedditDataScraper;
 
+import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
@@ -23,16 +24,16 @@ public class LoginJFormFrame extends JFrame {
 
 	private void login() {
 		if (usernameField.getText().strip().equals("") || String.valueOf(passwordField.getPassword()).equals("")) {
-			errorLabel.setText("Username or password is empty");
+			errorLabel.setText("Username or password is empty!");
 		}
 		else {
 			String usernameQuery = "SELECT * from users where username = ? and password = ?";
 
-			try (PreparedStatement selectUsername = connection.prepareStatement(usernameQuery)) {
-				selectUsername.setString(1, usernameField.getText().strip());
-				selectUsername.setString(2, String.valueOf(passwordField.getPassword()));
+			try (PreparedStatement preparedStatement = connection.prepareStatement(usernameQuery)) {
+				preparedStatement.setString(1, usernameField.getText().strip());
+				preparedStatement.setString(2, String.valueOf(passwordField.getPassword()));
 
-				ResultSet resultSet = selectUsername.executeQuery();
+				ResultSet resultSet = preparedStatement.executeQuery();
 				System.out.println("ID: " + resultSet.getInt("id"));
 
 				// Close this and open Main frame
@@ -43,7 +44,7 @@ public class LoginJFormFrame extends JFrame {
 				this.dispose();
 			}
 			catch (SQLException e) {
-				errorLabel.setText("Username or password invalid");
+				errorLabel.setText("Username or password invalid!");
 				System.out.println("SQL State: " + e.getSQLState());
 				System.out.println("Error Code: " + e.getErrorCode());
 				System.out.println("Message: " + e.getMessage() + "\n");
@@ -142,7 +143,7 @@ public class LoginJFormFrame extends JFrame {
 		contentPane.add(loginButton, "cell 2 11 9 2,alignx left,growx 0,width 200:200:200");
 
 		//---- registerButton ----
-		registerButton.setText("Register");
+		registerButton.setText("Register a new account");
 		registerButton.addActionListener(e -> register());
 		contentPane.add(registerButton, "cell 16 11 9 2,alignx right,growx 0,width 200:200:200");
 		pack();

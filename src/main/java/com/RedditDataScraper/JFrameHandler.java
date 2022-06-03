@@ -23,13 +23,18 @@ public class JFrameHandler {
 	}
 
 	public void openMainFrame(String clientId, String clientSecret, String username) {
-		MyRedditClient myRedditClient = new MyRedditClient(clientId, clientSecret);
-		MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient, username);
-		mainJFormFrame.pack();
+		try {
+			MyRedditClient myRedditClient = new MyRedditClient(clientId, clientSecret);
+			MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient, username);
+			mainJFormFrame.pack();
+		}
+		catch (Exception e) {
+			System.out.println("Invalid client ID or client secret");
+		}
 	}
 
 	public void openRegisterFrame() {
-	    RegisterJFormFrame registerFrame = new RegisterJFormFrame();
+	    RegisterJFormFrame registerFrame = new RegisterJFormFrame(connection, this);
 		registerFrame.pack();
 	}
 
