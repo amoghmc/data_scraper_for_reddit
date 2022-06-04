@@ -4,6 +4,7 @@
 
 package com.RedditDataScraper;
 
+import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.miginfocom.swing.MigLayout;
@@ -21,9 +22,10 @@ import java.text.NumberFormat;
 public class MainJFormFrame extends JFrame {
 	private final RedditResult redditResult;
 
-	public MainJFormFrame(MyRedditClient myRedditClient, String user) {
+	public MainJFormFrame(MyRedditClient myRedditClient, String user, String clientId) {
 		initComponents();
 		loginLabel.setText("User: " + user);
+		clientIdLabel.setText("Client ID: " + clientId);
 		redditResult = new RedditResult(this, myRedditClient);
 	}
 
@@ -41,10 +43,24 @@ public class MainJFormFrame extends JFrame {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
 			regexCheckBox.setEnabled(true);
-		} else {
+			redditSortComboBox.removeAllItems();
+			redditSortComboBox.addItem(SearchSort.RELEVANCE);
+			redditSortComboBox.addItem(SearchSort.HOT);
+			redditSortComboBox.addItem(SearchSort.NEW);
+			redditSortComboBox.addItem(SearchSort.TOP);
+			redditSortComboBox.addItem(SearchSort.COMMENTS);
+		}
+		else {
 			keywordTextField.setEnabled(false);
 			regexCheckBox.setEnabled(false);
 			regexCheckBox.setSelected(false);
+			redditSortComboBox.removeAllItems();
+			redditSortComboBox.addItem(SubredditSort.BEST);
+			redditSortComboBox.addItem(SubredditSort.HOT);
+			redditSortComboBox.addItem(SubredditSort.NEW);
+			redditSortComboBox.addItem(SubredditSort.TOP);
+			redditSortComboBox.addItem(SubredditSort.RISING);
+			redditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);
 		}
 	}
 
@@ -124,6 +140,7 @@ public class MainJFormFrame extends JFrame {
 		scoreSortMin.setSelected(false);
 		scoreSortMax.setSelected(false);
 		resultTextArea.setText("");
+		redditResult.setIndex(1);
 
 	}
 
@@ -206,7 +223,7 @@ public class MainJFormFrame extends JFrame {
 	private void save() {
 		MyCsvWriter myCsvWriter = new MyCsvWriter(this);
 		myCsvWriter.createCsvData();
-		myCsvWriter.writeCsvData("result1");
+		myCsvWriter.writeCsvData("result");
 	}
 
 	private void search() {
@@ -257,6 +274,7 @@ public class MainJFormFrame extends JFrame {
 		scrollPane1 = new JScrollPane();
 		resultTextArea = new JTextArea();
 		loginLabel = new JLabel();
+		clientIdLabel = new JLabel();
 
 		//======== this ========
 		setBackground(new Color(255, 204, 204));
@@ -454,14 +472,6 @@ public class MainJFormFrame extends JFrame {
 		searchButton3.setText("Reset");
 		searchButton3.addActionListener(e -> reset());
 		contentPane.add(searchButton3, "cell 30 3 7 2");
-
-		//---- redditSortComboBox ----
-		redditSortComboBox.addItem(SubredditSort.BEST);
-		redditSortComboBox.addItem(SubredditSort.HOT);
-		redditSortComboBox.addItem(SubredditSort.NEW);
-		redditSortComboBox.addItem(SubredditSort.TOP);
-		redditSortComboBox.addItem(SubredditSort.RISING);
-		redditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);
 		contentPane.add(redditSortComboBox, "cell 20 5 9 1");
 
 		//---- timeComboBox ----
@@ -515,7 +525,8 @@ public class MainJFormFrame extends JFrame {
 			scrollPane1.setViewportView(resultTextArea);
 		}
 		contentPane.add(scrollPane1, "cell 2 14 35 9");
-		contentPane.add(loginLabel, "cell 2 24 35 1");
+		contentPane.add(loginLabel, "cell 2 23 12 2");
+		contentPane.add(clientIdLabel, "cell 20 23 17 2");
 		setSize(1080, 750);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -553,5 +564,6 @@ public class MainJFormFrame extends JFrame {
 	private JScrollPane scrollPane1;
 	private JTextArea resultTextArea;
 	private JLabel loginLabel;
+	private JLabel clientIdLabel;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

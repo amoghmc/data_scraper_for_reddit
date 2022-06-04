@@ -134,7 +134,7 @@ public class MyCsvWriter {
 			// create FileWriter object with file as parameter
 			FileWriter outputfile = new FileWriter("Results/" + file + ".csv");
 
-			// create CSVWriter object filewriter object as parameter
+			// create CSVWriter object file_writer object as parameter
 			CSVWriter writer = new CSVWriter(outputfile);
 
 			for (String[] record : list) {

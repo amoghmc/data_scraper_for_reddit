@@ -8,7 +8,7 @@ public class Main {
 		String filename = "Database/databaseLocation.txt";
 
 		try {
-			JFrameHandler jFrameHandler = new JFrameHandler(filename);
+			new JFrameHandler(filename);
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("Incorrect file path");

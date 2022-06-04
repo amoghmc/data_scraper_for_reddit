@@ -1,10 +1,9 @@
 package com.RedditDataScraper;
 
-import net.dean.jraw.models.Listing;
-import net.dean.jraw.models.Submission;
-import net.dean.jraw.models.SubredditSort;
-import net.dean.jraw.models.TimePeriod;
+import net.dean.jraw.models.*;
 import net.dean.jraw.pagination.DefaultPaginator;
+import net.dean.jraw.pagination.Paginator;
+import net.dean.jraw.pagination.SearchPaginator;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,16 +19,14 @@ public class RedditResult {
 	private String nsfw;
 	private String spoiler;
 	private DateTimeFormatter dateFormatter;
-	private LocalDateTime now;
 	private int index;
 
 	public RedditResult(MainJFormFrame mainJFormFrame, MyRedditClient myRedditClient) {
 		this.mainJFormFrame = mainJFormFrame;
 		this.myRedditClient = myRedditClient;
 		filterArrayList = new AllFilters();
-		dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		now = LocalDateTime.now();
-		index = 0;
+		dateFormatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm:ss");
+		index = 1;
 
 		nsfw = "No";
 		spoiler = "No";
@@ -92,14 +89,13 @@ public class RedditResult {
 	}
 
 	public void display() {
-		DefaultPaginator<Submission> paginator = myRedditClient
-				.getMyclient()
-				.subreddit(subredditTextField)
-				//.subreddits("world","politics", subreddits[0])
-				.posts()
-				.sorting((SubredditSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
-				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
-				.build();
+		Paginator paginator;
+		if (mainJFormFrame.getKeywordCheckBox().isSelected()) {
+			paginator = buildSearchPaginator();
+		}
+		else {
+			paginator = buildDefaultPaginator();
+		}
 
 		Listing<Submission> nextPage = paginator.next();
 		Comparator<Submission> comparator = getSortSettings();
@@ -116,7 +112,7 @@ public class RedditResult {
 				mainJFormFrame.getResultTextArea().append("Index: "
 						+ index
 						+ "\nSearch at: "
-						+ dateFormatter.format(now)
+						+ dateFormatter.format(LocalDateTime.now())
 						+ "\nTitle: "
 						+ s.getTitle().replace('’', '\'').replace('—', '-')
 						+ "\nScore: "
@@ -139,6 +135,34 @@ public class RedditResult {
 			}
 		}
 		filterArrayList.clear();
+	}
+
+	private SearchPaginator buildSearchPaginator() {
+		SearchPaginator paginator = myRedditClient
+				.getMyclient()
+				.subreddit(subredditTextField)
+				.search()
+				.query(mainJFormFrame.getKeywordTextField().getText())
+				.sorting((SearchSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
+				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
+				.syntax(SearchPaginator.QuerySyntax.CLOUDSEARCH)
+				.build();
+		return paginator;
+	}
+
+	public DefaultPaginator<Submission> buildDefaultPaginator() {
+		DefaultPaginator<Submission> paginator = myRedditClient
+				.getMyclient()
+				.subreddit(subredditTextField)
+				.posts()
+				.sorting((SubredditSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
+				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
+				.build();
+		return paginator;
+	}
+
+	public void setIndex(int newIndex) {
+		index = newIndex;
 	}
 
 }

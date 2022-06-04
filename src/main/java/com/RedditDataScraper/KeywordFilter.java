@@ -26,6 +26,7 @@ public class KeywordFilter implements Filter {
 			return matcher.find();
 			// End of source
 		} else {
+			// Search by keys in CSV and check if any of the keys match the title
 			String title = submission.getTitle().toLowerCase();
 			for (String key : keys) {
 				if (!title.contains(key.toLowerCase())) {

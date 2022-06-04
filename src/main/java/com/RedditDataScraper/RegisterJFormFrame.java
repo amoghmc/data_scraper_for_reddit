@@ -84,7 +84,7 @@ public class RegisterJFormFrame extends JFrame {
 	private boolean checkInvalidCred(String username, String clientid, String clientsecret) {
 		try {
 			MyRedditClient myRedditClient = new MyRedditClient(clientid, clientsecret);
-			MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient, username);
+			MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient, username, clientid);
 			mainJFormFrame.pack();
 			return false;
 		}

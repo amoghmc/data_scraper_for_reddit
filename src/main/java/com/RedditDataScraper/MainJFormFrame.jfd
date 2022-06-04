@@ -202,7 +202,6 @@ new FormModel {
 				name: "redditSortComboBox"
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
-					"JavaCodeGenerator.preInitCode": "redditSortComboBox.addItem(SubredditSort.BEST);\nredditSortComboBox.addItem(SubredditSort.HOT);\nredditSortComboBox.addItem(SubredditSort.NEW);\nredditSortComboBox.addItem(SubredditSort.TOP);\nredditSortComboBox.addItem(SubredditSort.RISING);\nredditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);"
 				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 5 9 1"
@@ -295,7 +294,12 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "loginLabel"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 24 35 1"
+				"value": "cell 2 23 12 2"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "clientIdLabel"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 20 23 17 2"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 65, 0 )

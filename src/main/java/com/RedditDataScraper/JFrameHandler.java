@@ -25,7 +25,7 @@ public class JFrameHandler {
 	public void openMainFrame(String clientId, String clientSecret, String username) {
 		try {
 			MyRedditClient myRedditClient = new MyRedditClient(clientId, clientSecret);
-			MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient, username);
+			MainJFormFrame mainJFormFrame = new MainJFormFrame(myRedditClient, username, clientId);
 			mainJFormFrame.pack();
 		}
 		catch (Exception e) {
