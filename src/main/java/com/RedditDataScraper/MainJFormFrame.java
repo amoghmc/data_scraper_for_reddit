@@ -4,7 +4,6 @@
 
 package com.RedditDataScraper;
 
-import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.miginfocom.swing.MigLayout;
@@ -22,10 +21,10 @@ import java.text.NumberFormat;
 public class MainJFormFrame extends JFrame {
 	private final RedditResult redditResult;
 
-	public MainJFormFrame(MyRedditClient myRedditClient, String user, String clientId) {
+	public MainJFormFrame(MyRedditClient myRedditClient, String user, String cientId) {
 		initComponents();
 		loginLabel.setText("User: " + user);
-		clientIdLabel.setText("Client ID: " + clientId);
+		clientIdLabel.setText("Client ID: " + cientId);
 		redditResult = new RedditResult(this, myRedditClient);
 	}
 
@@ -43,24 +42,10 @@ public class MainJFormFrame extends JFrame {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
 			regexCheckBox.setEnabled(true);
-			redditSortComboBox.removeAllItems();
-			redditSortComboBox.addItem(SearchSort.RELEVANCE);
-			redditSortComboBox.addItem(SearchSort.HOT);
-			redditSortComboBox.addItem(SearchSort.NEW);
-			redditSortComboBox.addItem(SearchSort.TOP);
-			redditSortComboBox.addItem(SearchSort.COMMENTS);
-		}
-		else {
+		} else {
 			keywordTextField.setEnabled(false);
 			regexCheckBox.setEnabled(false);
 			regexCheckBox.setSelected(false);
-			redditSortComboBox.removeAllItems();
-			redditSortComboBox.addItem(SubredditSort.BEST);
-			redditSortComboBox.addItem(SubredditSort.HOT);
-			redditSortComboBox.addItem(SubredditSort.NEW);
-			redditSortComboBox.addItem(SubredditSort.TOP);
-			redditSortComboBox.addItem(SubredditSort.RISING);
-			redditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);
 		}
 	}
 
@@ -140,7 +125,6 @@ public class MainJFormFrame extends JFrame {
 		scoreSortMin.setSelected(false);
 		scoreSortMax.setSelected(false);
 		resultTextArea.setText("");
-		redditResult.setIndex(1);
 
 	}
 
@@ -223,7 +207,7 @@ public class MainJFormFrame extends JFrame {
 	private void save() {
 		MyCsvWriter myCsvWriter = new MyCsvWriter(this);
 		myCsvWriter.createCsvData();
-		myCsvWriter.writeCsvData("result");
+		myCsvWriter.writeCsvData("result1");
 	}
 
 	private void search() {
