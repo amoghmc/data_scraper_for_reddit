@@ -16,6 +16,7 @@ public class RedditResult {
 	private final AllFilters filterArrayList;
 	private String subredditTextField;
 	private String keywordTextField;
+	private String regexTextField;
 	private String nsfw;
 	private String spoiler;
 	private DateTimeFormatter dateFormatter;
@@ -35,6 +36,7 @@ public class RedditResult {
 	public void addFilters() {
 		subredditTextField = mainJFormFrame.getSubredditTextField().getText().replaceAll(" ", "");
 		keywordTextField = mainJFormFrame.getKeywordTextField().getText();
+		regexTextField = mainJFormFrame.getRegexTextField().getText();
 		if (mainJFormFrame.getNoNsfwCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoNsfwFilter());
 		}
@@ -66,8 +68,9 @@ public class RedditResult {
 			subredditTextField = "all";
 		}
 		if (mainJFormFrame.getRegexCheckBox().isSelected()) {
-			filterArrayList.addFilter(new KeywordFilter(keywordTextField));
-		} else {
+			filterArrayList.addFilter(new KeywordFilter(regexTextField));
+		}
+		else if (mainJFormFrame.getKeywordCheckBox().isSelected()) {
 			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ", "").split(",")));
 			System.out.println(keywordTextField.replaceAll(" ", "").split(","));
 		}
@@ -92,6 +95,9 @@ public class RedditResult {
 		Paginator paginator;
 		if (mainJFormFrame.getKeywordCheckBox().isSelected()) {
 			paginator = buildSearchPaginator();
+		}
+		else if (mainJFormFrame.getRegexCheckBox().isSelected()) {
+			paginator = buildRegexPaginator();
 		}
 		else {
 			paginator = buildDefaultPaginator();
@@ -157,6 +163,17 @@ public class RedditResult {
 				.posts()
 				.sorting((SubredditSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
 				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
+				.build();
+		return paginator;
+	}
+
+	public DefaultPaginator<Submission> buildRegexPaginator() {
+		DefaultPaginator<Submission> paginator = myRedditClient
+				.getMyclient()
+				.subreddit(subredditTextField)
+				.posts()
+				.sorting(SubredditSort.TOP)
+				.timePeriod(TimePeriod.ALL)
 				.build();
 		return paginator;
 	}

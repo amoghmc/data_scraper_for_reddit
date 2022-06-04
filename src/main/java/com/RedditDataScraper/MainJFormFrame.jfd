@@ -35,7 +35,17 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 1 9 1"
+					"value": "cell 1 1 5 1"
+				} )
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "regexCheckBox"
+					"text": "Regex Filter"
+					auxiliary() {
+						"JavaCodeGenerator.variableGetter": true
+					}
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "regexCheckBoxItemStateChanged", true ) )
+				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+					"value": "cell 6 1 4 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "noNsfwCheckBox"
@@ -57,15 +67,14 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 3"
 				} )
-				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "regexCheckBox"
-					"text": "Regex"
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "regexTextField"
 					"enabled": false
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 7 3 3 1"
+					"value": "cell 6 3 4 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "noSpoilerCheckBox"
@@ -295,12 +304,12 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "loginLabel"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 2 23 12 2"
+				"value": "cell 2 23 12 2,alignx left,growx 0"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "clientIdLabel"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 23 17 2"
+				"value": "cell 20 23 17 2,alignx right,growx 0"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 65, 0 )
@@ -308,3 +317,4 @@ new FormModel {
 		} )
 	}
 }
+

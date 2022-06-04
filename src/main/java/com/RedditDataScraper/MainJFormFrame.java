@@ -42,7 +42,8 @@ public class MainJFormFrame extends JFrame {
 	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
-			regexCheckBox.setEnabled(true);
+			regexCheckBox.setSelected(false);
+			regexTextField.setEnabled(false);
 			redditSortComboBox.removeAllItems();
 			redditSortComboBox.addItem(SearchSort.RELEVANCE);
 			redditSortComboBox.addItem(SearchSort.HOT);
@@ -51,8 +52,7 @@ public class MainJFormFrame extends JFrame {
 			redditSortComboBox.addItem(SearchSort.COMMENTS);
 		} else {
 			keywordTextField.setEnabled(false);
-			regexCheckBox.setEnabled(false);
-			regexCheckBox.setSelected(false);
+			regexCheckBox.setEnabled(true);
 			addRedditComboBoxItems();
 		}
 	}
@@ -131,6 +131,7 @@ public class MainJFormFrame extends JFrame {
 
 		subredditTextField.setText("");
 		keywordTextField.setText("");
+		regexTextField.setText("");
 		scoreMinTextField.setText("0");
 		scoreMaxTextField.setText("0");
 		commentCountMinTextField.setText("0");
@@ -143,7 +144,6 @@ public class MainJFormFrame extends JFrame {
 		scoreSortMin.setSelected(false);
 		scoreSortMax.setSelected(false);
 		resultTextArea.setText("");
-
 	}
 
 	public JTextField getSubredditTextField() {
@@ -210,10 +210,6 @@ public class MainJFormFrame extends JFrame {
 		return searchButton;
 	}
 
-	public JCheckBox getRegexCheckBox() {
-		return regexCheckBox;
-	}
-
 	public JButton getSearchButton2() {
 		return searchButton2;
 	}
@@ -233,14 +229,37 @@ public class MainJFormFrame extends JFrame {
 		redditResult.display();
 	}
 
+	private void regexCheckBoxItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			regexTextField.setEnabled(true);
+			keywordTextField.setEnabled(false);
+			keywordCheckBox.setSelected(false);
+			redditSortComboBox.setEnabled(false);
+			timeComboBox.setEnabled(false);
+		} else {
+			regexTextField.setEnabled(false);
+			redditSortComboBox.setEnabled(true);
+			timeComboBox.setEnabled(true);
+		}
+	}
+
+	public JTextField getRegexTextField() {
+		return regexTextField;
+	}
+
+	public JCheckBox getRegexCheckBox() {
+		return regexCheckBox;
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		filterPanel = new JPanel();
 		subredditFilterLabel = new JLabel();
 		subredditTextField = new JTextField();
+		regexCheckBox = new JCheckBox();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
-		regexCheckBox = new JCheckBox();
+		regexTextField = new JTextField();
 		noSpoilerCheckBox = new JCheckBox();
 		keywordTextField = new JTextField();
 		scoreFilterCheckBox = new JCheckBox();
@@ -388,7 +407,12 @@ public class MainJFormFrame extends JFrame {
 			//---- subredditFilterLabel ----
 			subredditFilterLabel.setText("Subreddit Filter");
 			filterPanel.add(subredditFilterLabel, "cell 0 1");
-			filterPanel.add(subredditTextField, "cell 1 1 9 1");
+			filterPanel.add(subredditTextField, "cell 1 1 5 1");
+
+			//---- regexCheckBox ----
+			regexCheckBox.setText("Regex Filter");
+			regexCheckBox.addItemListener(e -> regexCheckBoxItemStateChanged(e));
+			filterPanel.add(regexCheckBox, "cell 6 1 4 1");
 
 			//---- noNsfwCheckBox ----
 			noNsfwCheckBox.setText("No NSFW Filter");
@@ -400,10 +424,9 @@ public class MainJFormFrame extends JFrame {
 			keywordCheckBox.addItemListener(e -> keywordCheckBoxItemStateChanged(e));
 			filterPanel.add(keywordCheckBox, "cell 5 3");
 
-			//---- regexCheckBox ----
-			regexCheckBox.setText("Regex");
-			regexCheckBox.setEnabled(false);
-			filterPanel.add(regexCheckBox, "cell 7 3 3 1");
+			//---- regexTextField ----
+			regexTextField.setEnabled(false);
+			filterPanel.add(regexTextField, "cell 6 3 4 1");
 
 			//---- noSpoilerCheckBox ----
 			noSpoilerCheckBox.setText("No Spoiler Filter");
@@ -530,8 +553,8 @@ public class MainJFormFrame extends JFrame {
 			scrollPane1.setViewportView(resultTextArea);
 		}
 		contentPane.add(scrollPane1, "cell 2 14 35 9");
-		contentPane.add(loginLabel, "cell 2 23 12 2");
-		contentPane.add(clientIdLabel, "cell 20 23 17 2");
+		contentPane.add(loginLabel, "cell 2 23 12 2,alignx left,growx 0");
+		contentPane.add(clientIdLabel, "cell 20 23 17 2,alignx right,growx 0");
 		setSize(1080, 750);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -541,9 +564,10 @@ public class MainJFormFrame extends JFrame {
 	private JPanel filterPanel;
 	private JLabel subredditFilterLabel;
 	private JTextField subredditTextField;
+	private JCheckBox regexCheckBox;
 	private JCheckBox noNsfwCheckBox;
 	private JCheckBox keywordCheckBox;
-	private JCheckBox regexCheckBox;
+	private JTextField regexTextField;
 	private JCheckBox noSpoilerCheckBox;
 	private JTextField keywordTextField;
 	private JCheckBox scoreFilterCheckBox;
