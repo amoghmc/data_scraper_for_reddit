@@ -202,6 +202,7 @@ new FormModel {
 				name: "redditSortComboBox"
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
+					"JavaCodeGenerator.preInitCode": "addRedditComboBoxItems();"
 				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 20 5 9 1"

@@ -4,6 +4,7 @@
 
 package com.RedditDataScraper;
 
+import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.miginfocom.swing.MigLayout;
@@ -42,11 +43,28 @@ public class MainJFormFrame extends JFrame {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			keywordTextField.setEnabled(true);
 			regexCheckBox.setEnabled(true);
+			redditSortComboBox.removeAllItems();
+			redditSortComboBox.addItem(SearchSort.RELEVANCE);
+			redditSortComboBox.addItem(SearchSort.HOT);
+			redditSortComboBox.addItem(SearchSort.NEW);
+			redditSortComboBox.addItem(SearchSort.TOP);
+			redditSortComboBox.addItem(SearchSort.COMMENTS);
 		} else {
 			keywordTextField.setEnabled(false);
 			regexCheckBox.setEnabled(false);
 			regexCheckBox.setSelected(false);
+			addRedditComboBoxItems();
 		}
+	}
+
+	private void addRedditComboBoxItems() {
+		redditSortComboBox.removeAllItems();
+		redditSortComboBox.addItem(SubredditSort.BEST);
+		redditSortComboBox.addItem(SubredditSort.HOT);
+		redditSortComboBox.addItem(SubredditSort.NEW);
+		redditSortComboBox.addItem(SubredditSort.TOP);
+		redditSortComboBox.addItem(SubredditSort.RISING);
+		redditSortComboBox.addItem(SubredditSort.CONTROVERSIAL);
 	}
 
 	private void scoreFilterCheckBoxItemStateChanged(ItemEvent e) {
@@ -456,6 +474,9 @@ public class MainJFormFrame extends JFrame {
 		searchButton3.setText("Reset");
 		searchButton3.addActionListener(e -> reset());
 		contentPane.add(searchButton3, "cell 30 3 7 2");
+
+		//---- redditSortComboBox ----
+		addRedditComboBoxItems();
 		contentPane.add(redditSortComboBox, "cell 20 5 9 1");
 
 		//---- timeComboBox ----
