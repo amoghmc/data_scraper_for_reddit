@@ -26,7 +26,7 @@ public class RedditResult {
 		this.mainJFormFrame = mainJFormFrame;
 		this.myRedditClient = myRedditClient;
 		filterArrayList = new AllFilters();
-		dateFormatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm:ss");
+		dateFormatter = DateTimeFormatter.ofPattern("d MMM yyyy, HH:mm:ss");
 		index = 1;
 
 		nsfw = "No";

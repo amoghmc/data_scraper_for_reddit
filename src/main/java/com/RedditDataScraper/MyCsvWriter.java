@@ -6,7 +6,11 @@ import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MyCsvWriter {
 	private final MainJFormFrame mainJFormFrame;
@@ -38,6 +42,7 @@ public class MyCsvWriter {
 	private final ArrayList<String> dates;
 	private final ArrayList<String> times;
 	private final ArrayList<String[]> list;
+	private SimpleDateFormat dateFormatter;
 
 
 	public MyCsvWriter(MainJFormFrame mainJFormFrame) {
@@ -45,6 +50,7 @@ public class MyCsvWriter {
 		resultTextField = mainJFormFrame.getResultTextArea();
 		list = new ArrayList<>();
 		list.add(header);
+		dateFormatter = new SimpleDateFormat("d MMM yyyy, hh-mm-ss");
 		dateAndTime = new String[2];
 
 		ids = new ArrayList<>();
@@ -120,7 +126,7 @@ public class MyCsvWriter {
 			spoilers.add((line.replaceAll("Spoiler:", "").strip()));
 		}
 		if (line.indexOf("Search at") != -1) {
-			dateAndTime = line.replaceAll("Search at:", "").strip().split(" ");
+			dateAndTime = line.replaceAll("Search at:", "").strip().split(",");
 			dates.add(dateAndTime[0]);
 			times.add(dateAndTime[1]);
 		}
@@ -128,11 +134,12 @@ public class MyCsvWriter {
 	}
 
 	// Source: https://www.geeksforgeeks.org/writing-a-csv-file-in-java-using-opencsv/
-	public void writeCsvData(String filePath) {
-		File file = new File(filePath);
+	public void writeCsvData() {
+		File file = new File("Results/" + dateFormatter.format(new Date()) + ".csv");
+		//+ dates.get(0).toString() + " " + times.get(0).strip().toString() +
 		try {
 			// create FileWriter object with file as parameter
-			FileWriter outputfile = new FileWriter("Results/" + file + ".csv");
+			FileWriter outputfile = new FileWriter(file);
 
 			// create CSVWriter object file_writer object as parameter
 			CSVWriter writer = new CSVWriter(outputfile);

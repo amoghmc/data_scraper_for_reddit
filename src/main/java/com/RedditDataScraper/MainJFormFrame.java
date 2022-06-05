@@ -221,7 +221,7 @@ public class MainJFormFrame extends JFrame {
 	private void save() {
 		MyCsvWriter myCsvWriter = new MyCsvWriter(this);
 		myCsvWriter.createCsvData();
-		myCsvWriter.writeCsvData("result");
+		myCsvWriter.writeCsvData();
 	}
 
 	private void search() {
