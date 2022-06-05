@@ -13,8 +13,8 @@ import net.miginfocom.swing.*;
  * @author unknown
  */
 public class LoginJFormFrame extends JFrame {
-	private Connection connection;
-	private JFrameHandler jFrameHandler;
+	private final Connection connection;
+	private final JFrameHandler jFrameHandler;
 
 	public LoginJFormFrame(Connection connection, JFrameHandler jFrameHandler) {
 		this.connection = connection;

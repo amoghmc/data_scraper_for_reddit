@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class JFrameHandler {
-	private Connection connection;
-	private String filename;
+	private final Connection connection;
+	private final String filename;
 
 	public JFrameHandler(String filename) throws FileNotFoundException, SQLException {
 		this.filename = filename;

@@ -13,8 +13,8 @@ import java.sql.*;
  * @author unknown
  */
 public class RegisterJFormFrame extends JFrame {
-	private Connection connection;
-	private JFrameHandler jFrameHandler;
+	private final Connection connection;
+	private final JFrameHandler jFrameHandler;
 	public RegisterJFormFrame(Connection connection, JFrameHandler jFrameHandler) {
 		this.connection = connection;
 		this.jFrameHandler = jFrameHandler;

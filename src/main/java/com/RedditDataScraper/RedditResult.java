@@ -19,7 +19,7 @@ public class RedditResult {
 	private String regexTextField;
 	private String nsfw;
 	private String spoiler;
-	private DateTimeFormatter dateFormatter;
+	private final DateTimeFormatter dateFormatter;
 	private int index;
 
 	public RedditResult(MainJFormFrame mainJFormFrame, MyRedditClient myRedditClient) {

@@ -26,18 +26,18 @@ public class MyCsvWriter {
 	};
 	private String[] dateAndTime;
 
-	private ArrayList<Integer> ids;
-	private ArrayList<String> subreddits;
-	private ArrayList<String> scores;
-	private ArrayList<String> commentCounts;
-	private ArrayList<String> titles;
-	private ArrayList<String> urls;
-	private ArrayList<String> permalinks;
-	private ArrayList<String> nsfws;
-	private ArrayList<String> spoilers;
-	private ArrayList<String> dates;
-	private ArrayList<String> times;
-	private ArrayList<String[]> list;
+	private final ArrayList<Integer> ids;
+	private final ArrayList<String> subreddits;
+	private final ArrayList<String> scores;
+	private final ArrayList<String> commentCounts;
+	private final ArrayList<String> titles;
+	private final ArrayList<String> urls;
+	private final ArrayList<String> permalinks;
+	private final ArrayList<String> nsfws;
+	private final ArrayList<String> spoilers;
+	private final ArrayList<String> dates;
+	private final ArrayList<String> times;
+	private final ArrayList<String[]> list;
 
 
 	public MyCsvWriter(MainJFormFrame mainJFormFrame) {
@@ -93,7 +93,7 @@ public class MyCsvWriter {
 
 	private void addToArrayList(String line) {
 		if (line.indexOf("Index") != -1) {
-			ids.add(Integer.parseInt(line.replaceAll("Index:", "").strip()));
+			ids.add(Integer.parseInt(line.replaceAll("Index:", "").strip()) - 1);
 		}
 		if (line.indexOf("Subreddit") != -1) {
 			subreddits.add(line.replaceAll("Subreddit:", "").strip());
