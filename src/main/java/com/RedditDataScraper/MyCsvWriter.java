@@ -127,8 +127,8 @@ public class MyCsvWriter {
 		}
 		if (line.indexOf("Search at") != -1) {
 			dateAndTime = line.replaceAll("Search at:", "").strip().split(",");
-			dates.add(dateAndTime[0]);
-			times.add(dateAndTime[1]);
+			dates.add(dateAndTime[0].strip());
+			times.add(dateAndTime[1].strip());
 		}
 		return;
 	}
