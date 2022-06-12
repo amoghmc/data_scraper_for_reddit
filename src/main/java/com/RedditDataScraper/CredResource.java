@@ -10,8 +10,10 @@ public class CredResource {
 	private final String clientId;
 	private final String clientSecret;
 
-	public CredResource(String filename) throws FileNotFoundException {
-		File file = new File(filename);
+	public CredResource() throws FileNotFoundException {
+		clientId = "j_20W3vqYfrOmxkgqGSUWg";
+		clientSecret = "a4sKpmsobsi6Oni7juTDBXDD9VZ5ng";
+		/*File file = new File(filename);
 		Scanner scanner = new Scanner(file);
 		Dictionary dictionary = new Hashtable();
 		String[] list = new String[2];
@@ -26,7 +28,7 @@ public class CredResource {
 		}
 
 		this.clientId = dictionary.get("clientid:").toString();
-		this.clientSecret = dictionary.get("clientsecret:").toString();
+		this.clientSecret = dictionary.get("clientsecret:").toString();*/
 	}
 
 	public String getClientId() {
