@@ -6,7 +6,7 @@ import java.sql.*;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		String filename = "databaseLocation.txt";
+		String filename = "Database/databaseLocation.txt";
 		try {
 			new JFrameHandler(filename);
 		}
