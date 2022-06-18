@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.14.1" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.15" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -35,17 +35,7 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 1 1 5 1"
-				} )
-				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "regexCheckBox"
-					"text": "Regex Filter"
-					auxiliary() {
-						"JavaCodeGenerator.variableGetter": true
-					}
-					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "regexCheckBoxItemStateChanged", true ) )
-				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 6 1 4 1"
+					"value": "cell 1 1 8 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "noNsfwCheckBox"
@@ -67,14 +57,15 @@ new FormModel {
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 					"value": "cell 5 3"
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "regexTextField"
-					"enabled": false
+				add( new FormComponent( "javax.swing.JCheckBox" ) {
+					name: "regexCheckBox"
+					"text": "Regex Filter"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "regexCheckBoxItemStateChanged", true ) )
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 6 3 4 1"
+					"value": "cell 7 3 4 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "noSpoilerCheckBox"
@@ -93,7 +84,7 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 5 4 5 1"
+					"value": "cell 5 4 4 1"
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
 					name: "scoreFilterCheckBox"
@@ -189,7 +180,7 @@ new FormModel {
 					"value": "cell 9 8"
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 2 18 11,hmax 250"
+				"value": "cell 1 2 18 12,hmax 250"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "redditSortSettingsCheckBox"
@@ -255,7 +246,7 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMaxItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 9 9 1"
+				"value": "cell 20 9 9 2"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMin"
@@ -265,7 +256,7 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "scoreSortMinItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 30 9 7 1"
+				"value": "cell 30 9 7 2"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "searchButton"
@@ -275,7 +266,7 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "search", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 11 9 2"
+				"value": "cell 20 11 9 3"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "searchButton2"
@@ -285,7 +276,7 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "save", false ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 30 11 7 2"
+				"value": "cell 30 11 7 3"
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
@@ -317,4 +308,3 @@ new FormModel {
 		} )
 	}
 }
-

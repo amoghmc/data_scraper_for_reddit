@@ -4,6 +4,7 @@
 
 package com.RedditDataScraper;
 
+import java.awt.event.*;
 import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
@@ -41,9 +42,8 @@ public class MainJFormFrame extends JFrame {
 
 	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			keywordTextField.setEnabled(true);
 			regexCheckBox.setSelected(false);
-			regexTextField.setEnabled(false);
+			keywordTextField.setEnabled(true);
 			redditSortComboBox.removeAllItems();
 			redditSortComboBox.addItem(SearchSort.RELEVANCE);
 			redditSortComboBox.addItem(SearchSort.HOT);
@@ -131,7 +131,7 @@ public class MainJFormFrame extends JFrame {
 
 		subredditTextField.setText("");
 		keywordTextField.setText("");
-		regexTextField.setText("");
+		keywordTextField.setText("");
 		scoreMinTextField.setText("0");
 		scoreMaxTextField.setText("0");
 		commentCountMinTextField.setText("0");
@@ -231,20 +231,15 @@ public class MainJFormFrame extends JFrame {
 
 	private void regexCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			regexTextField.setEnabled(true);
-			keywordTextField.setEnabled(false);
 			keywordCheckBox.setSelected(false);
+			keywordTextField.setEnabled(true);
 			redditSortComboBox.setEnabled(false);
 			timeComboBox.setEnabled(false);
 		} else {
-			regexTextField.setEnabled(false);
+			keywordTextField.setEnabled(false);
 			redditSortComboBox.setEnabled(true);
 			timeComboBox.setEnabled(true);
 		}
-	}
-
-	public JTextField getRegexTextField() {
-		return regexTextField;
 	}
 
 	public JCheckBox getRegexCheckBox() {
@@ -256,10 +251,9 @@ public class MainJFormFrame extends JFrame {
 		filterPanel = new JPanel();
 		subredditFilterLabel = new JLabel();
 		subredditTextField = new JTextField();
-		regexCheckBox = new JCheckBox();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
-		regexTextField = new JTextField();
+		regexCheckBox = new JCheckBox();
 		noSpoilerCheckBox = new JCheckBox();
 		keywordTextField = new JTextField();
 		scoreFilterCheckBox = new JCheckBox();
@@ -407,12 +401,7 @@ public class MainJFormFrame extends JFrame {
 			//---- subredditFilterLabel ----
 			subredditFilterLabel.setText("Subreddit Filter");
 			filterPanel.add(subredditFilterLabel, "cell 0 1");
-			filterPanel.add(subredditTextField, "cell 1 1 5 1");
-
-			//---- regexCheckBox ----
-			regexCheckBox.setText("Regex Filter");
-			regexCheckBox.addItemListener(e -> regexCheckBoxItemStateChanged(e));
-			filterPanel.add(regexCheckBox, "cell 6 1 4 1");
+			filterPanel.add(subredditTextField, "cell 1 1 8 1");
 
 			//---- noNsfwCheckBox ----
 			noNsfwCheckBox.setText("No NSFW Filter");
@@ -424,9 +413,10 @@ public class MainJFormFrame extends JFrame {
 			keywordCheckBox.addItemListener(e -> keywordCheckBoxItemStateChanged(e));
 			filterPanel.add(keywordCheckBox, "cell 5 3");
 
-			//---- regexTextField ----
-			regexTextField.setEnabled(false);
-			filterPanel.add(regexTextField, "cell 6 3 4 1");
+			//---- regexCheckBox ----
+			regexCheckBox.setText("Regex Filter");
+			regexCheckBox.addItemListener(e -> regexCheckBoxItemStateChanged(e));
+			filterPanel.add(regexCheckBox, "cell 7 3 4 1");
 
 			//---- noSpoilerCheckBox ----
 			noSpoilerCheckBox.setText("No Spoiler Filter");
@@ -435,7 +425,7 @@ public class MainJFormFrame extends JFrame {
 
 			//---- keywordTextField ----
 			keywordTextField.setEnabled(false);
-			filterPanel.add(keywordTextField, "cell 5 4 5 1");
+			filterPanel.add(keywordTextField, "cell 5 4 4 1");
 
 			//---- scoreFilterCheckBox ----
 			scoreFilterCheckBox.setText("Score Filter");
@@ -487,7 +477,7 @@ public class MainJFormFrame extends JFrame {
 			commentCountMaxLabel.setText("Max");
 			filterPanel.add(commentCountMaxLabel, "cell 9 8");
 		}
-		contentPane.add(filterPanel, "cell 1 2 18 11,hmax 250");
+		contentPane.add(filterPanel, "cell 1 2 18 12,hmax 250");
 
 		//---- redditSortSettingsCheckBox ----
 		redditSortSettingsCheckBox.setText("Reddit Sort Settings");
@@ -526,22 +516,22 @@ public class MainJFormFrame extends JFrame {
 		scoreSortMax.setText("Score Sort by Max");
 		scoreSortMax.setSelected(true);
 		scoreSortMax.addItemListener(e -> scoreSortMaxItemStateChanged(e));
-		contentPane.add(scoreSortMax, "cell 20 9 9 1");
+		contentPane.add(scoreSortMax, "cell 20 9 9 2");
 
 		//---- scoreSortMin ----
 		scoreSortMin.setText("Score Sort by Min");
 		scoreSortMin.addItemListener(e -> scoreSortMinItemStateChanged(e));
-		contentPane.add(scoreSortMin, "cell 30 9 7 1");
+		contentPane.add(scoreSortMin, "cell 30 9 7 2");
 
 		//---- searchButton ----
 		searchButton.setText("Search");
 		searchButton.addActionListener(e -> search());
-		contentPane.add(searchButton, "cell 20 11 9 2");
+		contentPane.add(searchButton, "cell 20 11 9 3");
 
 		//---- searchButton2 ----
 		searchButton2.setText("Save Result");
 		searchButton2.addActionListener(e -> save());
-		contentPane.add(searchButton2, "cell 30 11 7 2");
+		contentPane.add(searchButton2, "cell 30 11 7 3");
 
 		//======== scrollPane1 ========
 		{
@@ -564,10 +554,9 @@ public class MainJFormFrame extends JFrame {
 	private JPanel filterPanel;
 	private JLabel subredditFilterLabel;
 	private JTextField subredditTextField;
-	private JCheckBox regexCheckBox;
 	private JCheckBox noNsfwCheckBox;
 	private JCheckBox keywordCheckBox;
-	private JTextField regexTextField;
+	private JCheckBox regexCheckBox;
 	private JCheckBox noSpoilerCheckBox;
 	private JTextField keywordTextField;
 	private JCheckBox scoreFilterCheckBox;

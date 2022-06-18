@@ -16,7 +16,6 @@ public class RedditResult {
 	private final AllFilters filterArrayList;
 	private String subredditTextField;
 	private String keywordTextField;
-	private String regexTextField;
 	private String nsfw;
 	private String spoiler;
 	private final DateTimeFormatter dateFormatter;
@@ -36,7 +35,6 @@ public class RedditResult {
 	public void addFilters() {
 		subredditTextField = mainJFormFrame.getSubredditTextField().getText().replaceAll(" ", "");
 		keywordTextField = mainJFormFrame.getKeywordTextField().getText();
-		regexTextField = mainJFormFrame.getRegexTextField().getText();
 		if (mainJFormFrame.getNoNsfwCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoNsfwFilter());
 		}
@@ -68,7 +66,7 @@ public class RedditResult {
 			subredditTextField = "all";
 		}
 		if (mainJFormFrame.getRegexCheckBox().isSelected()) {
-			filterArrayList.addFilter(new KeywordFilter(regexTextField));
+			filterArrayList.addFilter(new KeywordFilter(keywordTextField));
 		}
 		else if (mainJFormFrame.getKeywordCheckBox().isSelected()) {
 			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ", "").split(",")));
