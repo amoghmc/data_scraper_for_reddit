@@ -4,6 +4,7 @@
 
 package com.RedditDataScraper;
 
+import java.awt.event.*;
 import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
@@ -41,9 +42,8 @@ public class MainJFormFrame extends JFrame {
 
 	private void keywordCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			keywordTextField.setEnabled(true);
 			regexCheckBox.setSelected(false);
-			regexTextField.setEnabled(false);
+			keywordTextField.setEnabled(true);
 			redditSortComboBox.removeAllItems();
 			redditSortComboBox.addItem(SearchSort.RELEVANCE);
 			redditSortComboBox.addItem(SearchSort.HOT);
@@ -131,7 +131,7 @@ public class MainJFormFrame extends JFrame {
 
 		subredditTextField.setText("");
 		keywordTextField.setText("");
-		regexTextField.setText("");
+		keywordTextField.setText("");
 		scoreMinTextField.setText("0");
 		scoreMaxTextField.setText("0");
 		commentCountMinTextField.setText("0");
@@ -231,24 +231,23 @@ public class MainJFormFrame extends JFrame {
 
 	private void regexCheckBoxItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			regexTextField.setEnabled(true);
-			keywordTextField.setEnabled(false);
 			keywordCheckBox.setSelected(false);
+			keywordTextField.setEnabled(true);
 			redditSortComboBox.setEnabled(false);
 			timeComboBox.setEnabled(false);
 		} else {
-			regexTextField.setEnabled(false);
+			keywordTextField.setEnabled(false);
 			redditSortComboBox.setEnabled(true);
 			timeComboBox.setEnabled(true);
 		}
 	}
 
-	public JTextField getRegexTextField() {
-		return regexTextField;
-	}
-
 	public JCheckBox getRegexCheckBox() {
 		return regexCheckBox;
+	}
+
+	public JTextField getRegexTextField() {
+		return regexTextField;
 	}
 
 	private void initComponents() {
