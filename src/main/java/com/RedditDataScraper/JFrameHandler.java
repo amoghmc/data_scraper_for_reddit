@@ -13,7 +13,6 @@ public class JFrameHandler {
 
 	public JFrameHandler(String filename) throws FileNotFoundException, SQLException {
 		this.filename = filename;
-		//Class.forName("org.xerial.sqlite-jdbc");
 		connection = DriverManager.getConnection(getDbLink());
 		openLoginFrame();
 	}

@@ -5,10 +5,8 @@ import java.sql.*;
 
 public class Main {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		String filename = "Database/databaseLocation.txt";
-		//CredResource cr = new CredResource();
-		//MyRedditClient myRedditClient = new MyRedditClient(cr);
 		try {
 			new JFrameHandler(filename);
 		}
