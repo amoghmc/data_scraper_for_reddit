@@ -1,1 +1,0 @@
-jdbc:sqlite:C:/Users/amogh/OneDrive/Documents/Java Projects/Sem_4/RedditDataScraper/Database/dataScraper
