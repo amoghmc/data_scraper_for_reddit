@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -80,7 +78,7 @@ public class MyCsvWriter {
 
 		for (int i : ids) {
 			String[] record = {
-					String.valueOf(ids.get(i)),
+					String.valueOf(ids.get(i) + 1),
 					subreddits.get(i),
 					scores.get(i),
 					commentCounts.get(i),
@@ -137,21 +135,22 @@ public class MyCsvWriter {
 	public void writeCsvData() {
 		File file = new File("Results/" + dateFormatter.format(new Date()) + ".csv");
 		//+ dates.get(0).toString() + " " + times.get(0).strip().toString() +
-		try {
-			// create FileWriter object with file as parameter
-			FileWriter outputfile = new FileWriter(file);
+		if (list.size() > 1) {
+			try {
+				// create FileWriter object with file as parameter
+				FileWriter outputfile = new FileWriter(file);
 
-			// create CSVWriter object file_writer object as parameter
-			CSVWriter writer = new CSVWriter(outputfile);
+				// create CSVWriter object file_writer object as parameter
+				CSVWriter writer = new CSVWriter(outputfile);
 
-			for (String[] record : list) {
-				writer.writeNext(record);
+				for (String[] record : list) {
+					writer.writeNext(record);
+				}
+				// closing writer connection
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			// closing writer connection
-			writer.close();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
 		}
 		ids.clear();
 	// End of source
