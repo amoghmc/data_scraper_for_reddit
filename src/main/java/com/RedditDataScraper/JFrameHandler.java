@@ -1,19 +1,15 @@
 package com.RedditDataScraper;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class JFrameHandler {
 	private final Connection connection;
-	private final String filename;
 
-	public JFrameHandler(String filename) throws FileNotFoundException, SQLException {
-		this.filename = filename;
-		connection = DriverManager.getConnection(getDbLink());
+	public JFrameHandler(String db_path) throws FileNotFoundException, SQLException {
+		connection = DriverManager.getConnection(db_path);
 		openLoginFrame();
 	}
 
@@ -38,9 +34,4 @@ public class JFrameHandler {
 		registerFrame.pack();
 	}
 
-	public String getDbLink() throws FileNotFoundException {
-		File file = new File(filename);
-		Scanner scanner = new Scanner(file);
-		return scanner.nextLine();
-	}
 }
