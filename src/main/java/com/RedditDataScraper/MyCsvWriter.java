@@ -138,6 +138,9 @@ public class MyCsvWriter {
 		if (list.size() > 1) {
 			try {
 				// create FileWriter object with file as parameter
+				if (!file.exists()) {
+					new File("Results").mkdirs();
+				}
 				FileWriter outputfile = new FileWriter(file);
 
 				// create CSVWriter object file_writer object as parameter
