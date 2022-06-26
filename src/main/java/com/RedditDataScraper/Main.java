@@ -4,14 +4,14 @@ import java.io.FileNotFoundException;
 import java.sql.*;
 
 public class Main {
-	public static void main(String[] args) {
-		String filename = "Database/databaseLocation.txt";
+	private static final String db_path = "jdbc:sqlite::resource:data_scraper";
 
+	public static void main(String[] args) throws FileNotFoundException {
 		try {
-			new JFrameHandler(filename);
+			new JFrameHandler(db_path);
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("Incorrect file path");
+			throw e;
 		}
 		catch (SQLException e) {
 			System.out.println(e.getMessage());

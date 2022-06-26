@@ -34,7 +34,6 @@ public class LoginJFormFrame extends JFrame {
 				preparedStatement.setString(2, String.valueOf(passwordField.getPassword()));
 
 				ResultSet resultSet = preparedStatement.executeQuery();
-				System.out.println("ID: " + resultSet.getInt("id"));
 
 				// Close this and open Main frame
 				jFrameHandler.openMainFrame(resultSet.getString("clientid"),
