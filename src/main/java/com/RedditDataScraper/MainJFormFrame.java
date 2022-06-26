@@ -246,10 +246,6 @@ public class MainJFormFrame extends JFrame {
 		return regexCheckBox;
 	}
 
-	public JTextField getRegexTextField() {
-		return regexTextField;
-	}
-
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		filterPanel = new JPanel();
