@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class JFrameHandler {
 	private final Connection connection;
 
-	public JFrameHandler(String db_path) throws FileNotFoundException, SQLException {
+	public JFrameHandler(String db_path) throws SQLException {
 		connection = DriverManager.getConnection(db_path);
 		openLoginFrame();
 	}
