@@ -70,7 +70,7 @@ public class RegisterJFormFrame extends JFrame {
 				preparedStatement.executeBatch();
 
 				// Close this and open Main frame
-				jFrameHandler.openMainFrame(clientid, clientsecret, username);
+				//jFrameHandler.openMainFrame(clientid, clientsecret, username);
 				this.setVisible(false);
 				this.dispose();
 			}
