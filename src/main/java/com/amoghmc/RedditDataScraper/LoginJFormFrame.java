@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Jun 01 20:43:27 IST 2022
  */
 
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import java.awt.event.*;
 import java.sql.*;

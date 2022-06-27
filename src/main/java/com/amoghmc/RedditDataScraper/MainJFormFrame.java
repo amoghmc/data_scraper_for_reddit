@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Tue May 24 14:52:28 IST 2022
  */
 
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;

@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jun 03 16:23:32 IST 2022
  */
 
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import javax.swing.*;
 import net.miginfocom.swing.*;

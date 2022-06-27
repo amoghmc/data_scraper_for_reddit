@@ -1,4 +1,4 @@
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
