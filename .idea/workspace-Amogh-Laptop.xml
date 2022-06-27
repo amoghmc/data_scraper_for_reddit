@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="94a07686-409e-4b1d-ae62-4b3ed52c67cb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../OODJ3/OODJ3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Recommendation Engine" beforeDir="false" afterPath="$PROJECT_DIR$/../../Recommendation Engine" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/bin/mathMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ1/bin/mathMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/bin/math_fun.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ1/bin/math_fun.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/src/add2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/src/mathMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ1/src/mathMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/src/mathMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ1/src/mathMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/src/math_fun.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ1/src/math_fun.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ1/src/math_fun.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ1/src/math_fun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ2/bin/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ2/bin/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ2/bin/StudDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ2/bin/StudDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ3-2/src/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ3-2/src/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ3-2/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ3-2/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ3-2/src/foo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ3-2/src/foo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ3-2/src/foo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ3-2/src/foo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ4/src/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ4/src/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ4/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ4/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OODJ4/src/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OODJ4/src/Box.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/consoles/db/07bcb783-30f9-433b-a685-eca1a55e55fc/console.sql" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/encodings.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/workspace.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Results/5 Jun 2022, 03-30-30.csv" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/RedditDataScraper/Main.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/RedditDataScraper/MyCsvWriter.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/RedditDataScraper/MyRedditClient.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/RedditDataScraper/RedditResult.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="29DOhjJlcQqPUvq2hY6h8cJI91X" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "18",
+    "last_opened_file_path": "C:/Users/amogh/OneDrive/Documents/Java Projects/Sem_4/RedditDataScraper",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.4526219",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "terminal"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "postgresql",
+      "sqlite"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataScraper\target" />
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataScraper\src\main\java\com\RedditDataScraper" />
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataScraper\target\classes\com\RedditDataScraper" />
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataScraper\Database" />
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataScraper\Credentials" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataScraper\Database" />
+      <recent name="C:\Users\amogh\OneDrive\Documents\Java Projects\Sem_4\RedditDataMiner\.idea" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JAR Application.RedditDataScraper-0.3.jar">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.RedditDataScraper.Main" />
+      <module name="RedditDataScraper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.RedditDataScraper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.RedditDataScraper" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="MAIN_CLASS_NAME" value="com.RedditDataScraper.Main" />
+      <module name="RedditDataScraper" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/mnt/e/JetBrains/Toolbox/apps/IDEA-U/ch-0/221.5591.52/jbr/bin /RedditDataScraper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.RedditDataScraper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2" />
+    </configuration>
+    <configuration name="RedditDataScraper-0.3.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/RedditDataScraper-0.3.jar" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="18" />
+      <method v="2" />
+    </configuration>
+    <configuration name="original-RedditDataScraper-0.3.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/original-RedditDataScraper-0.3.jar" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.com.RedditDataScraper" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.original-RedditDataScraper-0.3.jar" />
+      <item itemvalue="JAR Application.RedditDataScraper-0.3.jar" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.RedditDataScraper-0.3.jar" />
+        <item itemvalue="JAR Application.original-RedditDataScraper-0.3.jar" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="94a07686-409e-4b1d-ae62-4b3ed52c67cb" name="Changes" comment="" />
+      <created>1652644313291</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652644313291</updated>
+      <workItem from="1652644315933" duration="246000" />
+      <workItem from="1652644590193" duration="12136000" />
+      <workItem from="1652779622781" duration="2247000" />
+      <workItem from="1652827003855" duration="50000" />
+      <workItem from="1652864686069" duration="1847000" />
+      <workItem from="1653017859566" duration="25943000" />
+      <workItem from="1653276798400" duration="90000" />
+      <workItem from="1653469096182" duration="254000" />
+      <workItem from="1653469376241" duration="78000" />
+      <workItem from="1653469473206" duration="5440000" />
+      <workItem from="1653525077822" duration="885000" />
+      <workItem from="1653638465929" duration="9775000" />
+      <workItem from="1653651152392" duration="16803000" />
+      <workItem from="1653833989332" duration="14258000" />
+      <workItem from="1653908966734" duration="13107000" />
+      <workItem from="1653986299181" duration="5940000" />
+      <workItem from="1654252640489" duration="421000" />
+      <workItem from="1654253487957" duration="1483000" />
+      <workItem from="1654260937772" duration="307000" />
+      <workItem from="1654261930165" duration="3846000" />
+      <workItem from="1654276213731" duration="7339000" />
+      <workItem from="1654337213868" duration="9659000" />
+      <workItem from="1654363963607" duration="4205000" />
+      <workItem from="1654369754162" duration="2150000" />
+      <workItem from="1654422699059" duration="859000" />
+      <workItem from="1654423678449" duration="737000" />
+      <workItem from="1654463732176" duration="6459000" />
+      <workItem from="1654472820959" duration="302000" />
+      <workItem from="1654519217063" duration="29000" />
+      <workItem from="1654519648413" duration="34000" />
+      <workItem from="1654519806673" duration="388000" />
+      <workItem from="1654520215940" duration="139000" />
+      <workItem from="1654536085415" duration="566000" />
+      <workItem from="1654619374718" duration="899000" />
+      <workItem from="1654700734373" duration="796000" />
+      <workItem from="1654713529536" duration="104000" />
+      <workItem from="1654892194436" duration="114000" />
+      <workItem from="1654892337629" duration="115000" />
+      <workItem from="1654893388365" duration="912000" />
+      <workItem from="1654922960315" duration="478000" />
+      <workItem from="1654992987244" duration="2393000" />
+      <workItem from="1654996231173" duration="123000" />
+      <workItem from="1655412206527" duration="976000" />
+      <workItem from="1655517925792" duration="2686000" />
+      <workItem from="1655569670509" duration="3202000" />
+      <workItem from="1655573300389" duration="1037000" />
+      <workItem from="1655622574145" duration="1203000" />
+      <workItem from="1655807937150" duration="647000" />
+      <workItem from="1655808746508" duration="49000" />
+      <workItem from="1655904803898" duration="623000" />
+      <workItem from="1656303045453" duration="63000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/RedditDataScraper$com_RedditDataScraper.ic" NAME="com.RedditDataScraper Coverage Results" MODIFIED="1653992277771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.RedditDataScraper.*</FILTER>
+    </SUITE>
+  </component>
+</project>

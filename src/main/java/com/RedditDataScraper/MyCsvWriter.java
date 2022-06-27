@@ -134,22 +134,21 @@ public class MyCsvWriter {
 	// Source: https://www.geeksforgeeks.org/writing-a-csv-file-in-java-using-opencsv/
 	public void writeCsvData() {
 		File file = new File("Results/" + dateFormatter.format(new Date()) + ".csv");
-		//+ dates.get(0).toString() + " " + times.get(0).strip().toString() +
 		if (list.size() > 1) {
 			try {
-				// create FileWriter object with file as parameter
+				// check if Results directory exists,
+				// create one if it doesn't
 				if (!file.exists()) {
 					new File("Results").mkdirs();
 				}
-				FileWriter outputfile = new FileWriter(file);
 
-				// create CSVWriter object file_writer object as parameter
+				FileWriter outputfile = new FileWriter(file);
 				CSVWriter writer = new CSVWriter(outputfile);
 
+				// Write each record from list to csv file called writer
 				for (String[] record : list) {
 					writer.writeNext(record);
 				}
-				// closing writer connection
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();

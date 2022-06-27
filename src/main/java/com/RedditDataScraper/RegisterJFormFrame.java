@@ -6,6 +6,7 @@ package com.RedditDataScraper;
 
 import javax.swing.*;
 import net.miginfocom.swing.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.sql.*;
 
@@ -34,8 +35,9 @@ public class RegisterJFormFrame extends JFrame {
 
 	private void register() {
 		String username = usernameField.getText().strip();
-		String password = String.valueOf(passwordField.getPassword());
-		String confirmPassword = String.valueOf(confirmPasswordField.getPassword());
+		// DigestUtils code via https://stackoverflow.com/questions/30670123/java-hashing-password-doesnt-match
+		String password = DigestUtils.sha256Hex(String.valueOf(passwordField.getPassword()));
+		String confirmPassword = DigestUtils.sha256Hex(String.valueOf(confirmPasswordField.getPassword()));
 		String clientid = clientIdField.getText().strip();
 		String clientsecret = String.valueOf(clientSecretField.getPassword());
 
