@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * @author unknown
@@ -31,7 +32,7 @@ public class LoginJFormFrame extends JFrame {
 
 			try (PreparedStatement preparedStatement = connection.prepareStatement(usernameQuery)) {
 				preparedStatement.setString(1, usernameField.getText().strip());
-				preparedStatement.setString(2, String.valueOf(passwordField.getPassword()));
+				preparedStatement.setString(2, DigestUtils.sha256Hex(String.valueOf(passwordField.getPassword())));
 
 				ResultSet resultSet = preparedStatement.executeQuery();
 
