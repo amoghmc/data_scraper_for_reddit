@@ -110,6 +110,7 @@ public class RegisterJFormFrame extends JFrame {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		this.setSize(500, 400);
 		usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();
 		passwordLabel = new JLabel();

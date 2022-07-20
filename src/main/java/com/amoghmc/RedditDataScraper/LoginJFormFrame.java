@@ -64,6 +64,7 @@ public class LoginJFormFrame extends JFrame {
 	}
 
 	private void initComponents() {
+		this.setSize(500, 200);
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();
