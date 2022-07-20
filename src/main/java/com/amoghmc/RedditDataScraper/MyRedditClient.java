@@ -1,4 +1,4 @@
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.NetworkAdapter;

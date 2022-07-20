@@ -2,14 +2,12 @@
  * Created by JFormDesigner on Tue May 24 14:52:28 IST 2022
  */
 
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
-import java.awt.event.*;
 import net.dean.jraw.models.SearchSort;
 import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.models.TimePeriod;
 import net.miginfocom.swing.MigLayout;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;

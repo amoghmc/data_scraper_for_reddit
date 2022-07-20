@@ -1,7 +1,6 @@
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
-import java.io.FileNotFoundException;
-import java.sql.*;
+import java.sql.SQLException;
 
 public class Main {
 	private static final String db_path = "jdbc:sqlite::resource:data_scraper";

@@ -1,4 +1,4 @@
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import net.dean.jraw.models.Submission;
 
@@ -17,6 +17,7 @@ public class ScoreFilter implements Filter {
 	}
 
 	@Override
+	// Return true if submission satisfies min (and max) score
 	public boolean satisfies(Submission submission) {
 		if (max == -1) {
 			return submission.getScore() >= min;

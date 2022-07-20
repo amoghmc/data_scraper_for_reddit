@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.RedditDataScraper</groupId>
+  <groupId>com.amoghmc.RedditDataScraper</groupId>
   <artifactId>RedditDataScraper</artifactId>
   <version>0.4</version>
   <build>
@@ -32,7 +32,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.RedditDataScraper.Main</mainClass>
+              <mainClass>com.amoghmc.RedditDataScraper.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -72,8 +72,17 @@
       </exclusions>
     </dependency>
   </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub amoghmc Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/amoghmc/dataScraper</url>
+    </repository>
+  </distributionManagement>
   <properties>
     <maven.compiler.target>18</maven.compiler.target>
     <maven.compiler.source>18</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 </project>

@@ -1,4 +1,4 @@
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import net.dean.jraw.models.*;
 import net.dean.jraw.pagination.DefaultPaginator;

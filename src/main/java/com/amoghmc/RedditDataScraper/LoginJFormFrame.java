@@ -2,12 +2,13 @@
  * Created by JFormDesigner on Wed Jun 01 20:43:27 IST 2022
  */
 
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * @author unknown
@@ -31,7 +32,7 @@ public class LoginJFormFrame extends JFrame {
 
 			try (PreparedStatement preparedStatement = connection.prepareStatement(usernameQuery)) {
 				preparedStatement.setString(1, usernameField.getText().strip());
-				preparedStatement.setString(2, String.valueOf(passwordField.getPassword()));
+				preparedStatement.setString(2, DigestUtils.sha256Hex(String.valueOf(passwordField.getPassword())));
 
 				ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -63,6 +64,7 @@ public class LoginJFormFrame extends JFrame {
 	}
 
 	private void initComponents() {
+		this.setSize(500, 200);
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();

@@ -2,10 +2,11 @@
  * Created by JFormDesigner on Fri Jun 03 16:23:32 IST 2022
  */
 
-package com.RedditDataScraper;
+package com.amoghmc.RedditDataScraper;
 
 import javax.swing.*;
 import net.miginfocom.swing.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.sql.*;
 
@@ -34,8 +35,9 @@ public class RegisterJFormFrame extends JFrame {
 
 	private void register() {
 		String username = usernameField.getText().strip();
-		String password = String.valueOf(passwordField.getPassword());
-		String confirmPassword = String.valueOf(confirmPasswordField.getPassword());
+		// DigestUtils code via https://stackoverflow.com/questions/30670123/java-hashing-password-doesnt-match
+		String password = DigestUtils.sha256Hex(String.valueOf(passwordField.getPassword()));
+		String confirmPassword = DigestUtils.sha256Hex(String.valueOf(confirmPasswordField.getPassword()));
 		String clientid = clientIdField.getText().strip();
 		String clientsecret = String.valueOf(clientSecretField.getPassword());
 
@@ -68,7 +70,7 @@ public class RegisterJFormFrame extends JFrame {
 				preparedStatement.executeBatch();
 
 				// Close this and open Main frame
-				jFrameHandler.openMainFrame(clientid, clientsecret, username);
+				//jFrameHandler.openMainFrame(clientid, clientsecret, username);
 				this.setVisible(false);
 				this.dispose();
 			}
@@ -108,6 +110,7 @@ public class RegisterJFormFrame extends JFrame {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		this.setSize(500, 400);
 		usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();
 		passwordLabel = new JLabel();
