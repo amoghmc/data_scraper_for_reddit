@@ -4,11 +4,14 @@
 
 package com.amoghmc.RedditDataScraper;
 
-import javax.swing.*;
-import net.miginfocom.swing.*;
+import net.miginfocom.swing.MigLayout;
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.sql.*;
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author unknown
@@ -227,7 +230,7 @@ public class RegisterJFormFrame extends JFrame {
 		registerButton.addActionListener(e -> register());
 		contentPane.add(registerButton, "cell 18 20 10 3,alignx right,growx 0,width 200:200:200");
 		pack();
-		setLocationRelativeTo(getOwner());
+		setLocationRelativeTo(null);
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 

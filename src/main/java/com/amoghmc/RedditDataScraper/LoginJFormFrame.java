@@ -4,11 +4,14 @@
 
 package com.amoghmc.RedditDataScraper;
 
-import java.awt.event.*;
-import java.sql.*;
-import javax.swing.*;
-import net.miginfocom.swing.*;
+import net.miginfocom.swing.MigLayout;
 import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author unknown
@@ -60,7 +63,7 @@ public class LoginJFormFrame extends JFrame {
 		// Close this and open Register frame
 		jFrameHandler.openRegisterFrame();
 		this.setVisible(false);
-		this.dispose();
+		//this.dispose();
 	}
 
 	private void initComponents() {
@@ -148,7 +151,7 @@ public class LoginJFormFrame extends JFrame {
 		registerButton.addActionListener(e -> register());
 		contentPane.add(registerButton, "cell 16 11 9 2,alignx right,growx 0,width 200:200:200");
 		pack();
-		setLocationRelativeTo(getOwner());
+		setLocationRelativeTo(null);
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 

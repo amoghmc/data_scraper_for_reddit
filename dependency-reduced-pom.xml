@@ -72,13 +72,6 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <id>github</id>
-      <name>GitHub amoghmc Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/amoghmc/dataScraper</url>
-    </repository>
-  </distributionManagement>
   <properties>
     <maven.compiler.target>18</maven.compiler.target>
     <maven.compiler.source>18</maven.compiler.source>
