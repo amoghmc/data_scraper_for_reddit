@@ -35,6 +35,7 @@
 * Data-Scraper for Reddit is a GUI-based web scraping tool that allows users to scrape data using the official API from Reddit.
 * The GUI is implemented using Java Swings and SQLite for storing user data.
 * Features 10+ filters and a dedicated sorting panel.
+* Results are filtered from the first page of the query.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -96,7 +97,18 @@ Examples:
 * Selecting all posts whose title contains the keywords "putin" and "ukraine" from the subreddit "worldnews"
 
 ![example_1](Screenshots/example_1.png?raw=true)
-[CSV Result](Results/result_1)
+[CSV Result](Results/result_1.csv)
+
+* Selecting all posts from the subreddit Coronavirus that contains numbers in the title. Results must also have a minimum score of 1000, and minimum comment count of 100.
+Results are finally sorted by their title.
+
+![example_1](Screenshots/example_2.png?raw=true)
+[CSV Result](Results/result_2.csv)
+
+* Selecting all controversial posts from all subreddits. 
+
+![example_1](Screenshots/example_3.png?raw=true)
+[CSV Result](Results/result_3.csv)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -119,7 +131,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
+<!-- LICENSE.txt -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
@@ -129,9 +141,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [JRAW - A Java Reddit API Wrapper](https://github.com/mattbdean/JRAW)
+* [JForm Designer - A professional GUI designer for Java Swings](https://www.formdev.com/)
+* [Github Readme Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
