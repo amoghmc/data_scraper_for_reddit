@@ -96,7 +96,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 Examples:
 * Selecting all posts whose title contains the keywords "putin" and "ukraine" from the subreddit "worldnews"
-  ![example_1](https://github.com/amoghmc/dataScraper/Screenshots/example_1.png?raw=true)
+  ![example_1](Screenshots/example_1.png?raw=true)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
