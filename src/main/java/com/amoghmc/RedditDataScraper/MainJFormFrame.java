@@ -142,6 +142,7 @@ public class MainJFormFrame extends JFrame {
 		scoreSortMin.setSelected(false);
 		scoreSortMax.setSelected(false);
 		resultTextArea.setText("");
+		redditResult.setIndex(1);
 	}
 
 	public JTextField getSubredditTextField() {

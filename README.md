@@ -54,8 +54,8 @@
 ## Getting Started
 ### Prerequisites
 
-* Java 
-    
+* Java
+
 Linux/Mac
 
 You can install java through [Homebrew](https://brew.sh/):
@@ -65,7 +65,7 @@ You can install java through [Homebrew](https://brew.sh/):
 
 Windows
 
-Download Java 18 from [Oracle](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html) 
+Download Java 18 from [Oracle](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
 and follow the instructions from installer. Make sure you add the installation directory to your system path.
 
 ### Installation
@@ -92,11 +92,12 @@ and follow the instructions from installer. Make sure you add the installation d
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
 Examples:
 * Selecting all posts whose title contains the keywords "putin" and "ukraine" from the subreddit "worldnews"
-  ![example_1](Screenshots/example_1.png?raw=true)
+
+![example_1](Screenshots/example_1.png?raw=true)
+[CSV Result](Results/result_1)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
