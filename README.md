@@ -1,6 +1,6 @@
 <h3 align="center">Data-scraper for Reddit</h3>
   <p align="center">
-    Data-scraper for reddit made using java and sqlite. Features 10+ filters and lets users save results in a CSV format.
+    Data-scraper for reddit made using java and sqlite. 
   </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -21,10 +21,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -34,9 +32,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+* Data-Scraper for Reddit is a GUI-based web scraping tool that allows users to scrape data using the official API from Reddit.
+* The GUI is implemented using Java Swings and SQLite for storing user data.
+* Features 10+ filters and a dedicated sorting panel.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `amoghmc`, `dataScraper`, `twitter_handle`, `linkedin_username`, `users.noreply.github.com`, `63165759+amoghmc`, `Data-scraper for Reddit`, `project_description`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -53,10 +52,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
 * Java 
@@ -78,19 +73,18 @@ and follow the instructions from installer. Make sure you add the installation d
 1. Go to [Reddit](https://www.reddit.com/prefs/apps) to create a free API app
 2. Select a name such as "dataScraper"
 3. Select "script"
-4. Leave description and about url as blank
-5. Use http://localhost:8080 for your redirect url
-6. Create app
-7. Next download the latest jar file from [Releases](https://github.com/amoghmc/dataScraper/releases) 
+4. Leave the description and about URL as blank
+5. Use http://localhost:8080 for your redirect URL
+6. Create the app
+7. Next download the latest jar file from [Releases](https://github.com/amoghmc/dataScraper/releases)
 8. Move the jar file to a new folder
 9. Run using the following command using the terminal,
    ```sh
    java -jar RedditDataScraper-[VERSION].jar 
    ```
-10. Click on "Register a new account" 
+10. Click on "Register a new account"
 11. Enter your details and use client_id and client_secret from your API app
 12. For more details visit [Oauth2](https://github.com/reddit-archive/reddit/wiki/oauth2)
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -100,8 +94,9 @@ and follow the instructions from installer. Make sure you add the installation d
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
+Examples:
+* Selecting all posts whose title contains the keywords "putin" and "ukraine" from the subreddit "worldnews"
+  ![example_1](https://github.com/amoghmc/dataScraper/Images/example_1.jpg?raw=true)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
