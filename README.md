@@ -36,6 +36,7 @@
 * The GUI is implemented using Java Swings and SQLite for storing user data.
 * Features 10+ filters and a dedicated sorting panel.
 * Results are filtered from the first page of the query.
+* Final results can be neatly saved in a CSV format.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
