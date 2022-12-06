@@ -33,7 +33,7 @@
 ## About The Project
 
 * Data-Scraper for Reddit is a GUI-based scraping tool that allows users to scrape data from Reddit using the official API from Reddit.
-* The GUI is implemented using Java Swings and SQLite for storing user data.
+* The GUI is implemented using Java Swing and SQLite for storing user data.
 * Features 10+ filters and a dedicated sorting panel.
 * Results are filtered from the first page of the query.
 * Final results can be neatly saved in a CSV format.
