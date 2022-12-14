@@ -107,7 +107,7 @@ public class MainJFormFrame extends JFrame {
 		}
 	}
 
-	public JComboBox getRedditSortComboBox() {
+	public JComboBox<Enum> getRedditSortComboBox() {
 		return redditSortComboBox;
 	}
 
@@ -115,7 +115,7 @@ public class MainJFormFrame extends JFrame {
 		return resultTextArea;
 	}
 
-	public JComboBox getTimeComboBox() {
+	public JComboBox<TimePeriod> getTimeComboBox() {
 		return timeComboBox;
 	}
 
@@ -265,15 +265,15 @@ public class MainJFormFrame extends JFrame {
 		commentCountMaxTextField = new JFormattedTextField(formatter);
 		JLabel commentCountMaxLabel = new JLabel();
 		JLabel redditSortSettingsCheckBox = new JLabel();
-		searchButton3 = new JButton();
-		redditSortComboBox = new JComboBox();
-		timeComboBox = new JComboBox();
+		JButton searchButton3 = new JButton();
+		redditSortComboBox = new JComboBox<>();
+		timeComboBox = new JComboBox<>();
 		azSort = new JCheckBox();
 		zaSort = new JCheckBox();
 		scoreSortMax = new JCheckBox();
 		scoreSortMin = new JCheckBox();
-		searchButton = new JButton();
-		searchButton2 = new JButton();
+		JButton searchButton = new JButton();
+		JButton searchButton2 = new JButton();
 		JScrollPane scrollPane1 = new JScrollPane();
 		resultTextArea = new JTextArea();
 		loginLabel = new JLabel();
@@ -550,15 +550,12 @@ public class MainJFormFrame extends JFrame {
 	private JCheckBox commentCountFilterCheckBox;
 	private JFormattedTextField scoreMaxTextField;
 	private JFormattedTextField commentCountMaxTextField;
-	private JButton searchButton3;
-	private JComboBox redditSortComboBox;
-	private JComboBox timeComboBox;
+	private JComboBox<Enum> redditSortComboBox;
+	private JComboBox<TimePeriod> timeComboBox;
 	private JCheckBox azSort;
 	private JCheckBox zaSort;
 	private JCheckBox scoreSortMax;
 	private JCheckBox scoreSortMin;
-	private JButton searchButton;
-	private JButton searchButton2;
 	private JTextArea resultTextArea;
 	private JLabel loginLabel;
 	private JLabel clientIdLabel;

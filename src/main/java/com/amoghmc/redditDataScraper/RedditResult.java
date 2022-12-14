@@ -7,7 +7,6 @@ import net.dean.jraw.pagination.SearchPaginator;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class RedditResult {
