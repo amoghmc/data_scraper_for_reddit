@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Jun 01 20:43:27 IST 2022
  */
 
-package com.amoghmc.RedditDataScraper;
+package com.amoghmc.redditDataScraper;
 
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -55,10 +55,6 @@ public class LoginJFormFrame extends JFrame {
 		}
 	}
 
-	public JButton getLoginButton() {
-		return loginButton;
-	}
-
 	private void register() {
 		// Close this and open Register frame
 		jFrameHandler.openRegisterFrame();
@@ -69,13 +65,14 @@ public class LoginJFormFrame extends JFrame {
 	private void initComponents() {
 		this.setSize(500, 200);
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		usernameLabel = new JLabel();
+		// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+		JLabel usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();
-		passwordLabel = new JLabel();
+		JLabel passwordLabel = new JLabel();
 		passwordField = new JPasswordField();
 		errorLabel = new JLabel();
-		loginButton = new JButton();
-		registerButton = new JButton();
+		JButton loginButton = new JButton();
+		JButton registerButton = new JButton();
 
 		//======== this ========
 		setTitle("Login");
@@ -155,13 +152,8 @@ public class LoginJFormFrame extends JFrame {
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	private JLabel usernameLabel;
 	private JFormattedTextField usernameField;
-	private JLabel passwordLabel;
 	private JPasswordField passwordField;
 	private JLabel errorLabel;
-	private JButton loginButton;
-	private JButton registerButton;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

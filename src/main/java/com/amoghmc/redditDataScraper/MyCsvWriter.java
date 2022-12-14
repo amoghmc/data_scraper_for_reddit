@@ -1,4 +1,4 @@
-package com.amoghmc.RedditDataScraper;
+package com.amoghmc.redditDataScraper;
 
 import com.opencsv.CSVWriter;
 
@@ -12,20 +12,6 @@ import java.util.Date;
 
 public class MyCsvWriter {
 	private final MainJFormFrame mainJFormFrame;
-	private final JTextArea resultTextField;
-	private final String[] header = {
-			"ID",
-			"Subreddit",
-			"Score",
-			"Comment Count",
-			"Title",
-			"URL",
-			"Permalink",
-			"NSFW?",
-			"Spoiler?",
-			"Date",
-			"Time"
-	};
 	private String[] dateAndTime;
 
 	private final ArrayList<Integer> ids;
@@ -40,13 +26,26 @@ public class MyCsvWriter {
 	private final ArrayList<String> dates;
 	private final ArrayList<String> times;
 	private final ArrayList<String[]> list;
-	private SimpleDateFormat dateFormatter;
+	private final SimpleDateFormat dateFormatter;
 
 
 	public MyCsvWriter(MainJFormFrame mainJFormFrame) {
 		this.mainJFormFrame = mainJFormFrame;
-		resultTextField = mainJFormFrame.getResultTextArea();
+		JTextArea resultTextField = mainJFormFrame.getResultTextArea();
 		list = new ArrayList<>();
+		String[] header = {
+				"ID",
+				"Subreddit",
+				"Score",
+				"Comment Count",
+				"Title",
+				"URL",
+				"Permalink",
+				"NSFW?",
+				"Spoiler?",
+				"Date",
+				"Time"
+		};
 		list.add(header);
 		dateFormatter = new SimpleDateFormat("d MMM yyyy, hh-mm-ss");
 		dateAndTime = new String[2];
@@ -70,9 +69,9 @@ public class MyCsvWriter {
 		String[] lines = resultFile.split("\\r?\\n");
 		// End of source
 
-		for (int i = 0; i < lines.length; i++) {
-			if (!lines[i].equals("")) {
-				addToArrayList(lines[i]);
+		for (String line : lines) {
+			if (!line.equals("")) {
+				addToArrayList(line);
 			}
 		}
 
@@ -92,43 +91,41 @@ public class MyCsvWriter {
 			};
 			list.add(record);
 		}
-		return;
 	}
 
 	private void addToArrayList(String line) {
-		if (line.indexOf("Index") != -1) {
+		if (line.contains("Index")) {
 			ids.add(Integer.parseInt(line.replaceAll("Index:", "").strip()) - 1);
 		}
-		if (line.indexOf("Subreddit") != -1) {
+		if (line.contains("Subreddit")) {
 			subreddits.add(line.replaceAll("Subreddit:", "").strip());
 		}
-		if (line.indexOf("Score") != -1) {
+		if (line.contains("Score")) {
 			scores.add((line.replaceAll("Score:", "").strip()));
 		}
-		if (line.indexOf("Comment Count") != -1) {
+		if (line.contains("Comment Count")) {
 			commentCounts.add((line.replaceAll("Comment Count:", "").strip()));
 		}
-		if (line.indexOf("URL") != -1) {
+		if (line.contains("URL")) {
 			urls.add((line.replaceAll("URL:", "").strip()));
 		}
-		if (line.indexOf("Permalink") != -1) {
+		if (line.contains("Permalink")) {
 			permalinks.add((line.replaceAll("Permalink:", "").strip()));
 		}
-		if (line.indexOf("Title") != -1) {
+		if (line.contains("Title")) {
 			titles.add((line.replaceAll("Title:", "").strip()));
 		}
-		if (line.indexOf("NSFW") != -1) {
+		if (line.contains("NSFW")) {
 			nsfws.add((line.replaceAll("NSFW:", "").strip()));
 		}
-		if (line.indexOf("Spoiler") != -1) {
+		if (line.contains("Spoiler")) {
 			spoilers.add((line.replaceAll("Spoiler:", "").strip()));
 		}
-		if (line.indexOf("Search at") != -1) {
+		if (line.contains("Search at")) {
 			dateAndTime = line.replaceAll("Search at:", "").strip().split(",");
 			dates.add(dateAndTime[0].strip());
 			times.add(dateAndTime[1].strip());
 		}
-		return;
 	}
 
 	// Source: https://www.geeksforgeeks.org/writing-a-csv-file-in-java-using-opencsv/

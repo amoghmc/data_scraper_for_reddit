@@ -1,4 +1,4 @@
-package com.amoghmc.RedditDataScraper;
+package com.amoghmc.redditDataScraper;
 
 import net.dean.jraw.models.*;
 import net.dean.jraw.pagination.DefaultPaginator;
@@ -15,7 +15,6 @@ public class RedditResult {
 	private final MyRedditClient myRedditClient;
 	private final AllFilters filterArrayList;
 	private String subredditTextField;
-	private String keywordTextField;
 	private String nsfw;
 	private String spoiler;
 	private final DateTimeFormatter dateFormatter;
@@ -34,7 +33,7 @@ public class RedditResult {
 
 	public void addFilters() {
 		subredditTextField = mainJFormFrame.getSubredditTextField().getText().replaceAll(" ", "");
-		keywordTextField = mainJFormFrame.getKeywordTextField().getText();
+		String keywordTextField = mainJFormFrame.getKeywordTextField().getText();
 		if (mainJFormFrame.getNoNsfwCheckBox().isSelected()) {
 			filterArrayList.addFilter(new NoNsfwFilter());
 		}
@@ -101,7 +100,7 @@ public class RedditResult {
 
 		Listing<Submission> nextPage = paginator.next();
 		Comparator<Submission> comparator = getSortSettings();
-		Collections.sort(nextPage, comparator);
+		nextPage.sort(comparator);
 
 		for (Submission s : nextPage) {
 			if (filterArrayList.satisfies(s)) {
@@ -140,7 +139,7 @@ public class RedditResult {
 	}
 
 	private SearchPaginator buildSearchPaginator() {
-		SearchPaginator paginator = myRedditClient
+		return myRedditClient
 				.getMyclient()
 				.subreddit(subredditTextField)
 				.search()
@@ -149,29 +148,26 @@ public class RedditResult {
 				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
 				.syntax(SearchPaginator.QuerySyntax.CLOUDSEARCH)
 				.build();
-		return paginator;
 	}
 
 	public DefaultPaginator<Submission> buildDefaultPaginator() {
-		DefaultPaginator<Submission> paginator = myRedditClient
+		return myRedditClient
 				.getMyclient()
 				.subreddit(subredditTextField)
 				.posts()
 				.sorting((SubredditSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
 				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
 				.build();
-		return paginator;
 	}
 
 	public DefaultPaginator<Submission> buildRegexPaginator() {
-		DefaultPaginator<Submission> paginator = myRedditClient
+		return myRedditClient
 				.getMyclient()
 				.subreddit(subredditTextField)
 				.posts()
 				.sorting(SubredditSort.TOP)
 				.timePeriod(TimePeriod.ALL)
 				.build();
-		return paginator;
 	}
 
 	public void setIndex(int newIndex) {

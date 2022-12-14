@@ -1,4 +1,4 @@
-package com.amoghmc.RedditDataScraper;
+package com.amoghmc.redditDataScraper;
 
 import java.sql.SQLException;
 

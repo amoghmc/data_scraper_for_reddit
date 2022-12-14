@@ -1,4 +1,4 @@
-package com.amoghmc.RedditDataScraper;
+package com.amoghmc.redditDataScraper;
 
 
 import net.dean.jraw.models.Submission;
@@ -6,7 +6,7 @@ import net.dean.jraw.models.Submission;
 import java.util.ArrayList;
 
 public class AllFilters implements Filter {
-	ArrayList<Filter> filters;
+	final ArrayList<Filter> filters;
 
 	public AllFilters() {
 		filters = new ArrayList<>();

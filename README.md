@@ -144,7 +144,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 * [JRAW - A Java Reddit API Wrapper](https://github.com/mattbdean/JRAW)
 * [JForm Designer - A professional GUI designer for Java Swings](https://www.formdev.com/)
-* [Github Readme Template](https://github.com/othneildrew/Best-README-Template)
+* [GitHub Readme Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -164,7 +164,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [license-url]: https://github.com/amoghmc/dataScraper/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

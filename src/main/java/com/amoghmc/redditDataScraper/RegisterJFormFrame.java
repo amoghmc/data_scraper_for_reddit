@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jun 03 16:23:32 IST 2022
  */
 
-package com.amoghmc.RedditDataScraper;
+package com.amoghmc.redditDataScraper;
 
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -114,19 +114,20 @@ public class RegisterJFormFrame extends JFrame {
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		this.setSize(500, 400);
-		usernameLabel = new JLabel();
+		// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+		JLabel usernameLabel = new JLabel();
 		usernameField = new JFormattedTextField();
-		passwordLabel = new JLabel();
+		JLabel passwordLabel = new JLabel();
 		passwordField = new JPasswordField();
-		confirmPasswordLabel = new JLabel();
+		JLabel confirmPasswordLabel = new JLabel();
 		confirmPasswordField = new JPasswordField();
-		clientIdLabel = new JLabel();
+		JLabel clientIdLabel = new JLabel();
 		clientIdField = new JFormattedTextField();
-		clientSecretLabel = new JLabel();
+		JLabel clientSecretLabel = new JLabel();
 		clientSecretField = new JPasswordField();
 		errorLabel = new JLabel();
 		loginButton = new JButton();
-		registerButton = new JButton();
+		JButton registerButton = new JButton();
 
 		//======== this ========
 		setTitle("Register");
@@ -234,19 +235,12 @@ public class RegisterJFormFrame extends JFrame {
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	private JLabel usernameLabel;
 	private JFormattedTextField usernameField;
-	private JLabel passwordLabel;
 	private JPasswordField passwordField;
-	private JLabel confirmPasswordLabel;
 	private JPasswordField confirmPasswordField;
-	private JLabel clientIdLabel;
 	private JFormattedTextField clientIdField;
-	private JLabel clientSecretLabel;
 	private JPasswordField clientSecretField;
 	private JLabel errorLabel;
 	private JButton loginButton;
-	private JButton registerButton;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }
