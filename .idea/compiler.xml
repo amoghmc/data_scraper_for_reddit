@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="redditDataScraper" />
+        <module name="RedditDataScraper" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="redditDataScraper" target="18" />
+    </bytecodeTargetLevel>
   </component>
 </project>
