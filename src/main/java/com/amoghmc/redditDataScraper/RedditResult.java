@@ -8,6 +8,7 @@ import net.dean.jraw.pagination.SearchPaginator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class RedditResult {
 	private final MainJFormFrame mainJFormFrame;
@@ -86,7 +87,7 @@ public class RedditResult {
 	}
 
 	public void display() {
-		Paginator paginator;
+		Paginator<Submission> paginator;
 		if (mainJFormFrame.getKeywordCheckBox().isSelected()) {
 			paginator = buildSearchPaginator();
 		}
@@ -143,8 +144,8 @@ public class RedditResult {
 				.subreddit(subredditTextField)
 				.search()
 				.query(mainJFormFrame.getKeywordTextField().getText())
-				.sorting((SearchSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
-				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
+				.sorting((SearchSort) Objects.requireNonNull(mainJFormFrame.getRedditSortComboBox().getSelectedItem()))
+				.timePeriod((TimePeriod) Objects.requireNonNull(mainJFormFrame.getTimeComboBox().getSelectedItem()))
 				.syntax(SearchPaginator.QuerySyntax.CLOUDSEARCH)
 				.build();
 	}
@@ -154,8 +155,8 @@ public class RedditResult {
 				.getMyclient()
 				.subreddit(subredditTextField)
 				.posts()
-				.sorting((SubredditSort) mainJFormFrame.getRedditSortComboBox().getSelectedItem())
-				.timePeriod((TimePeriod) mainJFormFrame.getTimeComboBox().getSelectedItem())
+				.sorting((SubredditSort) Objects.requireNonNull(mainJFormFrame.getRedditSortComboBox().getSelectedItem()))
+				.timePeriod((TimePeriod) Objects.requireNonNull(mainJFormFrame.getTimeComboBox().getSelectedItem()))
 				.build();
 	}
 
