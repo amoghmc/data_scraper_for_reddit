@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.15" encoding: "UTF-8"
+JFDML JFormDesigner: "8.0.1.0.199" Java: "17.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -75,7 +75,7 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 					}
 				}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-					"value": "cell 0 4 3 1"
+					"value": "cell 0 4 2 1"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "keywordTextField"
@@ -182,14 +182,26 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 1 2 18 12,hmax 250"
 			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "pageTextField"
+				"text": "1"
+				"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+					"JavaCodeGenerator.customCreateCode": "new JFormattedTextField(pageFormatter);"
+					"JavaCodeGenerator.preCreateCode": "NumberFormat pageFormat = NumberFormat.getInstance();\nNumberFormatter pageFormatter = new NumberFormatter(pageFormat);\n\npageFormatter.setValueClass(Integer.class);\npageFormatter.setMinimum(1);\npageFormatter.setMaximum(250);\npageFormatter.setAllowsInvalid(false);\npageFormatter.setCommitsOnValidEdit(true);"
+				}
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 25 3 4 2"
+			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "redditSortSettingsCheckBox"
-				"text": "Reddit Sort Settings"
+				"text": "# of pages"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 3 6 1"
+				"value": "cell 20 3 4 2,alignx center,growx 0"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "searchButton3"
+				name: "resetBox"
 				"text": "Reset"
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
@@ -205,7 +217,7 @@ new FormModel {
 					"JavaCodeGenerator.preInitCode": "addRedditComboBoxItems();"
 				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 5 9 1"
+				"value": "cell 20 6 9 1"
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "timeComboBox"
@@ -215,7 +227,7 @@ new FormModel {
 					"JavaCodeGenerator.preInitCode": "timeComboBox.addItem(TimePeriod.HOUR);\ntimeComboBox.addItem(TimePeriod.DAY);\ntimeComboBox.addItem(TimePeriod.WEEK);\ntimeComboBox.addItem(TimePeriod.MONTH);\ntimeComboBox.addItem(TimePeriod.YEAR);\ntimeComboBox.addItem(TimePeriod.ALL);"
 				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 30 5 7 1"
+				"value": "cell 30 6 7 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "azSort"
@@ -225,7 +237,7 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "azSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 20 7 9 1"
+				"value": "cell 20 8 9 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "zaSort"
@@ -235,7 +247,7 @@ new FormModel {
 				}
 				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "zaSortItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 30 7 7 1"
+				"value": "cell 30 8 7 1"
 			} )
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "scoreSortMax"
@@ -269,7 +281,7 @@ new FormModel {
 				"value": "cell 20 11 9 3"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "searchButton2"
+				name: "saveButton"
 				"text": "Save Result"
 				auxiliary() {
 					"JavaCodeGenerator.variableGetter": true
@@ -279,7 +291,7 @@ new FormModel {
 				"value": "cell 30 11 7 3"
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
+				name: "resultScrollPane"
 				add( new FormComponent( "javax.swing.JTextArea" ) {
 					name: "resultTextArea"
 					"cursor": new java.awt.Cursor( 2 )

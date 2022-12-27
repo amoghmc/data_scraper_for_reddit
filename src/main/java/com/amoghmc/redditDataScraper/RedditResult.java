@@ -5,6 +5,7 @@ import net.dean.jraw.pagination.DefaultPaginator;
 import net.dean.jraw.pagination.Paginator;
 import net.dean.jraw.pagination.SearchPaginator;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -98,41 +99,44 @@ public class RedditResult {
 			paginator = buildDefaultPaginator();
 		}
 
-		Listing<Submission> nextPage = paginator.next();
-		Comparator<Submission> comparator = getSortSettings();
-		nextPage.sort(comparator);
+		int pages = Integer.parseInt(mainJFormFrame.getPageTextField().getText().replaceAll(",", ""));
+		for (int k = 0; k < pages; k++) {
+			Listing<Submission> nextPage = paginator.next();
+			Comparator<Submission> comparator = getSortSettings();
+			nextPage.sort(comparator);
 
-		for (Submission s : nextPage) {
-			if (filterArrayList.satisfies(s)) {
-				if (s.isNsfw()) {
-					nsfw = "Yes";
+			for (Submission s : nextPage) {
+				if (filterArrayList.satisfies(s)) {
+					if (s.isNsfw()) {
+						nsfw = "Yes";
+					}
+					if (s.isSpoiler()) {
+						spoiler = "Yes";
+					}
+					mainJFormFrame.getResultTextArea().append("Index: "
+							+ index
+							+ "\nSearch at: "
+							+ dateFormatter.format(LocalDateTime.now())
+							+ "\nTitle: "
+							+ s.getTitle().replace('’', '\'').replace('—', '-')
+							+ "\nScore: "
+							+ s.getScore()
+							+ "\nComment Count: "
+							+ s.getCommentCount()
+							+ "\nSubreddit: "
+							+ s.getSubreddit()
+							+ "\nURL: "
+							+ s.getUrl()
+							+ "\nPermalink: "
+							+ "https://www.reddit.com" + s.getPermalink()
+							+ "\nNSFW: "
+							+ nsfw
+							+ "\nSpoiler: "
+							+ spoiler
+							+ "\n"
+							+ "\n");
+					index++;
 				}
-				if (s.isSpoiler()) {
-					spoiler = "Yes";
-				}
-				mainJFormFrame.getResultTextArea().append("Index: "
-						+ index
-						+ "\nSearch at: "
-						+ dateFormatter.format(LocalDateTime.now())
-						+ "\nTitle: "
-						+ s.getTitle().replace('’', '\'').replace('—', '-')
-						+ "\nScore: "
-						+ s.getScore()
-						+ "\nComment Count: "
-						+ s.getCommentCount()
-						+ "\nSubreddit: "
-						+ s.getSubreddit()
-						+ "\nURL: "
-						+ s.getUrl()
-						+ "\nPermalink: "
-						+ "https://www.reddit.com" + s.getPermalink()
-						+ "\nNSFW: "
-						+ nsfw
-						+ "\nSpoiler: "
-						+ spoiler
-						+ "\n"
-						+ "\n");
-				index++;
 			}
 		}
 		filterArrayList.clear();

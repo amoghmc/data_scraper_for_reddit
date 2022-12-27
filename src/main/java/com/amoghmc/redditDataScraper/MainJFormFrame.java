@@ -134,13 +134,14 @@ public class MainJFormFrame extends JFrame {
 		scoreMaxTextField.setText("0");
 		commentCountMinTextField.setText("0");
 		commentCountMaxTextField.setText("0");
+		pageTextField.setText("1");
 
 		redditSortComboBox.setSelectedIndex(0);
 		timeComboBox.setSelectedIndex(1);
 		azSort.setSelected(false);
 		zaSort.setSelected(false);
 		scoreSortMin.setSelected(false);
-		scoreSortMax.setSelected(false);
+		scoreSortMax.setSelected(true);
 		resultTextArea.setText("");
 		redditResult.setIndex(1);
 	}
@@ -233,11 +234,26 @@ public class MainJFormFrame extends JFrame {
 		return regexCheckBox;
 	}
 
+	public JFormattedTextField getPageTextField() {
+		return pageTextField;
+	}
+
+	public JButton getResetBox() {
+		return resetBox;
+	}
+
+	public JButton getSearchButton() {
+		return searchButton;
+	}
+
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-		JPanel filterPanel = new JPanel();
-		JLabel subredditFilterLabel = new JLabel();
+		filterPanel = new JPanel();
+		subredditFilterLabel = new JLabel();
 		subredditTextField = new JTextField();
 		noNsfwCheckBox = new JCheckBox();
 		keywordCheckBox = new JCheckBox();
@@ -257,30 +273,39 @@ public class MainJFormFrame extends JFrame {
 		// End of Source
 		scoreMinTextField = new JFormattedTextField(formatter);
 		commentCountMinTextField = new JFormattedTextField(formatter);
-		JLabel scoreMinLabel = new JLabel();
-		JLabel scoreMaxLabel = new JLabel();
+		scoreMinLabel = new JLabel();
+		scoreMaxLabel = new JLabel();
 		commentCountFilterCheckBox = new JCheckBox();
-		JLabel commentCountMinLabel = new JLabel();
+		commentCountMinLabel = new JLabel();
 		scoreMaxTextField = new JFormattedTextField(formatter);
 		commentCountMaxTextField = new JFormattedTextField(formatter);
-		JLabel commentCountMaxLabel = new JLabel();
-		JLabel redditSortSettingsCheckBox = new JLabel();
-		JButton searchButton3 = new JButton();
-		redditSortComboBox = new JComboBox<>();
-		timeComboBox = new JComboBox<>();
+		commentCountMaxLabel = new JLabel();
+		NumberFormat pageFormat = NumberFormat.getInstance();
+		NumberFormatter pageFormatter = new NumberFormatter(pageFormat);
+
+		pageFormatter.setValueClass(Integer.class);
+		pageFormatter.setMinimum(1);
+		pageFormatter.setMaximum(250);
+		pageFormatter.setAllowsInvalid(false);
+		pageFormatter.setCommitsOnValidEdit(true);
+		pageTextField = new JFormattedTextField(pageFormatter);
+		redditSortSettingsCheckBox = new JLabel();
+		resetBox = new JButton();
+		redditSortComboBox = new JComboBox();
+		timeComboBox = new JComboBox();
 		azSort = new JCheckBox();
 		zaSort = new JCheckBox();
 		scoreSortMax = new JCheckBox();
 		scoreSortMin = new JCheckBox();
-		JButton searchButton = new JButton();
-		JButton searchButton2 = new JButton();
-		JScrollPane scrollPane1 = new JScrollPane();
+		searchButton = new JButton();
+		saveButton = new JButton();
+		resultScrollPane = new JScrollPane();
 		resultTextArea = new JTextArea();
 		loginLabel = new JLabel();
 		clientIdLabel = new JLabel();
 
 		//======== this ========
-		setBackground(new Color(255, 204, 204));
+		setBackground(new Color(0xffcccc));
 		setForeground(Color.orange);
 		setTitle("RedditDataScraper");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -398,18 +423,18 @@ public class MainJFormFrame extends JFrame {
 
 			//---- keywordCheckBox ----
 			keywordCheckBox.setText("Keyword Filter");
-			keywordCheckBox.addItemListener(this::keywordCheckBoxItemStateChanged);
+			keywordCheckBox.addItemListener(e -> keywordCheckBoxItemStateChanged(e));
 			filterPanel.add(keywordCheckBox, "cell 5 3");
 
 			//---- regexCheckBox ----
 			regexCheckBox.setText("Regex Filter");
-			regexCheckBox.addItemListener(this::regexCheckBoxItemStateChanged);
+			regexCheckBox.addItemListener(e -> regexCheckBoxItemStateChanged(e));
 			filterPanel.add(regexCheckBox, "cell 7 3 4 1");
 
 			//---- noSpoilerCheckBox ----
 			noSpoilerCheckBox.setText("No Spoiler Filter");
 			noSpoilerCheckBox.setSelected(true);
-			filterPanel.add(noSpoilerCheckBox, "cell 0 4 3 1");
+			filterPanel.add(noSpoilerCheckBox, "cell 0 4 2 1");
 
 			//---- keywordTextField ----
 			keywordTextField.setEnabled(false);
@@ -417,7 +442,7 @@ public class MainJFormFrame extends JFrame {
 
 			//---- scoreFilterCheckBox ----
 			scoreFilterCheckBox.setText("Score Filter");
-			scoreFilterCheckBox.addItemListener(this::scoreFilterCheckBoxItemStateChanged);
+			scoreFilterCheckBox.addItemListener(e -> scoreFilterCheckBoxItemStateChanged(e));
 			filterPanel.add(scoreFilterCheckBox, "cell 0 6 4 1");
 
 			//---- scoreMinTextField ----
@@ -442,7 +467,7 @@ public class MainJFormFrame extends JFrame {
 
 			//---- commentCountFilterCheckBox ----
 			commentCountFilterCheckBox.setText("Comment Count Filter");
-			commentCountFilterCheckBox.addItemListener(this::commentCountFilterCheckBoxItemStateChanged);
+			commentCountFilterCheckBox.addItemListener(e -> commentCountFilterCheckBoxItemStateChanged(e));
 			filterPanel.add(commentCountFilterCheckBox, "cell 0 8 4 1");
 
 			//---- commentCountMinLabel ----
@@ -467,18 +492,23 @@ public class MainJFormFrame extends JFrame {
 		}
 		contentPane.add(filterPanel, "cell 1 2 18 12,hmax 250");
 
-		//---- redditSortSettingsCheckBox ----
-		redditSortSettingsCheckBox.setText("Reddit Sort Settings");
-		contentPane.add(redditSortSettingsCheckBox, "cell 20 3 6 1");
+		//---- pageTextField ----
+		pageTextField.setText("1");
+		pageTextField.setMinimumSize(null);
+		contentPane.add(pageTextField, "cell 25 3 4 2");
 
-		//---- searchButton3 ----
-		searchButton3.setText("Reset");
-		searchButton3.addActionListener(e -> reset());
-		contentPane.add(searchButton3, "cell 30 3 7 2");
+		//---- redditSortSettingsCheckBox ----
+		redditSortSettingsCheckBox.setText("# of pages");
+		contentPane.add(redditSortSettingsCheckBox, "cell 20 3 4 2,alignx center,growx 0");
+
+		//---- resetBox ----
+		resetBox.setText("Reset");
+		resetBox.addActionListener(e -> reset());
+		contentPane.add(resetBox, "cell 30 3 7 2");
 
 		//---- redditSortComboBox ----
 		addRedditComboBoxItems();
-		contentPane.add(redditSortComboBox, "cell 20 5 9 1");
+		contentPane.add(redditSortComboBox, "cell 20 6 9 1");
 
 		//---- timeComboBox ----
 		timeComboBox.addItem(TimePeriod.HOUR);
@@ -488,27 +518,27 @@ public class MainJFormFrame extends JFrame {
 		timeComboBox.addItem(TimePeriod.YEAR);
 		timeComboBox.addItem(TimePeriod.ALL);
 		timeComboBox.setSelectedIndex(1);
-		contentPane.add(timeComboBox, "cell 30 5 7 1");
+		contentPane.add(timeComboBox, "cell 30 6 7 1");
 
 		//---- azSort ----
 		azSort.setText("Title Sort");
-		azSort.addItemListener(this::azSortItemStateChanged);
-		contentPane.add(azSort, "cell 20 7 9 1");
+		azSort.addItemListener(e -> azSortItemStateChanged(e));
+		contentPane.add(azSort, "cell 20 8 9 1");
 
 		//---- zaSort ----
 		zaSort.setText("Title Sort Reverse");
-		zaSort.addItemListener(this::zaSortItemStateChanged);
-		contentPane.add(zaSort, "cell 30 7 7 1");
+		zaSort.addItemListener(e -> zaSortItemStateChanged(e));
+		contentPane.add(zaSort, "cell 30 8 7 1");
 
 		//---- scoreSortMax ----
 		scoreSortMax.setText("Score Sort by Max");
 		scoreSortMax.setSelected(true);
-		scoreSortMax.addItemListener(this::scoreSortMaxItemStateChanged);
+		scoreSortMax.addItemListener(e -> scoreSortMaxItemStateChanged(e));
 		contentPane.add(scoreSortMax, "cell 20 9 9 2");
 
 		//---- scoreSortMin ----
 		scoreSortMin.setText("Score Sort by Min");
-		scoreSortMin.addItemListener(this::scoreSortMinItemStateChanged);
+		scoreSortMin.addItemListener(e -> scoreSortMinItemStateChanged(e));
 		contentPane.add(scoreSortMin, "cell 30 9 7 2");
 
 		//---- searchButton ----
@@ -516,28 +546,30 @@ public class MainJFormFrame extends JFrame {
 		searchButton.addActionListener(e -> search());
 		contentPane.add(searchButton, "cell 20 11 9 3");
 
-		//---- searchButton2 ----
-		searchButton2.setText("Save Result");
-		searchButton2.addActionListener(e -> save());
-		contentPane.add(searchButton2, "cell 30 11 7 3");
+		//---- saveButton ----
+		saveButton.setText("Save Result");
+		saveButton.addActionListener(e -> save());
+		contentPane.add(saveButton, "cell 30 11 7 3");
 
-		//======== scrollPane1 ========
+		//======== resultScrollPane ========
 		{
 
 			//---- resultTextArea ----
 			resultTextArea.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 			resultTextArea.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 			resultTextArea.setForeground(Color.black);
-			scrollPane1.setViewportView(resultTextArea);
+			resultScrollPane.setViewportView(resultTextArea);
 		}
-		contentPane.add(scrollPane1, "cell 2 14 35 9");
+		contentPane.add(resultScrollPane, "cell 2 14 35 9");
 		contentPane.add(loginLabel, "cell 2 23 12 2,alignx left,growx 0");
 		contentPane.add(clientIdLabel, "cell 20 23 17 2,alignx right,growx 0");
-		setSize(1080, 750);
+		setSize(1890, 1312);
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
-
+	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	private JPanel filterPanel;
+	private JLabel subredditFilterLabel;
 	private JTextField subredditTextField;
 	private JCheckBox noNsfwCheckBox;
 	private JCheckBox keywordCheckBox;
@@ -547,15 +579,25 @@ public class MainJFormFrame extends JFrame {
 	private JCheckBox scoreFilterCheckBox;
 	private JFormattedTextField scoreMinTextField;
 	private JFormattedTextField commentCountMinTextField;
+	private JLabel scoreMinLabel;
+	private JLabel scoreMaxLabel;
 	private JCheckBox commentCountFilterCheckBox;
+	private JLabel commentCountMinLabel;
 	private JFormattedTextField scoreMaxTextField;
 	private JFormattedTextField commentCountMaxTextField;
-	private JComboBox<Enum> redditSortComboBox;
-	private JComboBox<TimePeriod> timeComboBox;
+	private JLabel commentCountMaxLabel;
+	private JFormattedTextField pageTextField;
+	private JLabel redditSortSettingsCheckBox;
+	private JButton resetBox;
+	private JComboBox redditSortComboBox;
+	private JComboBox timeComboBox;
 	private JCheckBox azSort;
 	private JCheckBox zaSort;
 	private JCheckBox scoreSortMax;
 	private JCheckBox scoreSortMin;
+	private JButton searchButton;
+	private JButton saveButton;
+	private JScrollPane resultScrollPane;
 	private JTextArea resultTextArea;
 	private JLabel loginLabel;
 	private JLabel clientIdLabel;
