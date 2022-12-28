@@ -70,6 +70,7 @@ public class RedditResult {
 		else if (mainJFormFrame.getKeywordCheckBox().isSelected()) {
 			filterArrayList.addFilter(new KeywordFilter(keywordTextField.replaceAll(" ", "").split(",")));
 		}
+		filterArrayList.addFilter(new DuplicateFilter());
 	}
 
 	public Comparator<Submission> getSortSettings() {
