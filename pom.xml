@@ -6,7 +6,7 @@
 
     <groupId>com.amoghmc.redditDataScraper</groupId>
     <artifactId>RedditDataScraper</artifactId>
-    <version>0.4</version>
+    <version>1.0</version>
     <build>
         <plugins>
             <plugin>
